@@ -7,7 +7,7 @@ This repo is the operations home for Codex — handoffs, diagnostics, recovery p
 ## What's in here
 
 - **[`HANDOFF.md`](HANDOFF.md)** — the comprehensive reference. Where the service runs, how the workspace policy files work, every patch applied to the runtime, common breakages and fixes, the diagnostic playbook. Read this first.
-- **[`CLAUDE.md`](CLAUDE.md)** — instructions for any Claude Code session working in this repo.
+- **[`AGENTS.md`](AGENTS.md)** — instructions for any agent (Claude Code, Codex CLI, Cursor, etc.) working in this repo.
 
 ## What is Codex Agent (vs Yoo AI Agent)
 

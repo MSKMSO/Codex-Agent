@@ -1,4 +1,4 @@
-# Instructions for Claude Code working on Codex Agent
+# Instructions for agents working on Codex Agent
 
 This repo is the home for everything related to **Codex Agent** — the openclaw-codex Teams bot that Dr. Yoo and MSO staff chat with as "Codex" in Microsoft Teams. If the user asks about Codex, the openclaw bot, why it's down, why it isn't reading images, why it's refusing requests, or anything related to its model / policy / workspace files, this is your starting point.
 
