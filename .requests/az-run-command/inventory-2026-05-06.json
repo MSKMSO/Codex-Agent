@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "echo '===== BOT SERVICES =====' && systemctl list-units --type=service --no-pager --state=loaded | grep -iE 'bot|agent|responder' && echo && echo '===== HOME DIRS =====' && ls -d /home/azureuser/.*-bot/ /home/azureuser/.*bot 2>/dev/null && ls -d /home/azureuser/.openclaw-codex 2>/dev/null && echo && echo '===== UPTIMES =====' && for s in $(systemctl list-units --type=service --no-pager --state=running --plain --no-legend | grep -iE 'bot|agent|responder' | awk '{print $1}'); do printf '%-40s ' \"$s\"; systemctl show \"$s\" -p ActiveEnterTimestamp --value; done"
+}
