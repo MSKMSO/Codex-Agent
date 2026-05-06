@@ -1,0 +1,126 @@
+name: dispatch-az-run-command
+# Push-triggered Azure proxy. The MSO Claude Code session scoped to
+# this repo (Codex-Agent) has no Azure CLI and no auth tokens. This
+# workflow lets it run anything on openclaw-vm or any other VM in the
+# SDNeurosurgery-OpenClaw resource group by committing a request file.
+#
+# Request file: .requests/az-run-command/<your-id>.json
+# {
+#   "vm":     "openclaw-vm",
+#   "rg":     "SDNeurosurgery-OpenClaw",   // optional, defaults to SDNeurosurgery-OpenClaw
+#   "script": "systemctl list-units --type=service --no-pager | grep bot"
+# }
+#
+# Response file: .responses/az-run-command/<your-id>.json
+# {
+#   "stdout": "...", "stderr": "...", "exit_code": 0
+# }
+#
+# Backed by sp-mso-cc-openclaw-diag (federated credential added 2026-05-06)
+# which holds the OpenClaw Run Command Operator role on openclaw-vm
+# (read VM, run shell commands, read run-command output — no start/stop/delete).
+on:
+  push:
+    paths:
+      - '.requests/az-run-command/**.json'
+permissions:
+  id-token: write
+  contents: write
+jobs:
+  proxy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - uses: azure/login@v2
+        with:
+          client-id: be7c0d1e-927e-458c-8d33-4b5044d7250d
+          tenant-id: 50186224-2255-444a-b321-60a84114115c
+          subscription-id: 15a60cd5-8766-431b-a003-49f4f1b1890f
+
+      - name: Find request files in this push
+        id: find
+        run: |
+          set -euo pipefail
+          mapfile -t REQS < <(git diff --name-only HEAD~1 HEAD -- '.requests/az-run-command/*.json' 2>/dev/null || ls .requests/az-run-command/*.json 2>/dev/null || true)
+          if [ "${#REQS[@]}" -eq 0 ]; then
+            echo "files=" >> "$GITHUB_OUTPUT"; exit 0
+          fi
+          { echo "files<<EOF"; printf '%s\n' "${REQS[@]}"; echo "EOF"; } >> "$GITHUB_OUTPUT"
+
+      - name: Process each request
+        if: steps.find.outputs.files != ''
+        env:
+          REQUESTS: ${{ steps.find.outputs.files }}
+        run: |
+          set -euo pipefail
+          mkdir -p .responses/az-run-command
+          while IFS= read -r req; do
+            [ -z "$req" ] && continue
+            [ -f "$req" ] || continue
+            name=$(basename "$req")
+            echo "==> $req"
+
+            VM=$(jq -r '.vm // "openclaw-vm"' "$req")
+            RG=$(jq -r '.rg // "SDNeurosurgery-OpenClaw"' "$req")
+            SCRIPT=$(jq -r '.script // ""' "$req")
+            if [ -z "$SCRIPT" ]; then
+              echo '{"error":"missing script"}' > ".responses/az-run-command/$name"; continue
+            fi
+
+            # Write the script to a temp file so multi-line scripts work
+            echo "$SCRIPT" > /tmp/run-cmd-script.sh
+
+            set +e
+            OUT=$(az vm run-command invoke -g "$RG" -n "$VM" \
+              --command-id RunShellScript \
+              --scripts @/tmp/run-cmd-script.sh \
+              --query "value[0]" 2>&1)
+            RC=$?
+            set -e
+
+            # az returns a JSON-ish structure; pass through
+            STDOUT=$(echo "$OUT" | python3 -c "
+            import sys,json
+            try:
+                d = json.loads(sys.stdin.read())
+                msg = d.get('message','')
+                if '[stdout]' in msg:
+                    s = msg.split('[stdout]',1)[1]
+                    s = s.split('[stderr]',1)[0] if '[stderr]' in s else s
+                    print(s.strip())
+            except Exception:
+                pass
+            " 2>/dev/null || echo "")
+
+            STDERR=$(echo "$OUT" | python3 -c "
+            import sys,json
+            try:
+                d = json.loads(sys.stdin.read())
+                msg = d.get('message','')
+                if '[stderr]' in msg:
+                    s = msg.split('[stderr]',1)[1]
+                    print(s.strip())
+            except Exception:
+                pass
+            " 2>/dev/null || echo "")
+
+            jq -n --arg stdout "$STDOUT" --arg stderr "$STDERR" --argjson rc "$RC" --arg vm "$VM" --arg rg "$RG" \
+              '{vm:$vm, rg:$rg, exit_code:$rc, stdout:$stdout, stderr:$stderr}' \
+              > ".responses/az-run-command/$name"
+            echo "  → .responses/az-run-command/$name (rc=$RC)"
+          done <<< "$REQUESTS"
+
+      - name: Commit response files
+        if: steps.find.outputs.files != ''
+        run: |
+          set -euo pipefail
+          git config user.name "az-proxy-bot"
+          git config user.email "az-proxy-bot@users.noreply.github.com"
+          if [ -n "$(git status --porcelain .responses/az-run-command/)" ]; then
+            git add .responses/az-run-command/
+            git commit -m "az-proxy: response for push $GITHUB_SHA"
+            git push
+          fi
