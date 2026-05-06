@@ -1,7 +1,0 @@
-{
-  "vm": "openclaw-vm",
-  "rg": "SDNeurosurgery-OpenClaw",
-  "exit_code": 0,
-  "stdout": "  aixa-bot.service                                            loaded active running Aixa Medina Claude Bot Endpoint\n  aixa-responder.service                                      loaded active running Aixa Medina Claude autonomous responder\n  zahid-bot.service                                           loaded active running Muhammad Zahid Claude Bot Endpoint\n  zahid-responder.service                                     loaded active running Muhammad Zahid Claude autonomous responder",
-  "stderr": ""
-}
