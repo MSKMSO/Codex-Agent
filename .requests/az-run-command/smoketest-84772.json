@@ -1,1 +1,0 @@
-{"vm":"openclaw-vm","script":"systemctl list-units --type=service --no-pager | grep -iE 'aixa|zahid' | head -10"}

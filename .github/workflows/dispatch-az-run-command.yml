@@ -74,43 +74,22 @@ jobs:
             echo "$SCRIPT" > /tmp/run-cmd-script.sh
 
             set +e
-            OUT=$(az vm run-command invoke -g "$RG" -n "$VM" \
+            az vm run-command invoke -g "$RG" -n "$VM" \
               --command-id RunShellScript \
               --scripts @/tmp/run-cmd-script.sh \
-              --query "value[0]" 2>&1)
+              --query "value[0].message" -o tsv > /tmp/raw-msg.txt 2>/tmp/raw-err.txt
             RC=$?
             set -e
 
-            # az returns a JSON-ish structure; pass through
-            STDOUT=$(echo "$OUT" | python3 -c "
-            import sys,json
-            try:
-                d = json.loads(sys.stdin.read())
-                msg = d.get('message','')
-                if '[stdout]' in msg:
-                    s = msg.split('[stdout]',1)[1]
-                    s = s.split('[stderr]',1)[0] if '[stderr]' in s else s
-                    print(s.strip())
-            except Exception:
-                pass
-            " 2>/dev/null || echo "")
-
-            STDERR=$(echo "$OUT" | python3 -c "
-            import sys,json
-            try:
-                d = json.loads(sys.stdin.read())
-                msg = d.get('message','')
-                if '[stderr]' in msg:
-                    s = msg.split('[stderr]',1)[1]
-                    print(s.strip())
-            except Exception:
-                pass
-            " 2>/dev/null || echo "")
+            # az's "message" field has the form:
+            #   "Enable succeeded: \n[stdout]\n<stdout>\n[stderr]\n<stderr>"
+            STDOUT=$(awk '/^\[stdout\]$/{flag=1; next} /^\[stderr\]$/{flag=0} flag' /tmp/raw-msg.txt)
+            STDERR=$(awk '/^\[stderr\]$/{flag=1; next} flag' /tmp/raw-msg.txt)
 
             jq -n --arg stdout "$STDOUT" --arg stderr "$STDERR" --argjson rc "$RC" --arg vm "$VM" --arg rg "$RG" \
               '{vm:$vm, rg:$rg, exit_code:$rc, stdout:$stdout, stderr:$stderr}' \
               > ".responses/az-run-command/$name"
-            echo "  → .responses/az-run-command/$name (rc=$RC)"
+            echo "  → .responses/az-run-command/$name (rc=$RC stdout-bytes=${#STDOUT})"
           done <<< "$REQUESTS"
 
       - name: Commit response files
