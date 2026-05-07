@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "post_reply:\n  defined at line 371\n  references globals: ('_post_reply_orig_protect', '_redact_passwords_protect')\n\n_post_reply_orig_protect:\n  defined at line 361\n  references globals: ('subprocess', 'run', 'SENDER', 'open', 'OUTBOUND', 'write', 'json', 'dumps', 'time', 'strftime', 'Exception')\n\n_redact_passwords_protect:\n  defined at line 158\n  references globals: ('_time_protect', 'time', '_PW_CACHE_PROTECT', '_sp_protect', 'check_output', 'splitlines', 'Exception', 'strip', 'len', 'append', 'list', 'set', 'replace')\n\n_maybe_handle_creds_protect:\n  defined at line 90\n  references globals: ('globals', 'strip_html', '_CREDS_PATTERNS_PROTECT', 'search', 'group', 'strip', 'lower', 'rstrip', '_NOT_A_SITE_PROTECT', 'len', '_sp_protect', 'run', 'returncode', 'Exception', 'log', 'ERR_LOG', 'post_reply_chunked', 'post_reply', 'DEBUG_LOG')\n\n_is_dangerous_protect:\n  defined at line 149\n  references globals: ('_DANGEROUS_PATTERNS_PROTECT', 'search')\n\n===== Is post_reply_chunked in mod? =====\n  hasattr: False\n\n===== Is _post_reply_orig_protect actually post_reply? =====\n  same code obj? False\n  post_reply id: 128812871187680\n  _post_reply_orig_protect id: 128812871187520",
+  "stderr": ""
+}
