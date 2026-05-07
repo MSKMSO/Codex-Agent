@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "===== Pre-state: env var visible to systemd? =====\nAIXA_TEAMS_CATALOG_ID=05db4e89-bf71-4f52-b8b3-67f859a44c1b\n\n===== Running SENDER manually with the group chat id =====\nTraceback (most recent call last):\n  File \"<string>\", line 1, in <module>\nKeyError: 'access_token'\nsender_rc=1",
+  "stderr": ""
+}
