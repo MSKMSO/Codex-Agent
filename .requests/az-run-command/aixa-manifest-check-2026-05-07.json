@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "echo '===== Find Aixa Teams app artifacts =====' && find /home/azureuser -maxdepth 4 -iname '*aixa*' -type f 2>/dev/null | grep -E '\\.(zip|json)$' | grep -viE '\\.bak|activities|conversation-refs|outbound|offset' | head -20 && echo && echo '===== Check known manifest locations =====' && for p in /home/azureuser/aixa-app/manifest.json /home/azureuser/aixa-bot-app/manifest.json /home/azureuser/.aixa-bot/manifest.json /home/azureuser/aixa-teams-app.zip /home/azureuser/aixa-app.zip; do [ -e \"$p\" ] && echo \"FOUND: $p ($(stat -c '%y' $p))\"; done && echo && echo '===== Inspect any aixa zip contents =====' && for z in $(find /home/azureuser -maxdepth 4 -iname 'aixa*.zip' -type f 2>/dev/null); do echo \"=== $z ===\"; unzip -p \"$z\" manifest.json 2>/dev/null | jq '{version, bots: [.bots[]? | {botId, scopes}], name}' 2>&1 | head -30; done && echo && echo '===== Test SENDER with a syntactically-valid group chat id =====' && /home/azureuser/aixa-send-to.sh 'TEST DO NOT DELIVER — diagnostic only' '19:00000000-0000-0000-0000-000000000000@thread.v2' 2>&1 | tail -10; echo \"sender_rc=$?\""
+}
