@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "APP_ID=ce03d8ce-5306-48cc-bd4f-9370d7005e15\nSECRET length=40\n\n===== Direct BF token request — raw response =====\n{\n  \"error\": \"invalid_client\",\n  \"error_description\": \"AADSTS7000229: The client application ce03d8ce-5306-48cc-bd4f-9370d7005e15 is missing service principal in the tenant 50186224-2255-444a-b321-60a84114115c. See instructions here: https://go.microsoft.com/fwlink/?linkid=2225119 Trace ID: ce4c1263-4068-4499-b4e1-bf1d5fcd0500 Correlation ID: 101066e3-fd61-465d-9329-74504313236d Timestamp: 2026-05-07 16:44:19Z\",\n  \"error_codes\": [\n    7000229\n  ],\n  \"timestamp\": \"2026-05-07 16:44:19Z\"\n}\n\n===== When does the secret expire (if we can read attribs) =====\n{\n  \"created\": \"2026-05-06T19:30:40+00:00\",\n  \"enabled\": true,\n  \"expires\": null,\n  \"notBefore\": null,\n  \"recoverableDays\": 90,\n  \"recoveryLevel\": \"Recoverable+Purgeable\",\n  \"updated\": \"2026-05-06T19:30:40+00:00\"\n}\n\n===== Client secrets on this app reg (if the proxy user has app-read) =====\n[\n  {\n    \"customKeyIdentifier\": null,\n    \"displayName\": \"aixa-bot-secret\",\n    \"endDateTime\": \"2028-05-06T19:30:39Z\",\n    \"hint\": \"gPp\",\n    \"keyId\": \"a278f1ca-b563-4d94-a497-5ab992e3ad55\",\n    \"secretText\": null,\n    \"startDateTime\": \"2026-05-06T19:30:39Z\"\n  }\n]",
+  "stderr": ""
+}
