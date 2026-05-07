@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "===== FUNCTION DEFS containing post_reply or redact =====\n  L43: def _redact_passwords_protect(text) \n  L158: def _redact_passwords_protect(text) \n  L361: def _post_reply_orig_protect(chat_id,text) \n  L371: def post_reply(chat_id,text) \n\n===== ASSIGNMENTS to post_reply* =====\n\n===== ALL CALLS to post_reply* =====\n  L372: calls _post_reply_orig_protect()   src=> return _post_reply_orig_protect(chat_id, _redact_passwords_protect(text))\n  L390: calls post_reply()   src=> try: post_reply(chat_id, \"🤔 *On it…*\")\n  L404: calls post_reply()   src=> try: post_reply(chat_id, reply)\n  L400: calls post_reply()   src=> try: post_reply(chat_id, \"⚠️ *Had trouble generating a reply — please retry in a moment.*\")\n  L117: calls post_reply_chunked()   src=> post_reply_chunked(chat_id, reply)\n  L119: calls post_reply()   src=> post_reply(chat_id, reply)",
+  "stderr": ""
+}
