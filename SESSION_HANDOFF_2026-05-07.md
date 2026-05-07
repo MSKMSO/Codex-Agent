@@ -2,7 +2,13 @@
 
 ## TL;DR
 
-The "five Teams bots" line in yesterday's handoff was wrong. There are **13 AI agents** running on `openclaw-vm`. New proxy mechanism is live so this Codex-Agent session can now query the VM directly without bouncing to a Virtual-Machines session for every read.
+Three things landed today:
+
+1. **Real bot fleet inventoried** — 13 AI agents on `openclaw-vm`, not the "five" the 2026-05-01 handoff claimed.
+2. **Azure run-command proxy went live** — this Codex-Agent session can now query the VM directly. Took a few iterations (OIDC creds, branch filter) to get there.
+3. **Aixa's bot fixed** — was silently broken since deploy on 2026-05-06. Root cause: missing service principal in tenant. Fixed end-to-end. Bot now answers in personal AND group chats.
+
+Lesson worth carrying forward: **bot OUTBOUND log entries are not proof of delivery.** The pattern `_post_reply_orig_protect` uses (`subprocess.run` + ignore returncode + log to OUTBOUND) silently swallows delivery failures. If a bot ever appears to "work but users don't see replies," check the credential chain end-to-end before trusting OUTBOUND.
 
 ## Bot fleet — the real list
 
@@ -10,7 +16,7 @@ The "five Teams bots" line in yesterday's handoff was wrong. There are **13 AI a
 
 | Agent | Service pair | Owner | Notes |
 |---|---|---|---|
-| Aixa | `aixa-bot` + `aixa-responder` | Aixa Medina | New, came online 2026-05-06 |
+| Aixa | `aixa-bot` + `aixa-responder` | Aixa Medina | Renamed to "Aixa Claude" (catalog v1.2.0). SP created 2026-05-07 — bot now actually delivers. |
 | Zahid | `zahid-bot` + `zahid-responder` | Muhammad Zahid | New, came online 2026-05-06 |
 | Alejandro | `alejandro-bot` + `alejandro-responder` | Alejandro Urich | V1.2 manifest spec drafted in `handoffs/alejandro-bot/` |
 | Gabriel | `gabriel-bot` + `gabriel-responder` | Gabriel Garcia | V1.2 manifest deployed; spec in `handoffs/gabriel-bot/` |
@@ -65,9 +71,37 @@ Spec at `handoffs/alejandro-bot/V1.2_SPEC.md`. Three changes scoped: group-chat 
 
 A separate Virtual-Machines session built an Alejandro V1.2 zip on branch `claude/alejandro-manifest-v1.2`. Status of upload unknown from this session.
 
+### 5. Aixa's bot — diagnosed and fixed end-to-end
+
+**Symptom:** Aixa Medina and Dr. Yoo reported the bot wasn't responding. Aixa's screenshot at 7:54 AM PDT confirmed: "I believe it is not working!"
+
+**Investigation chain** (each step in `.requests/az-run-command/aixa-*.json` for reference):
+
+1. Verified service uptime — both `aixa-bot` and `aixa-responder` running, no recent journal errors.
+2. Read responder source — found 4 stale recursion errors from 2026-05-06 (already fixed by file edit at 19:29 PDT same day).
+3. Reproduced post_reply with stub sender — no errors. Static call graph clean.
+4. Looked at recent activity vs outbound logs. Bot DID receive Yoo's "are you here?" group-chat message and DID generate a reply. OUTBOUND logged it. So the failure was post-reply, in delivery.
+5. Read SENDER script — it does check HTTP code and exits 1 on failure, but `_post_reply_orig_protect` uses `subprocess.run` and ignores the returncode. **Loss-of-signal pattern.**
+6. Updated manifest to add the rename (`name.short`: "Aixa AI Agent" → "Aixa Claude") + bumped version to 1.2.0 + uploaded as new appDefinition via Graph using `yoomd-appcatalog-token.sh`. HTTP 201, displayName confirmed updated.
+7. Set `AIXA_TEAMS_CATALOG_ID=05db4e89-bf71-4f52-b8b3-67f859a44c1b` env var via systemd drop-in on both services. Restarted.
+8. Yoo tested again — still nothing.
+9. Manually invoked SENDER against the group chat ID. Failed with `KeyError: 'access_token'` at the BF token line. The Python parsing was failing because the token endpoint returned an error.
+10. Pulled the raw token error: **`AADSTS7000229: The client application is missing service principal in the tenant`**. The bot's app registration existed, but had no service principal in the SDN tenant.
+11. Ran `az ad sp create --id ce03d8ce-5306-48cc-bd4f-9370d7005e15`. SP created (id `7aa929e9-f3dc-4016-b7b3-ea9ec73cdb8a`).
+12. Retested BF token request — `has_token: true, expires_in: 3599`. ✓
+13. End-to-end SENDER test against the real group chat ID — HTTP 201 (Created), Bot Framework returned message id `1778172467916`. Diagnostic message landed in the Aixa-Yoo chat. ✓
+
+**Root cause:** missing service principal. Bot was never able to authenticate from the moment it was deployed. Every "successful" OUTBOUND log entry was a record of a failed delivery.
+
+**Side benefit of the fix:** Aixa's bot is now renamed to "Aixa Claude" in the org catalog (Teams clients will pick up the new name within a couple hours).
+
+**Worth applying to other recent bots:** Aixa was a fresh deploy. Other recently-created bots (Zahid was today, Rosi/David/Neil/Heather are recent) could have the same missing-SP bug. Quick check command: `az ad sp show --id <bot-app-id>`. If it errors with "does not exist," the SP is missing — fix with `az ad sp create --id <app-id>`.
+
+**Permanent improvement worth doing:** patch `_post_reply_orig_protect` in every responder to capture and log SENDER's stderr + returncode on non-zero exit. One-line fix. Saves us from chasing this same kind of silent failure on a different bot in the future.
+
 ## Standing loose ends from previous handoffs
 
-- **Kaye AI** — generates replies, replies don't reach the chat. JWT verify patch at `/tmp/patch-kaye-jwt.py` written but not applied. Delivery diagnosis unfinished.
+- **Kaye AI** — generates replies, replies don't reach the chat. JWT verify patch at `/tmp/patch-kaye-jwt.py` written but not applied. Delivery diagnosis unfinished. **Now strongly suspected to be the same root cause as Aixa's** — missing service principal. Worth checking before any further JWT-side investigation.
 - **Yooai bot** — has not received the outbound logging / wide truncation improvements applied to other bots. May start hallucinating in DMs without it.
 - **Tool-call allowlist** — third security fix from the 2026-04-30 hardening pass, deferred.
 - **Dr. Marsh's Outlook mail rules** for filtering Teams digest emails — scoped earlier this session, not implemented.
