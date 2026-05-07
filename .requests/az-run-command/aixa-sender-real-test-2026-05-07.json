@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "CHAT='19:e0d48eb4-1eb3-4263-a72e-f6ad4ef32238_f22f3f54-9d79-425e-9f86-69bab6a3d728@unq.gbl.spaces'; echo '===== Pre-state: env var visible to systemd? =====' && systemctl show aixa-responder.service -p Environment --value && echo && echo '===== Running SENDER manually with the group chat id =====' && AIXA_TEAMS_CATALOG_ID=05db4e89-bf71-4f52-b8b3-67f859a44c1b /home/azureuser/aixa-send-to.sh '⚙️ Diagnostic post — please ignore (testing bot delivery from VM).' \"$CHAT\" 2>&1; echo \"sender_rc=$?\""
+}
