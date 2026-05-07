@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "===== RESPONDER ERRORS LOG (full) =====\n2026-05-06T13:41:00  L10 ack post: maximum recursion depth exceeded\n2026-05-06T13:41:03  post: maximum recursion depth exceeded\n2026-05-06T14:10:58  L12 ack post: maximum recursion depth exceeded\n2026-05-06T14:11:01  post: maximum recursion depth exceeded\n\n===== RESPONDER DEBUG LOG (full) =====\n2026-05-06T12:31:41  aixa-responder started\n2026-05-06T12:44:46  aixa-responder started\n===== 2026-05-06T13:41:03 =====\nRC:0\nSTDOUT:\nHi Aixa! How can I help you today?\n\n\n===== 2026-05-06T14:11:01 =====\nRC:0\nSTDOUT:\n**Hi Aixa!** 👋 How can I help you today?\n\n\n2026-05-06T16:30:59  aixa-responder started\n2026-05-06T19:27:58  aixa-responder started\n2026-05-06T19:29:45  aixa-responder started\n\n===== RESPONDER APP JOURNAL LAST 24H (excluding systemd lines) =====\n\n===== BOT APP JOURNAL LAST 24H =====\n\n===== ACTIVITIES METADATA (no message bodies) =====\nTotal entries: 19\nFile mtime: 2026-05-07 06:10:13.939238623 -0700\n\nLast 8 entries (timestamps + types only):\n  ? | type=? | from=? | body_chars=0\n  ? | type=? | from=? | body_chars=0\n  ? | type=? | from=? | body_chars=0\n  ? | type=? | from=? | body_chars=0\n  ? | type=? | from=? | body_chars=0\n  ? | type=? | from=? | body_chars=0\n  ? | type=? | from=? | body_chars=0\n  ? | type=? | from=? | body_chars=0\n\n===== UNIQUE SENDERS EVER =====\n?\n\n===== RESPONDER RESTART POLICY =====\nRestart=always\nStartLimitBurst=5",
+  "stderr": ""
+}
