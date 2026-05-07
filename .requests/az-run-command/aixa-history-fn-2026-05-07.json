@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "F=/home/azureuser/aixa-responder.py && echo '===== local_chat_history L291-318 =====' && sed -n '291,318p' $F | nl -ba -v291 && echo && echo '===== build_prompt L321-336 =====' && sed -n '321,336p' $F | nl -ba -v321 && echo && echo '===== is_actionable L275-288 =====' && sed -n '275,288p' $F | nl -ba -v275"
+}
