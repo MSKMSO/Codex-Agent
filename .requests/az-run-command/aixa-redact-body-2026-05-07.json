@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "F=/home/azureuser/aixa-responder.py && echo '===== _redact_passwords_protect body =====' && awk 'NR==43,/^def [^_]|^def _[a-z]/{ if (NR>43 && /^def /) exit; print NR\": \"$0 }' $F | head -80 && echo && echo '===== full grep of post_reply usage =====' && grep -nE 'def post_reply|def _post_reply|post_reply|_redact_passwords' $F"
+}
