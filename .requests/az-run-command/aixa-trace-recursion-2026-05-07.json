@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "F=/home/azureuser/aixa-responder.py && echo '===== ALL definitions of post_reply / _post_reply_* / _redact_passwords_* / _maybe_handle_creds_* =====' && grep -nE '^def (post_reply|_post_reply|_redact_passwords|_maybe_handle_creds)|^_post_reply_orig|^post_reply *=|^[a-z_]+ *= *_post_reply' $F && echo && echo '===== ALL CALLS to post_reply / _post_reply_orig =====' && grep -nE 'post_reply\\(|_post_reply_orig' $F && echo && echo '===== Lines 1-50 (imports + globals) =====' && sed -n '1,50p' $F | cat -n && echo && echo '===== File size + line count =====' && wc -l $F"
+}
