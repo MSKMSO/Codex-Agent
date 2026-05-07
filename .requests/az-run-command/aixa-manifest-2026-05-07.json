@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "echo '===== Aixa Teams manifest scopes =====' && unzip -p /home/azureuser/aixa-teams-app/aixa-teams-app.zip manifest.json | jq '{version, name, bots: [.bots[]? | {botId, scopes}]}' 2>&1 | head -30"
+}
