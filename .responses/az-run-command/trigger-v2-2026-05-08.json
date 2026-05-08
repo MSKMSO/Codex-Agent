@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "emily-claude: appended trigger to /home/azureuser/.emily-claude-bot/activities.jsonl\nneil-claude: appended trigger to /home/azureuser/.neil-claude-bot/activities.jsonl\nstephanie-claude: appended trigger to /home/azureuser/.stephanie-claude-bot/activities.jsonl\nSleeping 25s for poll + claude...\nemily-claude: NO outbound file\n  errors: ['2026-05-07T22:29:04  L1 ack post: maximum recursion depth exceeded', '2026-05-07T22:29:08  post: maximum recursion depth exceeded']\nneil-claude: NO outbound file\n  errors: ['2026-05-07T22:28:59  L1 ack post: maximum recursion depth exceeded', '2026-05-07T22:29:03  post: maximum recursion depth exceeded']\nstephanie-claude: NO outbound file\n  errors: ['2026-05-07T22:28:44  L12 ack post: maximum recursion depth exceeded', '2026-05-07T22:28:47  post: maximum recursion depth exceeded']",
+  "stderr": ""
+}

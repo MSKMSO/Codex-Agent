@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "===== TEST 1: cache empty (skip vault load) =====\n  OK: 'test'\n  OK: 'On it'\n  OK: '🤔 *On it…*'\n  OK: '**Hi Aixa!** 👋 How can I help you today?'\n\n===== TEST 2: cache loaded from real vaults =====\n  OK: 'test'\n  OK: '🤔 *On it…*'\n\n===== Cache state after =====\n  values count: 18\n  shortest: 9\n  longest: 40",
+  "stderr": ""
+}

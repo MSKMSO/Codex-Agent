@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "echo '===== Existing helper scripts on VM =====' && ls /home/azureuser/*.sh 2>/dev/null | head -30 && echo && echo '===== Anything mentioning appCatalog or upload =====' && grep -lE 'appCatalog|teamsApps.*upload|catalog.*upload' /home/azureuser/*.sh 2>/dev/null | head -10 && echo && echo '===== Graph helper scripts for Aixa =====' && ls /home/azureuser/aixa-graph*.sh /home/azureuser/aixa-*token*.sh 2>/dev/null && echo && echo '===== aixa-graph-token.sh contents (if it exists) =====' && cat /home/azureuser/aixa-graph-token.sh 2>/dev/null | head -40 && echo && echo '===== Bot app reg id + check Graph permissions =====' && APP=ce03d8ce-5306-48cc-bd4f-9370d7005e15 && az ad app show --id $APP --query 'requiredResourceAccess[?resourceAppId==`00000003-0000-0000-c000-000000000000`].resourceAccess[].{id:id, type:type}' -o tsv 2>&1 | head -20 && echo && echo '===== Any other VM secrets that look like upload tokens =====' && az keyvault secret list --vault-name SDN-YooVault --query \"[?contains(name,'token') || contains(name,'admin') || contains(name,'catalog')].name\" -o tsv 2>&1"
+}

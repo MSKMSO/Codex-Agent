@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "python3 -c \"\nimport importlib.util\nspec = importlib.util.spec_from_file_location('aixa_responder', '/home/azureuser/aixa-responder.py')\nmod = importlib.util.module_from_spec(spec)\nspec.loader.exec_module(mod)\nfor name in ('post_reply', '_post_reply_orig_protect', '_redact_passwords_protect', '_maybe_handle_creds_protect', '_is_dangerous_protect'):\n    fn = getattr(mod, name)\n    print(f'{name}:')\n    print(f'  defined at line {fn.__code__.co_firstlineno}')\n    print(f'  references globals: {fn.__code__.co_names}')\n    print()\nprint('===== Is post_reply_chunked in mod? =====')\nprint(f'  hasattr: {hasattr(mod, \\\"post_reply_chunked\\\")}')\nprint()\nprint('===== Is _post_reply_orig_protect actually post_reply? =====')\nprint(f'  same code obj? {mod._post_reply_orig_protect.__code__ is mod.post_reply.__code__}')\nprint(f'  post_reply id: {id(mod.post_reply)}')\nprint(f'  _post_reply_orig_protect id: {id(mod._post_reply_orig_protect)}')\n\"\n"
+}

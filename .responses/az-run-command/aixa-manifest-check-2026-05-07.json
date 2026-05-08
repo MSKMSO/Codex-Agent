@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "===== Find Aixa Teams app artifacts =====\n/home/azureuser/aixa-teams-app/aixa-teams-app.zip\n\n===== Check known manifest locations =====\nsender_rc=1",
+  "stderr": ""
+}

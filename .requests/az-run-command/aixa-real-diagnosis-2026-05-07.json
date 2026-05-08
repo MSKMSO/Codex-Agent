@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "A=/home/azureuser/.aixa-bot/activities.jsonl; echo '===== LAST 5 INBOUND — full entity / mention / chat detail =====' && tail -5 $A | jq -c '{ts: .ts, type: (.body|fromjson).type, conv: (.body|fromjson).conversation, from: (.body|fromjson).from, text: (.body|fromjson).text, entities: (.body|fromjson).entities}' 2>&1 && echo && echo '===== Bot identity expected by is_actionable =====' && grep -E 'BOT_APP_ID|BOT_FROM_ID' /home/azureuser/aixa-responder.py | head -3 && echo && echo '===== SENDER script — exists, mode, last lines =====' && ls -la /home/azureuser/aixa-send-to.sh 2>&1 && echo '--- script contents (head) ---' && head -40 /home/azureuser/aixa-send-to.sh 2>&1 && echo && echo '===== TEST SENDER with a fake chat id =====' && /home/azureuser/aixa-send-to.sh 'TEST-MESSAGE-DO-NOT-DELIVER' 'fake:invalid-chat-id-test' 2>&1; echo \"sender_rc=$?\""
+}

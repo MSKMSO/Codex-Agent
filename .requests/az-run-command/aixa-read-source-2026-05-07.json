@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "echo '===== aixa-bot.py =====' && cat -n /home/azureuser/aixa-bot.py && echo && echo '===== aixa-responder.py =====' && cat -n /home/azureuser/aixa-responder.py"
+}

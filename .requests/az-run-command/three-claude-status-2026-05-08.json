@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "for B in emily-claude neil-claude stephanie-claude; do echo \"========== $B ==========\"; D=/home/azureuser/.${B}-bot; A=$D/activities.jsonl; O=$D/outbound.jsonl; echo \"  responder uptime: $(systemctl show ${B}-responder.service -p ActiveEnterTimestamp --value)\"; if [ -f $A ]; then echo \"  inbound:  $(wc -l < $A) entries, last write $(stat -c '%y' $A | cut -d. -f1)\"; tail -1 $A | jq -r '\"            most recent: ts=\" + .ts + \" from=\" + ((.body|fromjson).from.name // \"?\")' 2>&1; fi; if [ -f $O ]; then echo \"  outbound: $(wc -l < $O) entries, last write $(stat -c '%y' $O | cut -d. -f1)\"; tail -1 $O | jq -r '\"            most recent: ts=\" + .ts + \" preview=\" + ((.text // \"\")[:60])' 2>&1; else echo \"  outbound: NO FILE (bot has not posted any reply yet)\"; fi; echo; done"
+}

@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "===== Emily bot APP_ID + tenant =====\nBOT_APP_ID = \"b1d02264-28fe-49f1-ae71-b50b6809f852\"\nBOT_FROM_ID = f\"28:{BOT_APP_ID}\"\nAPP=b1d02264-28fe-49f1-ae71-b50b6809f852\n\n===== Does SP exist? =====\n{\n  \"@odata.context\": \"https://graph.microsoft.com/v1.0/$metadata#servicePrincipals/$entity\",\n  \"accountEnabled\": true,\n  \"addIns\": [],\n  \"alternativeNames\": [],\n\n===== Try BF token (will fail if SP missing) =====\n  secret-len=270\n{\n  \"has_token\": false,\n  \"error\": \"invalid_client\",\n  \"error_codes\": [\n    7000215\n  ],\n  \"snippet\": \"AADSTS7000215: Invalid client secret provided. Ensure the secret being sent in the request is the client secret value, not the client secret ID, for a secret added to app 'b1d02264-28fe-49f1-ae71-b50b\"\n}\n\n===== If SP missing, create it =====\n  SP already exists — issue is somewhere else",
+  "stderr": ""
+}

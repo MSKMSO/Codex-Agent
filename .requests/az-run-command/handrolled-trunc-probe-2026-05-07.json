@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "for f in /home/azureuser/mskai-responder.py /home/azureuser/yooai-responder.py /home/azureuser/yooopenai-responder.py; do NAME=$(basename $f .py); echo \"===== $NAME =====\"; ls -la $f; echo '--- truncation/length patterns ---'; grep -nE 'len\\([a-zA-Z_]+\\)[[:space:]]*>[[:space:]]*[0-9]{3,}|\\[:[0-9]{3,}\\]|TRUNC|MAX_[A-Z_]*LEN|MAX_[A-Z_]*CHAR|MAX_REPLY' $f | head -10; echo '--- top-level constants ---'; grep -nE '^[A-Z_]+ = [0-9]+' $f | head -10; echo; done"
+}

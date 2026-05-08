@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "===== Emily allow-list (USER_AAD_ID + YOO_AAD_ID) =====\nBOT_APP_ID = \"b1d02264-28fe-49f1-ae71-b50b6809f852\"\nBOT_FROM_ID = f\"28:{BOT_APP_ID}\"\nUSER_AAD_ID = \"30dac358-f9af-434a-b82f-d012cf9590b4\"\n    if frm.get(\"id\", \"\") == BOT_FROM_ID: return False\n    if frm.get(\"aadObjectId\", \"\") != USER_AAD_ID: return False\n            if m.get(\"id\", \"\") == BOT_FROM_ID: return True\n\n===== AAD IDs in inbound activities =====\n\n===== Compare with Aixa for reference (known working) =====\nUSER_AAD_ID = \"f22f3f54-9d79-425e-9f86-69bab6a3d728\"\nYOO_AAD_ID = \"e0d48eb4-1eb3-4263-a72e-f6ad4ef32238\"\n    if frm.get(\"aadObjectId\", \"\") not in (USER_AAD_ID, YOO_AAD_ID): return False",
+  "stderr": ""
+}

@@ -1,0 +1,73 @@
+{
+  "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.16/MicrosoftTeams.schema.json",
+  "manifestVersion": "1.16",
+  "version": "1.2.0",
+  "id": "8bdeecc3-960e-4a0c-b826-21473f00a4d7",
+  "developer": {
+    "name": "MSK MSO",
+    "websiteUrl": "https://musculoskeletalmso.com",
+    "privacyUrl": "https://musculoskeletalmso.com/privacy",
+    "termsOfUseUrl": "https://musculoskeletalmso.com/terms"
+  },
+  "name": {
+    "short": "Gabriel's Assistant",
+    "full": "Gabriel Garcia AI Assistant"
+  },
+  "description": {
+    "short": "AI assistant that acts on Gabriel Garcia's behalf",
+    "full": "Gabriel Garcia's personal AI assistant. Takes commands only from Gabriel; in shared chats and channels, helps other people with information Gabriel would share, but does not execute actions on others' behalf."
+  },
+  "icons": {
+    "color": "color.png",
+    "outline": "outline.png"
+  },
+  "accentColor": "#8b5cf6",
+  "bots": [
+    {
+      "botId": "9e063e97-1c28-4c73-bf33-5348f916b032",
+      "scopes": [
+        "personal",
+        "groupChat",
+        "team"
+      ],
+      "isNotificationOnly": false,
+      "supportsFiles": true,
+      "commandLists": [
+        {
+          "scopes": [
+            "personal"
+          ],
+          "commands": [
+            {
+              "title": "What's on my calendar today?",
+              "description": "List today's events"
+            },
+            {
+              "title": "Summarize my unread email",
+              "description": "Recent unread mail digest"
+            },
+            {
+              "title": "Schedule a meeting",
+              "description": "Create a new calendar event"
+            },
+            {
+              "title": "Find a file in OneDrive",
+              "description": "Search files I own"
+            },
+            {
+              "title": "Summarize my last meeting",
+              "description": "Pull the transcript of a meeting Gabriel skipped and summarize it"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "permissions": [
+    "identity",
+    "messageTeamMembers"
+  ],
+  "validDomains": [
+    "openclaw-sdneuro.westus2.cloudapp.azure.com"
+  ]
+}

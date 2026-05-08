@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "echo '===== All bot resources (just name + endpoint) =====' && az resource list --resource-group SDNeurosurgery-OpenClaw --resource-type Microsoft.BotService/botServices --query '[].name' -o tsv 2>&1; echo; echo '===== For each, show endpoint URL =====' && for n in $(az resource list --resource-group SDNeurosurgery-OpenClaw --resource-type Microsoft.BotService/botServices --query '[].name' -o tsv 2>/dev/null); do EP=$(az resource show --resource-group SDNeurosurgery-OpenClaw --resource-type Microsoft.BotService/botServices --name \"$n\" --query 'properties.endpoint' -o tsv 2>/dev/null); echo \"$n -> $EP\"; done"
+}

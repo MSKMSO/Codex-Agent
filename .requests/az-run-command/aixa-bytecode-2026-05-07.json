@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "python3 -c \"\nimport importlib.util, dis, sys, io\nspec = importlib.util.spec_from_file_location('aixa_responder', '/home/azureuser/aixa-responder.py')\nmod = importlib.util.module_from_spec(spec)\nspec.loader.exec_module(mod)\nprint('===== mod.post_reply =====')\nprint(f'  qualname: {mod.post_reply.__qualname__}')\nprint(f'  co_filename: {mod.post_reply.__code__.co_filename}')\nprint(f'  co_firstlineno: {mod.post_reply.__code__.co_firstlineno}')\nprint(f'  co_names: {mod.post_reply.__code__.co_names}')\nprint(f'  closure: {mod.post_reply.__closure__}')\nprint()\nprint('===== dis(post_reply) =====')\nbuf = io.StringIO(); dis.dis(mod.post_reply, file=buf); print(buf.getvalue())\nprint('===== dis(_post_reply_orig_protect) =====')\nbuf = io.StringIO(); dis.dis(mod._post_reply_orig_protect, file=buf); print(buf.getvalue())\nprint('===== dis(_redact_passwords_protect) =====')\nbuf = io.StringIO(); dis.dis(mod._redact_passwords_protect, file=buf); print(buf.getvalue()[:1500])\n\"\n"
+}

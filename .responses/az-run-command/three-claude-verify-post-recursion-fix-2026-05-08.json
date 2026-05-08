@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "========== emily-claude ==========\n  {\"id\":\"1778219393488\"}\n__HTTP_CODE__:201\n\n========== neil-claude ==========\n  {\"id\":\"1778219400642\"}\n__HTTP_CODE__:201\n\n========== stephanie-claude ==========\n  {\"id\":\"1778219424477\"}\n__HTTP_CODE__:201",
+  "stderr": ""
+}

@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "echo '===== aixa-responder.service unit ====' && systemctl cat aixa-responder.service --no-pager 2>/dev/null && echo && echo '===== aixa-bot.service unit ====' && systemctl cat aixa-bot.service --no-pager 2>/dev/null && echo && echo '===== aixa-responder ExecStart resolved ====' && systemctl show aixa-responder.service -p ExecStart --no-pager 2>/dev/null && echo && echo '===== Files in /home/azureuser matching responder ====' && find /home/azureuser -maxdepth 3 -name '*responder*' -type f 2>/dev/null | head -20 && echo && echo '===== Files in /home/azureuser matching aixa-bot ====' && find /home/azureuser -maxdepth 3 -name 'aixa-bot*' -o -name 'aixa_bot*' 2>/dev/null | head -10 && echo && echo '===== Probable code locations ====' && ls -la /home/azureuser/aixa-bot.py /home/azureuser/aixa-responder.py /home/azureuser/aixa_bot.py /home/azureuser/aixa_responder.py 2>/dev/null"
+}

@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "  aixa-responder: 3500 -> 7000  restart=active\n  alejandro-responder: already 7000 (skip)\n  david-responder: 3500 -> 7000  restart=active\n  emily-claude-responder: 3500 -> 7000  restart=active\n  gabriel-responder: 3500 -> 7000  restart=active\n  mskai-responder: no cap pattern (skip)\n  neil-claude-responder: 3500 -> 7000  restart=active\n  neil-responder: 3500 -> 7000  restart=active\n  rosi-responder: 3500 -> 7000  restart=active\n  stephanie-claude-responder: 3500 -> 7000  restart=active\n  yooai-responder: no cap pattern (skip)\n  yooopenai-responder: no cap pattern (skip)\n  zahid-responder: 3500 -> 7000  restart=active\n\nSummary: patched=9  already_7000=1  no_pattern=3  failed=0",
+  "stderr": ""
+}

@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "===== Recent activity since restart =====\n\n===== Recent outbound =====\n\n===== Manual SENDER end-to-end test (diagnostic) =====\nusing chat_id: \nno recent chat id — cannot run end-to-end test",
+  "stderr": ""
+}

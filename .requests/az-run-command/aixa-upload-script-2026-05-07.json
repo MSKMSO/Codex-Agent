@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "echo '===== Scripts using yoomd-graph-refresh-token-appcatalog =====' && grep -lE 'yoomd-graph-refresh-token-appcatalog|appcatalog' /home/azureuser/*.sh 2>/dev/null && echo && echo '===== Likely catalog-upload scripts =====' && for f in /home/azureuser/*.sh; do if grep -qiE 'appCatalogs/teamsApps|teamsApp.*upload|upload.*teamsApp' \"$f\" 2>/dev/null; then echo \"=== $f ===\"; head -3 \"$f\" 2>/dev/null; fi; done && echo && echo '===== make-mso-claude-bot.sh — look for upload section =====' && grep -nE 'appCatalog|teamsApps|catalog|upload' /home/azureuser/make-mso-claude-bot.sh 2>/dev/null | head -20 && echo && echo '===== aixa-install-chat-app.sh contents =====' && cat /home/azureuser/aixa-install-chat-app.sh 2>/dev/null"
+}

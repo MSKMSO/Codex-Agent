@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "TS=$(date +%s); for B in emily-claude neil-claude stephanie-claude; do F=/home/azureuser/${B}-responder.py; echo \"========== $B ==========\"; BEFORE=$(grep -c '^def _post_reply_orig_protect' $F); echo \"  before: $BEFORE definitions\"; cp -f $F $F.bak-recursion-$TS; python3 -c \"import re; src=open('$F').read(); fixed=re.sub(r'^def _post_reply_orig_protect\\(chat_id, text\\):\\n    return _post_reply_orig_protect\\(chat_id, _redact_passwords_protect\\(text\\)\\)\\n', '', src, flags=re.MULTILINE); open('$F','w').write(fixed)\"; AFTER=$(grep -c '^def _post_reply_orig_protect' $F); echo \"  after:  $AFTER definitions\"; if [ \"$AFTER\" = \"1\" ]; then sudo systemctl restart ${B}-responder.service && echo '  restarted: '$(systemctl is-active ${B}-responder.service); else echo '  >>> EDIT FAILED — restoring backup'; cp -f $F.bak-recursion-$TS $F; fi; echo; done"
+}

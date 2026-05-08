@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "for B in emily-claude neil-claude stephanie-claude; do echo \"========== $B ==========\"; A=/home/azureuser/.${B}-bot/activities.jsonl; CHAT=$(tail -1 $A 2>/dev/null | jq -r '(.body|fromjson).conversation.id'); CAT=$(az keyvault secret show --vault-name SDN-YooVault --name ${B}-teams-catalog-id --query value -o tsv 2>/dev/null); UPPER=$(echo $B | tr 'a-z' 'A-Z' | tr '-' '_'); export ${UPPER}_TEAMS_CATALOG_ID=$CAT; OUT=$(/home/azureuser/${B}-send-to.sh \"✅ Post-recursion-fix verification — if you see this, ${B} can deliver replies. Try @-mentioning the bot now.\" \"$CHAT\" 2>&1 | tail -3); echo \"  $OUT\"; echo; done"
+}

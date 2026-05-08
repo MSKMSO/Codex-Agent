@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "echo '===== yoomd-appcatalog-token.sh contents =====' && cat /home/azureuser/yoomd-appcatalog-token.sh 2>/dev/null && echo && echo '===== Get token + check user identity =====' && TOKEN=$(/home/azureuser/yoomd-appcatalog-token.sh 2>&1); RC=$?; echo \"token-script-rc=$RC token-len=${#TOKEN}\" && if [ $RC -eq 0 ] && [ -n \"$TOKEN\" ]; then curl -s 'https://graph.microsoft.com/v1.0/me' -H \"Authorization: Bearer $TOKEN\" | jq '{displayName, userPrincipalName, id}'; fi && echo && echo '===== Read current manifest id from zip =====' && MID=$(unzip -p /home/azureuser/aixa-teams-app/aixa-teams-app.zip manifest.json | jq -r '.id'); echo \"manifest.id = $MID\" && echo && echo '===== Check if Aixa app already in catalog =====' && if [ -n \"$TOKEN\" ] && [ -n \"$MID\" ]; then curl -s \"https://graph.microsoft.com/v1.0/appCatalogs/teamsApps?%24filter=externalId%20eq%20%27$MID%27\" -H \"Authorization: Bearer $TOKEN\" | jq '{count: (.value|length), entries: [.value[] | {id, externalId, displayName, distributionMethod}]}'; fi"
+}

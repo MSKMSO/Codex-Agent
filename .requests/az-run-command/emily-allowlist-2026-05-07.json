@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "F=/home/azureuser/emily-claude-responder.py; echo '===== Emily allow-list (USER_AAD_ID + YOO_AAD_ID) =====' && grep -E 'USER_AAD_ID|YOO_AAD_ID|BOT_APP_ID|BOT_FROM_ID' $F | head -6; echo; echo '===== AAD IDs in inbound activities =====' && jq -r 'now | (.body|fromjson) | \"  type=\" + .type + \"  conv_type=\" + (.conversation.conversationType // \"?\") + \"  from=\" + (.from.name // \"?\") + \"  aad=\" + (.from.aadObjectId // \"-\")' /home/azureuser/.emily-claude-bot/activities.jsonl 2>/dev/null | head -5; echo; echo '===== Compare with Aixa for reference (known working) =====' && grep -E 'USER_AAD_ID|YOO_AAD_ID' /home/azureuser/aixa-responder.py | head -3"
+}

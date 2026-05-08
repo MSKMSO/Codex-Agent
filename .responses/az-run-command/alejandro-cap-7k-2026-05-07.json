@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "===== BEFORE — current cap line(s) =====\n532:    if len(reply) > 3500:\n533:        reply = reply[:3400] + \"\\n\\n(…truncated)\"\n\n===== Backup =====\n-rw-r--r-- 1 root root 24852 May  7 10:35 /home/azureuser/alejandro-responder.py.bak-cap7k-1778175329\n\n===== Edit =====\n\n===== AFTER =====\n532:    if len(reply) > 7000:\n533:        reply = reply[:6900] + \"\\n\\n(…truncated)\"\n\n===== Restart responder =====\nactive\nservice uptime:\nThu 2026-05-07 10:35:29 PDT",
+  "stderr": ""
+}

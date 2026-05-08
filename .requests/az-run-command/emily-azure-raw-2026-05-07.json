@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "echo '===== Raw output: emily-claude bot resource =====' && az resource show --resource-group SDNeurosurgery-OpenClaw --resource-type Microsoft.BotService/botServices --name emily-claude 2>&1; echo; echo '===== Raw output: aixa bot resource =====' && az resource show --resource-group SDNeurosurgery-OpenClaw --resource-type Microsoft.BotService/botServices --name aixa 2>&1; echo; echo '===== Try resource list =====' && az resource list --resource-group SDNeurosurgery-OpenClaw --resource-type Microsoft.BotService/botServices 2>&1 | head -30"
+}

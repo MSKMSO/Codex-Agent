@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "===== Aixa Teams manifest scopes =====\n{\n  \"version\": \"1.0.0\",\n  \"name\": {\n    \"short\": \"Aixa AI Agent\",\n    \"full\": \"Aixa Medina Claude\"\n  },\n  \"bots\": [\n    {\n      \"botId\": \"ce03d8ce-5306-48cc-bd4f-9370d7005e15\",\n      \"scopes\": [\n        \"personal\",\n        \"team\",\n        \"groupChat\"\n      ]\n    }\n  ]\n}",
+  "stderr": ""
+}

@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "F=/home/azureuser/alejandro-responder.py; echo '===== BEFORE — current cap line(s) =====' && grep -nE 'if len\\(reply\\) >|reply\\[:[0-9]+\\]' $F; echo; echo '===== Backup =====' && cp -f $F $F.bak-cap7k-$(date +%s) && ls -la $F.bak-cap7k-* | tail -1; echo; echo '===== Edit =====' && sed -i -E 's/if len\\(reply\\) > [0-9]+/if len(reply) > 7000/; s/reply\\[:[0-9]+\\]/reply[:6900]/' $F; echo; echo '===== AFTER =====' && grep -nE 'if len\\(reply\\) >|reply\\[:[0-9]+\\]' $F; echo; echo '===== Restart responder =====' && sudo systemctl restart alejandro-responder.service && sleep 2 && systemctl is-active alejandro-responder.service && echo 'service uptime:' && systemctl show alejandro-responder.service -p ActiveEnterTimestamp --value"
+}

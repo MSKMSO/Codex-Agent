@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "F=/home/azureuser/aixa-responder.py && sed -n '100,220p' $F | cat -n | awk '{print (NR+99)\": \"substr($0, index($0,$2))}'"
+}

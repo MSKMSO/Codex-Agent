@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "===== List Azure Bot resources in the RG =====\nERROR: argument --query: invalid jmespath_type value: '[].{name, displayName: properties.displayName, endpoint: properties.endpoint}'\nTo learn more about --query, please visit: 'https://learn.microsoft.com/cli/azure/query-azure-cli'\n\n===== Compare Emily vs Aixa specifically =====\n--- emily-claude ---\nERROR: argument --query: invalid jmespath_type value: '{name, msaAppId: properties.msaAppId, endpoint: properties.endpoint, displayName: properties.displayName}'\nTo learn more about --query, please visit: 'https://learn.microsoft.com/cli/azure/query-azure-cli'\n--- aixa ---\nERROR: argument --query: invalid jmespath_type value: '{name, msaAppId: properties.msaAppId, endpoint: properties.endpoint, displayName: properties.displayName}'\nTo learn more about --query, please visit: 'https://learn.microsoft.com/cli/azure/query-azure-cli'",
+  "stderr": ""
+}

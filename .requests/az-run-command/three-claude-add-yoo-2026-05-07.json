@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "for B in emily-claude neil-claude stephanie-claude; do F=/home/azureuser/${B}-responder.py; echo \"========== $B ==========\"; if grep -q 'YOO_AAD_ID' $F; then echo '  YOO_AAD_ID already present — skip'; continue; fi; cp -f $F $F.bak-yoo-$(date +%s); sed -i 's|^USER_AAD_ID = \\(\".*\"\\)$|USER_AAD_ID = \\1\\nYOO_AAD_ID = \"e0d48eb4-1eb3-4263-a72e-f6ad4ef32238\"|' $F; sed -i 's|if frm.get(\"aadObjectId\", \"\") != USER_AAD_ID: return False|if frm.get(\"aadObjectId\", \"\") not in (USER_AAD_ID, YOO_AAD_ID): return False|' $F; echo '  AFTER:'; grep -E 'USER_AAD_ID|YOO_AAD_ID|aadObjectId' $F | head -4; sudo systemctl restart ${B}-responder.service && systemctl is-active ${B}-responder.service; echo; done"
+}

@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "TS=$(date +%s); P=0; S=0; N=0; F=0; for f in /home/azureuser/*-responder.py; do NAME=$(basename $f .py); SVC=${NAME}.service; CUR=$(grep -E 'if len\\(reply\\) > [0-9]+' $f | head -1); if [ -z \"$CUR\" ]; then echo \"  $NAME: no cap pattern (skip)\"; N=$((N+1)); continue; fi; NUM=$(echo \"$CUR\" | grep -oE '[0-9]+' | head -1); if [ \"$NUM\" = \"7000\" ]; then echo \"  $NAME: already 7000 (skip)\"; S=$((S+1)); continue; fi; cp -f $f $f.bak-cap7k-$TS; sed -i -E 's/if len\\(reply\\) > [0-9]+/if len(reply) > 7000/; s/reply\\[:[0-9]+\\]/reply[:6900]/' $f; if ! grep -qE 'if len\\(reply\\) > 7000' $f; then echo \"  $NAME: EDIT FAILED — restoring\"; cp -f $f.bak-cap7k-$TS $f; F=$((F+1)); continue; fi; if sudo systemctl restart $SVC 2>/dev/null; then ST=$(systemctl is-active $SVC); echo \"  $NAME: $NUM -> 7000  restart=$ST\"; P=$((P+1)); else echo \"  $NAME: $NUM -> 7000  RESTART FAILED\"; F=$((F+1)); fi; done; echo; echo \"Summary: patched=$P  already_7000=$S  no_pattern=$N  failed=$F\""
+}

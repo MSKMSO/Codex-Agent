@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "sed -n '350,430p' /home/azureuser/aixa-responder.py > /tmp/aixa-tail.py; sed -n '350,430p' /home/azureuser/emily-claude-responder.py > /tmp/emily-tail.py; echo '===== DIFF aixa vs emily (lines 350-430) =====' && diff /tmp/aixa-tail.py /tmp/emily-tail.py | head -80; echo; echo '===== Aixa post_reply chain (lines 360-410) =====' && sed -n '360,410p' /home/azureuser/aixa-responder.py; echo; echo '===== Emily post_reply chain (lines 360-410) =====' && sed -n '360,410p' /home/azureuser/emily-claude-responder.py"
+}

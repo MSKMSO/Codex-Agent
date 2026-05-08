@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "===== Update Emily bot endpoint =====\nendpoint after update: https://openclaw-sdneuro.westus2.cloudapp.azure.com/emily-claude/api/messages\n\n===== Verify =====\nhttps://openclaw-sdneuro.westus2.cloudapp.azure.com/emily-claude/api/messages\n\n===== Same fix for Neil-Claude =====\n  \"type\": \"Microsoft.BotService/botServices\",\n  \"zones\": []\n}\nverify Neil:\nhttps://openclaw-sdneuro.westus2.cloudapp.azure.com/neil-claude/api/messages",
+  "stderr": ""
+}

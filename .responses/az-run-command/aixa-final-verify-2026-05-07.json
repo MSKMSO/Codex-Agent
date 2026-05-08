@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "{\"id\":\"1778172467916\"}\n__HTTP_CODE__:201\nsender_rc=0",
+  "stderr": ""
+}
