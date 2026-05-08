@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "aixa: {\n  \"given\": \"Aixa\",\n  \"name\": \"Aixa Medina, RPS Admin PSG\",\n  \"surname\": \"Medina\"\n}\nalejandro: no AAD id found\nemily-claude: {\n  \"given\": \"Emily\",\n  \"name\": \"Emily Torres, RPS Admin\",\n  \"surname\": \"Torres\"\n}\ngabriel: {\n  \"given\": \"Gabriel\",\n  \"name\": \"Gabriel Garcia, MSK COO\",\n  \"surname\": \"Garcia\"\n}\nheather: no responder file (skip)\nkaye: no responder file (skip)\ndavid: no AAD id found\nrosi: {\n  \"given\": \"Rosi\",\n  \"name\": \"Rosi Cabrera, RPS Admin SDN\",\n  \"surname\": \"Cabrera\"\n}\nstephanie-claude: {\n  \"given\": \"Stephanie\",\n  \"name\": \"Stephanie Garcia RPS Admin HRO\",\n  \"surname\": \"Garcia\"\n}\nzahid: {\n  \"given\": \"Kevin\",\n  \"name\": \"Dr. Kevin Yoo, SDN\",\n  \"surname\": \"Yoo\"\n}\nyooai: {\n  \"given\": \"Kevin\",\n  \"name\": \"Dr. Kevin Yoo, SDN\",\n  \"surname\": \"Yoo\"\n}\nneil-claude: {\n  \"given\": \"Neil\",\n  \"name\": \"Neil Zanni, RPS Admin\",\n  \"surname\": \"Zanni\"\n}",
+  "stderr": ""
+}
