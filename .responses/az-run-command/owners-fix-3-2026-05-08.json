@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "========== alejandro ==========\n155:ALEJANDRO_AAD_ID = \"b85780f2-e891-40a4-922e-b48e427675c2\"\n309:    if frm.get(\"aadObjectId\", \"\") == ALEJANDRO_AAD_ID:\n========== david ==========\n153:DAVID_AAD_ID = \"8c2bf0d7-146e-4c25-9808-549c454afcc9\"\n245:    if frm.get(\"aadObjectId\", \"\") != DAVID_AAD_ID:\n========== zahid ==========\n153:ZAHID_AAD_ID = \"4db28dae-4d47-4b9d-848f-a07c4206cc79\"\n154:YOO_AAD_ID = \"e0d48eb4-1eb3-4263-a72e-f6ad4ef32238\"\n246:    if frm.get(\"aadObjectId\", \"\") not in (ZAHID_AAD_ID, YOO_AAD_ID):\n\n===== AAD lookups for each candidate ID =====\nalejandro: b85780f2-e891-40a4-922e-b48e427675c2\n{\n  \"given\": \"Alejandro\",\n  \"name\": \"Alejandro Urich, MSK CEO\",\n  \"surname\": \"Urich\"\n}\ndavid: 8c2bf0d7-146e-4c25-9808-549c454afcc9\n{\n  \"given\": \"David\",\n  \"name\": \"David Gonzalez, Director R&E\",\n  \"surname\": \"Jaspe Gonzalez\"\n}\nzahid: 4db28dae-4d47-4b9d-848f-a07c4206cc79\n{\n  \"given\": \"Muhammad\",\n  \"name\": \"Muhammad Zahid, RPS Billing Admin\",\n  \"surname\": \"Zahid\"\n}\nzahid: e0d48eb4-1eb3-4263-a72e-f6ad4ef32238\n{\n  \"given\": \"Kevin\",\n  \"name\": \"Dr. Kevin Yoo, SDN\",\n  \"surname\": \"Yoo\"\n}\n\n===== Locate heather/kaye responders =====",
+  "stderr": ""
+}
