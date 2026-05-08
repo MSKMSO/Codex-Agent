@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "for B in alejandro david zahid; do F=/home/azureuser/${B}-responder.py; echo \"========== $B ==========\"; grep -nE '_AAD_ID' $F | head -10; done; echo; echo '===== AAD lookups for each candidate ID ====='; for B in alejandro david zahid; do F=/home/azureuser/${B}-responder.py; AADS=$(grep -E '_AAD_ID = ' $F | grep -oE '\"[0-9a-f-]{36}\"' | tr -d '\"'); for A in $AADS; do echo \"$B: $A\"; az ad user show --id $A --query '{name: displayName, given: givenName, surname: surname}' -o json 2>&1 | head -10; done; done; echo; echo '===== Locate heather/kaye responders ====='; find /home/azureuser -maxdepth 2 -iname 'heather*.py' -o -iname 'kaye*.py' 2>/dev/null"
+}
