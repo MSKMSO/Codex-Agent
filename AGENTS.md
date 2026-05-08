@@ -2,6 +2,25 @@
 
 This repo is the home for everything related to **Codex Agent** — the openclaw-codex Teams bot that Dr. Yoo and MSO staff chat with as "Codex" in Microsoft Teams. If the user asks about Codex, the openclaw bot, why it's down, why it isn't reading images, why it's refusing requests, or anything related to its model / policy / workspace files, this is your starting point.
 
+## Top rule: always plain English
+
+**This is the #1 standing instruction. Do not skip it.**
+
+The people you're talking to (Dr. Yoo, Gabriel, MSO staff, anyone in this org) are not software engineers. Every chat reply, summary, status update, or "what happened" explanation defaults to plain language a smart non-technical person can read once and understand. If you catch yourself writing acronyms, command names, HTTP codes, or jargon as the main message, rewrite it.
+
+- **Do**: "The bot can't post in group chats because Microsoft has the wrong address on file. I'm checking what address it has, then I'll fix it."
+- **Don't**: "The Bot Framework messaging endpoint URL in the Microsoft.BotService/botServices resource is misconfigured — Teams is hitting `/emily/api/messages` which 404s instead of the nginx-routed `/emily-claude/api/messages`."
+
+Rules of thumb:
+
+- Skip acronyms unless you define them once.
+- Lead with the bottom line. "It's fixed. Here's what was wrong" before "Here's the diagnostic chain that got me there."
+- Use analogies for technical concepts ("think of it like..." / "it's the same as...").
+- Commands and code go in code blocks for reference; the surrounding prose stays plain.
+- If asked, you can give the technical version too — but the first paragraph is always plain English.
+
+This applies to chat replies, summaries, status updates, and explanations. It does **not** apply to commit messages, PR descriptions, file contents, or code comments — those stay technical.
+
 ## First step every session
 
 **Read [`HANDOFF.md`](HANDOFF.md) before doing anything else.** It is the canonical reference for:
@@ -14,22 +33,6 @@ This repo is the home for everything related to **Codex Agent** — the openclaw
 - The five recurring breakages and the exact fix for each
 
 Don't try to debug Codex from scratch — start with `HANDOFF.md`.
-
-## Talk in plain English
-
-Dr. Yoo isn't a software engineer. Write the way you'd explain something to a smart friend who doesn't work in tech.
-
-- **Do**: "Codex stopped responding because someone changed the model to a version that doesn't exist yet. Fixing it now."
-- **Don't**: "FailoverError raised on warmup; the openai-codex provider catalog has no entry for `gpt-5.5` and the upstream `chatgpt.com/backend-api` returns model_not_found."
-
-Rules of thumb:
-
-- Skip acronyms when you can.
-- No unexplained command-line jargon in prose. Commands belong in code blocks; explanations belong in plain text.
-- Lead with the bottom line. "Codex is back up — model was set to one that doesn't exist" before "I reverted four config keys and restarted the gateway."
-- If something is broken, say what's broken and what you'd do next. Skip the diagnostic trace unless asked.
-
-This applies to chat replies, summaries, status updates, and "what happened" explanations. It does **not** apply to commit messages, PR descriptions, or code/script comments — those stay technical.
 
 ## Work silently
 
