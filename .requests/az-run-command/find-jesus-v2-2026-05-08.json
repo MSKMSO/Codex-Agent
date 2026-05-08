@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "echo '===== Users with displayName starting with Jesus ====='; az ad user list --filter \"startswith(displayName,'Jesus')\" 2>&1 | python3 -c \"import json,sys; d=json.load(sys.stdin); [print(u.get('displayName'), '|', u.get('userPrincipalName'), '|', u.get('mail') or '-', '|', u.get('jobTitle') or '-', '|', u.get('id')) for u in d]\" 2>&1 | head -20; echo; echo '===== Users with givenName starting with Jesus ====='; az ad user list --filter \"startswith(givenName,'Jesus')\" 2>&1 | python3 -c \"import json,sys; d=json.load(sys.stdin); [print(u.get('displayName'), '|', u.get('userPrincipalName'), '|', u.get('mail') or '-', '|', u.get('jobTitle') or '-') for u in d]\" 2>&1 | head -20"
+}
