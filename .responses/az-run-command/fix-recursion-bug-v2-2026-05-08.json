@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "========== emily-claude ==========\n  before: 2 definitions\n  removed 1 bad definition(s)\n  after:  1 definitions\n  restarted: active\n\n========== neil-claude ==========\n  before: 2 definitions\n  removed 1 bad definition(s)\n  after:  1 definitions\n  restarted: active\n\n========== stephanie-claude ==========\n  before: 2 definitions\n  removed 1 bad definition(s)\n  after:  1 definitions\n  restarted: active",
+  "stderr": ""
+}
