@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "===== Upload v1.2 as new appDefinition =====\n  http_code=404\n{\n  \"teamsAppId\": null,\n  \"version\": null,\n  \"displayName\": null,\n  \"publishingState\": null\n}\nupload failed",
+  "stderr": ""
+}
