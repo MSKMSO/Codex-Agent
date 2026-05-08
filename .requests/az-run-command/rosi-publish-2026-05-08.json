@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "echo '===== Find Rosi Teams app artifacts =====' && find /home/azureuser -maxdepth 4 -iname '*rosi*' -type f 2>/dev/null | grep -E '\\.(zip|json)$' | grep -viE '\\.bak|activities|conversation|outbound|offset|responder' | head -20; echo; echo '===== Inspect Rosi zip if exists =====' && for z in $(find /home/azureuser -maxdepth 4 -iname 'rosi*.zip' -type f 2>/dev/null); do echo \"=== $z ===\"; unzip -p $z manifest.json 2>&1 | jq '{id, version, name, scopes: .bots[0].scopes}' 2>&1 | head -15; done; echo; echo '===== Compare with Aixa zip location for reference =====' && ls -la /home/azureuser/aixa-teams-app/ /home/azureuser/rosi-teams-app/ 2>/dev/null"
+}
