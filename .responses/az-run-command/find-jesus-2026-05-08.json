@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "===== AAD users named Jesus =====\nERROR: argument --query: invalid jmespath_type value: '[].{name: displayName, upn: userPrincipalName, mail, id, jobTitle}'\nTo learn more about --query, please visit: 'https://learn.microsoft.com/cli/azure/query-azure-cli'\n\n===== If empty, try first name match =====\nERROR: argument --query: invalid jmespath_type value: '[].{name: displayName, upn: userPrincipalName, mail, id, jobTitle}'\nTo learn more about --query, please visit: 'https://learn.microsoft.com/cli/azure/query-azure-cli'",
+  "stderr": ""
+}
