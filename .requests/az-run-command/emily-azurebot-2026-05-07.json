@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "echo '===== List Azure Bot resources in the RG =====' && az resource list --resource-group SDNeurosurgery-OpenClaw --resource-type Microsoft.BotService/botServices --query '[].{name, displayName: properties.displayName, endpoint: properties.endpoint}' -o json 2>&1 | head -60; echo; echo '===== Compare Emily vs Aixa specifically =====' && for B in emily-claude aixa; do echo \"--- $B ---\"; az resource show --resource-group SDNeurosurgery-OpenClaw --resource-type Microsoft.BotService/botServices --name $B --query '{name, msaAppId: properties.msaAppId, endpoint: properties.endpoint, displayName: properties.displayName}' -o json 2>&1 | head -10; done"
+}
