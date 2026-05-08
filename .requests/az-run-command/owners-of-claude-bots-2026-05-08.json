@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "for B in aixa alejandro emily-claude gabriel heather kaye david rosi stephanie-claude zahid yooai neil-claude; do F=/home/azureuser/${B}-responder.py; if [ ! -f $F ]; then echo \"$B: no responder file (skip)\"; continue; fi; AAD=$(grep -E '^(USER_AAD_ID|ROSI_AAD_ID|AIXA_AAD_ID|YOO_AAD_ID|GABRIEL_AAD_ID|EMILY_AAD_ID)' $F | grep -oE '\"[0-9a-f-]{36}\"' | head -1 | tr -d '\"'); if [ -z \"$AAD\" ]; then echo \"$B: no AAD id found\"; continue; fi; INFO=$(az ad user show --id $AAD --query '{name: displayName, surname: surname, given: givenName}' -o json 2>/dev/null); echo \"$B: $INFO\"; done"
+}
