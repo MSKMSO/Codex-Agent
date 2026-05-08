@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "echo '===== AAD users named Jesus ====='; az ad user list --filter \"startswith(displayName,'Jesus')\" --query \"[].{name: displayName, upn: userPrincipalName, mail, id, jobTitle}\" -o json 2>&1 | head -60; echo; echo '===== If empty, try first name match ====='; az ad user list --filter \"startswith(givenName,'Jesus')\" --query \"[].{name: displayName, upn: userPrincipalName, mail, id, jobTitle}\" -o json 2>&1 | head -40"
+}
