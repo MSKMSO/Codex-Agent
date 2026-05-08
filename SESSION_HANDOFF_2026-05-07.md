@@ -2,17 +2,58 @@
 
 ## TL;DR
 
-Three things landed today:
+Five things landed today:
 
-1. **Real bot fleet inventoried** — 13 AI agents on `openclaw-vm`, not the "five" the 2026-05-01 handoff claimed.
+1. **Real bot fleet inventoried** — at least 16 AI agents on `openclaw-vm`, not the "five" the 2026-05-01 handoff claimed.
 2. **Azure run-command proxy went live** — this Codex-Agent session can now query the VM directly. Took a few iterations (OIDC creds, branch filter) to get there.
 3. **Aixa's bot fixed** — was silently broken since deploy on 2026-05-06. Root cause: missing service principal in tenant. Fixed end-to-end. Bot now answers in personal AND group chats.
+4. **Reply cap bumped 3500 → 7000 chars** across 9 templated responders + Alejandro (already at 7k).
+5. **Emily Claude / Neil Claude / Stephanie Claude all fixed** — three different bugs from the same broken deploy template. Pattern documented below for next time.
 
 Lesson worth carrying forward: **bot OUTBOUND log entries are not proof of delivery.** The pattern `_post_reply_orig_protect` uses (`subprocess.run` + ignore returncode + log to OUTBOUND) silently swallows delivery failures. If a bot ever appears to "work but users don't see replies," check the credential chain end-to-end before trusting OUTBOUND.
 
+## The "newly-deployed Claude bot" 4-bug pattern
+
+Bots that came online 2026-05-06 — Aixa, Zahid, Emily, Neil-Claude, Stephanie — were all stamped from the same template, and that template had multiple latent bugs. Each new "Claude bot" deployment may have any combination of:
+
+1. **Missing service principal in tenant.** `az ad app show --id <app-id>` succeeds, but `az ad sp show --id <app-id>` returns "ResourceNotFound". Fix: `az ad sp create --id <app-id>`. Without this, every BF token request returns `AADSTS7000229`.
+2. **Vault secret has `az` CLI warning prefix.** Stored value is ~270 chars instead of ~40, starting with "WARNING: The output includes credentials...". The actual secret is on the last line. Fix: extract `tail -n 1` of the value, test it gets a BF token, write back. Token endpoint returns `AADSTS7000215: Invalid client secret`.
+3. **Microsoft endpoint URL has typo (missing hyphen).** Bot resource has `/<botname>claude/api/messages` but nginx routes `/<bot-name>-claude/api/messages`. Microsoft drops every message. Fix: `az resource update -g SDNeurosurgery-OpenClaw --resource-type Microsoft.BotService/botServices --name OpenClaw-<Name>Claude --set properties.endpoint=<correct-url>`.
+4. **Allow-list missing `YOO_AAD_ID`.** Responder source has only `USER_AAD_ID = "..."` and `if frm.get("aadObjectId", "") != USER_AAD_ID: return False`. Should have both: `USER_AAD_ID` + `YOO_AAD_ID = "e0d48eb4-1eb3-4263-a72e-f6ad4ef32238"` and `not in (USER_AAD_ID, YOO_AAD_ID)`. Without this, the bot silently ignores Dr. Yoo's messages — no error, no log.
+
+Also affecting all of these (separate bug class): nginx `sites-enabled/` accumulates `*.bak-*` files left over from in-place edits, causing "conflicting server name" warnings and unpredictable load order. Move them to `sites-disabled/` and reload.
+
+**Fixed today** (Emily, Neil-Claude, Stephanie) end-to-end via SENDER test (HTTP 201, message IDs returned by Bot Framework). When Yoo or the owner sends a fresh message, bot replies.
+
+**Fix template script** for any future bot hitting these:
+
+```bash
+# Bug 1 — missing SP
+az ad sp create --id <app-id>
+
+# Bug 2 — secret has warning prefix
+MESSY=$(az keyvault secret show --vault-name SDN-YooVault --name <bot>-bot-client-secret --query value -o tsv)
+CLEAN=$(printf '%s' "$MESSY" | tail -n 1)
+printf '%s' "$CLEAN" | az keyvault secret set --vault-name SDN-YooVault --name <bot>-bot-client-secret --file /dev/stdin
+
+# Bug 3 — endpoint URL typo
+az resource update -g SDNeurosurgery-OpenClaw --resource-type Microsoft.BotService/botServices \
+  --name OpenClaw-<Name>Claude \
+  --set properties.endpoint=https://openclaw-sdneuro.westus2.cloudapp.azure.com/<bot-name>-claude/api/messages
+
+# Bug 4 — add YOO_AAD_ID
+sed -i 's|^USER_AAD_ID = \("[^"]*"\)$|USER_AAD_ID = \1\nYOO_AAD_ID = "e0d48eb4-1eb3-4263-a72e-f6ad4ef32238"|' /home/azureuser/<bot>-responder.py
+sed -i 's|if frm.get("aadObjectId", "") != USER_AAD_ID: return False|if frm.get("aadObjectId", "") not in (USER_AAD_ID, YOO_AAD_ID): return False|' /home/azureuser/<bot>-responder.py
+sudo systemctl restart <bot>-responder.service
+
+# Bug 5 (related) — nginx bak file cleanup
+sudo mv /etc/nginx/sites-enabled/*.bak-* /etc/nginx/sites-disabled/ 2>/dev/null
+sudo nginx -t && sudo systemctl reload nginx
+```
+
 ## Bot fleet — the real list
 
-13 agents, all `active running` on `openclaw-vm` as of this morning:
+At least 16 agents on `openclaw-vm`. Discovered today during cap-bump broadcast (Emily, Stephanie, Neil-Claude weren't in the 2026-05-01 inventory).
 
 | Agent | Service pair | Owner | Notes |
 |---|---|---|---|
