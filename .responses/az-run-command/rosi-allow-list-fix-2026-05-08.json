@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "===== BEFORE =====\n153:ROSI_AAD_ID = \"ced4fa35-8121-4857-845d-fc89e6dd71f9\"\n245:    if frm.get(\"aadObjectId\", \"\") != ROSI_AAD_ID:\n\n===== AFTER =====\n153:ROSI_AAD_ID = \"ced4fa35-8121-4857-845d-fc89e6dd71f9\"\n154:YOO_AAD_ID = \"e0d48eb4-1eb3-4263-a72e-f6ad4ef32238\"\n246:    if frm.get(\"aadObjectId\", \"\") not in (ROSI_AAD_ID, YOO_AAD_ID):\n\n===== Restart =====\nactive\n\n===== Is Rosi published in Teams catalog? =====\n  manifest.id from disk: 775dd505-72a7-45d6-8ff2-bc2bb8d84666\n{\n  \"count\": 0,\n  \"entries\": []\n}",
+  "stderr": ""
+}
