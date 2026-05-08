@@ -38,6 +38,16 @@ Don't try to debug Codex from scratch — start with `HANDOFF.md`.
 
 Don't ping the user with intermediate "I'm checking…" messages. Run the diagnostic, fix the thing, then report the outcome in one message. The four-field summary format Dr. Yoo prefers: what I did / which thing was affected / what to verify / what's next.
 
+## Diff-first when sibling bots diverge
+
+**If a bot is broken and a sibling bot from the same template works, the FIRST diagnostic step is `diff <broken>.py <working>.py`.** Not "check the secret," not "check the URL," not "check the manifest." Diff first.
+
+The bots on `openclaw-vm` are stamped from the same template (`make-mso-claude-bot.sh`). When one is silent and another isn't, the difference is usually a single sed-able edit visible in 30 seconds of diff output. Going hunting through credentials, network paths, allow-lists, and ARM resources without doing the diff first wastes round-trips.
+
+Concrete example from 2026-05-08: Emily/Neil/Stephanie were silent. Aixa worked. Five bugs were chased in sequence (vault secrets, URL hyphens, allow-list, restart issues, recursion bug) before the actual fix — a duplicate `_post_reply_orig_protect` definition causing infinite recursion — was found. A `diff aixa-responder.py emily-claude-responder.py | head -30` at step 1 would have shown the duplicate definition immediately.
+
+Rule: when symptoms are "bot exists but doesn't reply" and a known-working sibling exists, dump the diff before doing anything else.
+
 ## Never delete unless explicitly asked
 
 If a fix involves deleting a file, a backup, a session, or a config block, **back it up first** and never run destructive commands without showing the plan. The runtime has a habit of caching everything per session — a wrong delete can wipe live conversations. The handoff describes the safe fix paths.
