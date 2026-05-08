@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "echo '===== displayName starts with Jesus ====='; az ad user list --filter \"startswith(displayName,'Jesus')\" -o json 2>&1; echo; echo '===== givenName starts with Jesus ====='; az ad user list --filter \"startswith(givenName,'Jesus')\" -o json 2>&1"
+}
