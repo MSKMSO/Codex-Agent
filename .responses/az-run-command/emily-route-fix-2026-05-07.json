@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "===== Test endpoint with correct Host header =====\n/emily-claude/api/messages -> http_code=401\n/emily/api/messages -> http_code=404\n/aixa/api/messages -> http_code=401\n\n===== Move .bak files OUT of sites-enabled (nginx ignores symlinks/regular-files) =====\n-rw-r--r-- 1 root root  685 Apr 25 18:17 mskai-bot.bak-1777166243\n-rw-r--r-- 1 root root 4630 May  6 12:31 mskai-bot.bak-aixa-1778095900\n-rw-r--r-- 1 root root 5420 May  7 10:27 mskai-bot.bak-emily-claude-1778174844\n-rw-r--r-- 1 root root 5018 May  7 10:27 mskai-bot.bak-neil-claude-1778174827\n-rw-r--r-- 1 root root 3851 May  6 12:08 mskai-bot.bak-rosi-zahid-1778094484\n-rw-r--r-- 1 root root 5824 May  7 10:27 mskai-bot.bak-stephanie-claude-1778174849\n-rw-r--r-- 1 root root  686 Apr 25 18:17 yooai-bot.bak-1777166243\nafter move:\ncodex\nmskai-bot\nwatchdog\nwatchdog-ssl\nyooai-bot.disabled-merged\n\n===== Validate + reload nginx =====\n2026/05/07 17:25:34 [warn] 1766332#1766332: conflicting server name \"openclaw-sdneuro.westus2.cloudapp.azure.com\" on 0.0.0.0:443, ignored\nnginx: the configuration file /etc/nginx/nginx.conf syntax is ok\nnginx: configuration file /etc/nginx/nginx.conf test is successful\nreloaded\n\n===== Re-test emily endpoint =====\n/emily-claude/api/messages -> http_code=401\n/emily/api/messages -> http_code=404",
+  "stderr": ""
+}
