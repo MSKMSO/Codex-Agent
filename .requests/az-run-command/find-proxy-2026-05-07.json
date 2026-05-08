@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "echo '===== All files in /etc/nginx/ =====' && ls -la /etc/nginx/sites-available/ /etc/nginx/sites-enabled/ /etc/nginx/conf.d/ 2>&1; echo; echo '===== Look for aixa / gabriel proxy config =====' && grep -rlE '3992|3993|3994|aixa|gabriel|emily' /etc/nginx/ /etc/caddy/ 2>/dev/null | head -10; echo; echo '===== Caddy server? =====' && ls /etc/caddy/ 2>/dev/null; cat /etc/caddy/Caddyfile 2>/dev/null | head -50; echo; echo '===== Active reverse proxy services =====' && systemctl list-units --type=service --state=active --no-pager | grep -iE 'nginx|caddy|haproxy|envoy' | head -10; echo; echo '===== mskai-bot config (the one that exists) =====' && cat /etc/nginx/sites-enabled/mskai-bot 2>&1 | head -40"
+}
