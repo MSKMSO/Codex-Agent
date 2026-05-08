@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "echo '===== Emily bot service unit (PORT, ExecStart) =====' && systemctl cat emily-claude-bot.service --no-pager | grep -E 'Environment|ExecStart' && echo; echo '===== Is Emily bot listening on its port? =====' && PORT=$(systemctl cat emily-claude-bot.service --no-pager | grep -oE 'PORT=[0-9]+' | cut -d= -f2); echo \"port=$PORT\"; ss -tlnp 2>/dev/null | grep -E \":$PORT \" || echo \"  NOT listening on $PORT\"; echo; echo '===== Recent journal — bot endpoint =====' && journalctl -u emily-claude-bot.service --no-pager --since '1 hour ago' 2>&1 | grep -v 'systemd\\[1\\]' | tail -20; echo; echo '===== Azure Bot resource for Emily =====' && az bot list --resource-group SDNeurosurgery-OpenClaw --query \"[?contains(displayName,'mily') || contains(name,'mily')].{name, displayName, msaAppId, endpoint}\" -o json 2>&1 | head -30; echo; echo '===== Reverse-proxy nginx config — does it route Emily? =====' && grep -lE 'emily' /etc/nginx/sites-enabled/* /etc/nginx/conf.d/* 2>/dev/null | head -5; cat /etc/nginx/sites-enabled/default 2>/dev/null | grep -A 2 -E 'emily|location.*api' | head -30"
+}
