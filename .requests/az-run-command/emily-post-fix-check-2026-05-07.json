@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "echo '===== Activity files for Emily =====' && ls -la /home/azureuser/.emily-claude-bot/ 2>/dev/null | head -15; echo; echo '===== Has activities.jsonl arrived? =====' && A=/home/azureuser/.emily-claude-bot/activities.jsonl; if [ -f $A ]; then echo \"YES — total entries: $(wc -l < $A)\"; tail -3 $A | jq -c '. as $env | (.body|fromjson) as $b | {ts, type: $b.type, conv_type: $b.conversation.conversationType, from: $b.from.name, text: ($b.text // \"\")[:80]}' 2>&1; else echo 'NO — file still does not exist (Microsoft cache may not have refreshed yet, or no one has messaged)'; fi; echo; echo '===== Outbound = has bot replied? =====' && O=/home/azureuser/.emily-claude-bot/outbound.jsonl; if [ -f $O ]; then echo \"YES — total replies: $(wc -l < $O)\"; tail -3 $O | jq -c 2>&1; else echo 'NO outbound yet'; fi; echo; echo '===== Recent journal =====' && journalctl -u emily-claude-bot.service -u emily-claude-responder.service --since '5 minutes ago' --no-pager 2>&1 | grep -v 'systemd\\[1\\]' | tail -10"
+}
