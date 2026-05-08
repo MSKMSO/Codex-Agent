@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "--- query externalId=eac70da8-72ea-46c9-ab86-1a805ef4e27c ---\n{\n  \"count\": 1,\n  \"entries\": [\n    {\n      \"id\": \"775dd505-72a7-45d6-8ff2-bc2bb8d84666\",\n      \"externalId\": \"eac70da8-72ea-46c9-ab86-1a805ef4e27c\",\n      \"displayName\": \"Rosi AI Agent\",\n      \"distributionMethod\": \"organization\"\n    }\n  ]\n}\n--- query externalId=775dd505-72a7-45d6-8ff2-bc2bb8d84666 ---\n{\n  \"count\": 0,\n  \"entries\": []\n}\n--- query externalId=28d694aa-a808-4169-8277-b11d6e6eff70 ---\n{\n  \"count\": 0,\n  \"entries\": []\n}\n\n===== Also list any rosi-* in full catalog =====\n{\n  \"id\": \"775dd505-72a7-45d6-8ff2-bc2bb8d84666\",\n  \"externalId\": \"eac70da8-72ea-46c9-ab86-1a805ef4e27c\",\n  \"displayName\": \"Rosi AI Agent\"\n}",
+  "stderr": ""
+}
