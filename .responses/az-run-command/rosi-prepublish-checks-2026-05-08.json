@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "===== Rosi creds.json shape (no values shown) =====\n[\n  \"app_id\",\n  \"client_secret\",\n  \"tenant\"\n]\n\n===== Test BF token using creds.json (per playbook step 2) =====\n  APP from creds.json: d5b6a545-66d0-4a68-8967-4dd5f2c5c981\n  SEC length: 40\n  TEN: 50186224-2255-444a-b321-60a84114115c\n{\n  \"ok\": true,\n  \"err\": null,\n  \"msg\": \"\"\n}\n\n===== Teams channel enabled? =====\nERROR: Operation returned an invalid status 'Bad Request'\n\n===== Compare with vault secret (just length) =====\n  vault secret length: 40\n  same as creds.json? NO",
+  "stderr": ""
+}
