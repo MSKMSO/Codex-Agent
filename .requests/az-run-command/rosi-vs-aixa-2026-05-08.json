@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "echo '===== Rosi responder file size + mtime =====' && ls -la /home/azureuser/rosi-responder.py /home/azureuser/aixa-responder.py; echo; echo '===== Rosi: is_actionable function (search and dump) =====' && python3 -c \"import re; src=open('/home/azureuser/rosi-responder.py').read(); m=re.search(r'def is_actionable.*?(?=\\ndef )', src, re.DOTALL); print(m.group(0) if m else '(not found)')\"; echo; echo '===== Rosi: any AAD or sender filter at all? =====' && grep -nE 'aadObject|from.*id|allow|filter' /home/azureuser/rosi-responder.py | head -10; echo; echo '===== Rosi has been added to any Teams chat? Check Bot Framework activity =====' && journalctl -u rosi-bot.service --since '24 hours ago' --no-pager 2>&1 | grep -v 'systemd' | head -20; echo; echo '===== nginx accept logs for /rosi (any traffic?) =====' && grep '/rosi/' /var/log/nginx/access.log 2>/dev/null | tail -5; if [ ! -s /var/log/nginx/access.log ]; then echo '(access log empty or unreadable)'; fi"
+}
