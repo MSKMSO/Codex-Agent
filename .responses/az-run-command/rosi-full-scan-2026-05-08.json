@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "===== Rosi: full bug-class scan vs working sibling (Aixa) =====\n  app_id: d5b6a545-66d0-4a68-8967-4dd5f2c5c981\n\n----- bug 1: SP exists? -----\n  YES\n\n----- bug 2: vault secret format -----\n  raw length: 40\n  clean length: 40\n\n----- bug 3: Microsoft URL =====-----\nhttps://openclaw-sdneuro.westus2.cloudapp.azure.com/rosi/api/messages\n\n----- bug 4: allow-list -----\n\n----- bug 5: duplicate _post_reply_orig_protect? -----\n  count: 1\n\n----- nginx route present? -----\n    location /rosi/api/messages {\n        proxy_pass http://127.0.0.1:3990/api/messages;\n--\n    location /rosi/ {\n\n----- service state -----\nactive\nactive\n  uptime: Thu 2026-05-07 10:50:59 PDT\n  inbound: 0\n  outbound: 0",
+  "stderr": ""
+}
