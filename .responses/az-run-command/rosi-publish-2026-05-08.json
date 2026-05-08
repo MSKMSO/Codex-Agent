@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "===== Find Rosi Teams app artifacts =====\n/home/azureuser/rosi-teams-app.zip\n\n===== Inspect Rosi zip if exists =====\n=== /home/azureuser/rosi-teams-app.zip ===\n{\n  \"id\": \"eac70da8-72ea-46c9-ab86-1a805ef4e27c\",\n  \"version\": \"1.0.0\",\n  \"name\": {\n    \"short\": \"Rosi AI Agent\",\n    \"full\": \"Rosi Cabrera Claude\"\n  },\n  \"scopes\": [\n    \"personal\",\n    \"team\",\n    \"groupChat\"\n  ]\n}\n\n===== Compare with Aixa zip location for reference =====\n/home/azureuser/aixa-teams-app/:\ntotal 64\ndrwxr-xr-x  2 azureuser azureuser  4096 May  7 09:24 .\ndrwxr-x--- 63 azureuser azureuser 36864 May  8 06:27 ..\n-rw-r--r--  1 root      root       1866 May  7 09:24 aixa-teams-app-v1.2.zip\n-rw-r--r--  1 azureuser azureuser  1868 May  6 12:31 aixa-teams-app.zip\n-rw-r--r--  1 azureuser azureuser   991 May  6 12:31 color.png\n-rw-r--r--  1 azureuser azureuser  1028 May  6 12:31 manifest.json\n-rw-r--r--  1 azureuser azureuser    95 May  6 12:31 outline.png\n\n/home/azureuser/rosi-teams-app/:\ntotal 56\ndrwxr-xr-x  2 azureuser azureuser  4096 May  6 12:08 .\ndrwxr-x--- 63 azureuser azureuser 36864 May  8 06:27 ..\n-rw-r--r--  1 azureuser azureuser   991 May  6 12:08 color.png\n-rw-r--r--  1 azureuser azureuser  1113 May  6 12:08 manifest.json\n-rw-r--r--  1 azureuser azureuser    95 May  6 12:08 outline.png",
+  "stderr": ""
+}
