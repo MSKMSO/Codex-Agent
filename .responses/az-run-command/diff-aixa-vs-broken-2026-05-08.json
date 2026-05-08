@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": "/var/lib/waagent/run-command/download/3582/script.sh: 1: Syntax error: \"(\" unexpected"
+}
