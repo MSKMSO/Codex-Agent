@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "TOKEN=$(/home/azureuser/yoomd-appcatalog-token.sh); for EID in eac70da8-72ea-46c9-ab86-1a805ef4e27c 775dd505-72a7-45d6-8ff2-bc2bb8d84666 28d694aa-a808-4169-8277-b11d6e6eff70; do echo \"--- query externalId=$EID ---\"; curl -s \"https://graph.microsoft.com/v1.0/appCatalogs/teamsApps?%24filter=externalId%20eq%20%27$EID%27\" -H \"Authorization: Bearer $TOKEN\" | jq '{count: (.value|length), entries: [.value[] | {id, externalId, displayName, distributionMethod}]}'; done; echo; echo '===== Also list any rosi-* in full catalog ====='; curl -s \"https://graph.microsoft.com/v1.0/appCatalogs/teamsApps?%24filter=distributionMethod%20eq%20%27organization%27\" -H \"Authorization: Bearer $TOKEN\" | jq '.value[] | select(.displayName | test(\"[Rr]osi\")) | {id, externalId, displayName}'"
+}
