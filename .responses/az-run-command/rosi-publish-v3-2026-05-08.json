@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "===== Upload v1.2 appDefinition =====\n  http_code=201\n{\n  \"teamsAppId\": \"775dd505-72a7-45d6-8ff2-bc2bb8d84666\",\n  \"version\": \"1.2.0\",\n  \"displayName\": \"Rosi Claude\",\n  \"publishingState\": \"published\"\n}\n\n===== Set env var + restart =====\nactive\nactive",
+  "stderr": ""
+}
