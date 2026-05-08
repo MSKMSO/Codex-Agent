@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "===== Emily bot service unit (PORT, ExecStart) =====\nEnvironment=PORT=3994\nExecStart=/usr/bin/python3 /home/azureuser/emily-claude-bot.py\n\n===== Is Emily bot listening on its port? =====\nport=3994\nLISTEN 0      5          127.0.0.1:3994       0.0.0.0:*    users:((\"python3\",pid=1619384,fd=3))                                                                                                                                                                                                                   \n\n===== Recent journal — bot endpoint =====\n-- No entries --\n\n===== Azure Bot resource for Emily =====\nERROR: 'list' is misspelled or not recognized by the system.\n\nExamples from AI knowledge base:\nhttps://aka.ms/cli_ref\nRead more about the command in reference docs\n\n===== Reverse-proxy nginx config — does it route Emily? =====\n/etc/nginx/sites-enabled/mskai-bot\n/etc/nginx/sites-enabled/mskai-bot.bak-stephanie-claude-1778174849",
+  "stderr": ""
+}
