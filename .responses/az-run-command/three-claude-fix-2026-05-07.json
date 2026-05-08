@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "========== Cleaning neil-claude secret ==========\n  270 -> 40\n  test_token=yes\n  vault updated\n  services restarted\n\n========== Cleaning stephanie-claude secret ==========\n  270 -> 40\n  test_token=yes\n  vault updated\n  services restarted\n\n========== Emily diagnostic — why is she not replying? ==========\n----- Last 20 lines of responder-debug.log -----\n2026-05-07T10:27:26  emily-claude-responder started\n2026-05-07T10:45:37  emily-claude-responder started\n2026-05-07T10:50:59  emily-claude-responder started\n2026-05-07T15:31:22  emily-claude-responder started\n\n----- responder-errors.log (full) -----\n\n----- Recent Emily outbound (after URL fix) -----\n  (no outbound yet)\n\n----- Emily responder-offset.txt (which entries processed) -----\n1",
+  "stderr": ""
+}
