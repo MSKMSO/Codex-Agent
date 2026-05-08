@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "========== emily-claude ==========\n  AFTER:\nUSER_AAD_ID = \"30dac358-f9af-434a-b82f-d012cf9590b4\"\nYOO_AAD_ID = \"e0d48eb4-1eb3-4263-a72e-f6ad4ef32238\"\n    if frm.get(\"aadObjectId\", \"\") not in (USER_AAD_ID, YOO_AAD_ID): return False\nactive\n\n========== neil-claude ==========\n  AFTER:\nUSER_AAD_ID = \"2049eea4-950d-4bc6-be8f-5a825dfa551f\"\nYOO_AAD_ID = \"e0d48eb4-1eb3-4263-a72e-f6ad4ef32238\"\n    if frm.get(\"aadObjectId\", \"\") not in (USER_AAD_ID, YOO_AAD_ID): return False\nactive\n\n========== stephanie-claude ==========\n  AFTER:\nUSER_AAD_ID = \"ed5b0d40-ff5b-47a8-a515-74646e603b0e\"\nYOO_AAD_ID = \"e0d48eb4-1eb3-4263-a72e-f6ad4ef32238\"\n    if frm.get(\"aadObjectId\", \"\") not in (USER_AAD_ID, YOO_AAD_ID): return False\nactive",
+  "stderr": ""
+}
