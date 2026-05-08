@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "========== emily-claude ==========\n  APP=b1d02264-28fe-49f1-ae71-b50b6809f852\n  ----- vault secret -----\n  raw-length=40\n  clean-length=40\n  ----- SP exists? -----\n  SP exists\n  ----- BF token test (using clean candidate) -----\n  has_token=yes\n  ----- inbound activity? -----\n  activity entries: 1\n\n========== neil-claude ==========\n  APP=9f9073ac-020d-4282-b158-2011fec14b39\n  ----- vault secret -----\n  raw-length=270\n  clean-length=40\n  >>> SECRET HAS WARNING PREFIX — needs cleanup\n  ----- SP exists? -----\n  SP exists\n  ----- BF token test (using clean candidate) -----\n  has_token=yes\n  ----- inbound activity? -----\n  activity entries: 1\n\n========== stephanie-claude ==========\n  APP=e73eb6b2-b560-4f3c-88c9-349b8737235b\n  ----- vault secret -----\n  raw-length=270\n  clean-length=40\n  >>> SECRET HAS WARNING PREFIX — needs cleanup\n  ----- SP exists? -----\n  SP exists\n  ----- BF token test (using clean candidate) -----\n  has_token=yes\n  ----- inbound activity? -----\n  activity entries: 12",
+  "stderr": ""
+}
