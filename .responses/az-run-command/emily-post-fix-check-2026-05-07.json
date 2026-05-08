@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "===== Activity files for Emily =====\ntotal 76\ndrwxr-xr-x  2 azureuser azureuser  4096 May  7 21:31 .\ndrwxr-x--- 63 azureuser azureuser 36864 May  7 21:32 ..\n-rw-r--r--  1 azureuser azureuser  1612 May  7 21:31 activities.jsonl\n-rw-r--r--  1 azureuser azureuser   374 May  7 10:27 context.md\n-rw-r--r--  1 azureuser azureuser   379 May  7 21:31 conversation-refs.jsonl\n-rw-------  1 azureuser azureuser   392 May  7 10:27 creds.json\n-rw-r--r--  1 azureuser azureuser   415 May  7 10:27 identity.md\n-rw-r--r--  1 azureuser azureuser    37 May  7 10:27 manifest-id.txt\n-rw-r--r--  1 azureuser azureuser     0 May  7 10:27 memory.md\n-rw-r--r--  1 azureuser azureuser   208 May  7 15:31 responder-debug.log\n-rw-r--r--  1 azureuser azureuser     1 May  7 21:31 responder-offset.txt\n\n===== Has activities.jsonl arrived? =====\nYES — total entries: 1\n{\"ts\":\"2026-05-08T04:31:32.752035+00:00\",\"type\":\"message\",\"conv_type\":\"groupChat\",\"from\":\"Dr. Kevin Yoo, SDN\",\"text\":\"<at>Emily Claude</at> hello?\"}\n\n===== Outbound = has bot replied? =====\nNO outbound yet\n\n===== Recent journal =====\n-- No entries --",
+  "stderr": ""
+}
