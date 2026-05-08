@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "echo '===== make-mso-claude-bot.sh — header + arg parsing =====' && sed -n '1,90p' /home/azureuser/make-mso-claude-bot.sh; echo; echo '===== make-mso-claude-bot.sh — total size + key sections =====' && wc -l /home/azureuser/make-mso-claude-bot.sh; grep -nE '^# ===|^# ---|^# Step|^# step|--[a-z]+\\)' /home/azureuser/make-mso-claude-bot.sh | head -30"
+}
