@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "echo '===== Diff: Aixa (working) vs Emily (broken) — only the post_reply chain area =====' && diff <(sed -n '350,430p' /home/azureuser/aixa-responder.py) <(sed -n '350,430p' /home/azureuser/emily-claude-responder.py) | head -60; echo; echo '===== Aixa post_reply chain =====' && sed -n '355,410p' /home/azureuser/aixa-responder.py; echo; echo '===== Emily post_reply chain =====' && sed -n '355,410p' /home/azureuser/emily-claude-responder.py"
+}
