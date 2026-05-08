@@ -15,6 +15,17 @@ This repo is the home for everything related to **Codex Agent** — the openclaw
 
 Don't try to debug Codex from scratch — start with `HANDOFF.md`.
 
+## When debugging the OTHER Teams bots — read this first
+
+If the user's question is about Emily / Neil / Stephanie / Aixa / Zahid / David / Rosi / Gabriel / Alejandro / Heather / Kaye / MSK AI / Yoo AI — i.e., any of the templated Claude or OpenAI bots running on `openclaw-vm` — read [`docs/multi-bot-debugging.md`](docs/multi-bot-debugging.md) before writing a single command. It encodes the diagnostic order learned from real multi-hour debug sessions, including:
+
+- **The diff-first rule** for templated bot families. When one twin works and the others don't, your first command is `diff` between their responder/bot files. Not `az bot show`. Not `curl`. `diff`.
+- **The single most common failure mode**: `creds.json` containing the secret **ID** instead of the secret **value** → `AADSTS7000215`. Fix at [`docs/runbook-rotate-bot-secret.md`](docs/runbook-rotate-bot-secret.md).
+- The proven order to check things (services running → BF auth → endpoint URL match → responder code drift → Teams channel → chat install).
+- Anti-patterns to avoid — chiefly **assuming the URL is wrong without verifying**, which has eaten multiple hours.
+
+This applies whenever a sibling bot is acting up. Don't guess; diff.
+
 ## Talk in plain English
 
 Dr. Yoo isn't a software engineer. Write the way you'd explain something to a smart friend who doesn't work in tech.
