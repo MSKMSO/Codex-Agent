@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "echo '===== Emily-related directories =====' && find /home/azureuser -maxdepth 3 -iname '*emily*' -type d 2>/dev/null; echo; echo '===== All activities.jsonl files =====' && find /home/azureuser -maxdepth 4 -name 'activities.jsonl' 2>/dev/null; echo; echo '===== Activity dir referenced in emily-claude-responder.py =====' && grep -E 'LOG = |OUTBOUND = |HOME|activities' /home/azureuser/emily-claude-responder.py | head -10; echo; echo '===== systemctl status of emily services =====' && systemctl is-active emily-claude-bot.service emily-claude-responder.service && echo; echo '===== Recent journal lines for emily services =====' && journalctl -u emily-claude-bot.service -u emily-claude-responder.service --since '15 minutes ago' --no-pager 2>&1 | grep -v 'systemd\\[1\\]' | tail -20"
+}
