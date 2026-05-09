@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "===== Check for known template bugs =====\n--- count of _post_reply_orig_protect defs ---\n2\n--- USER_AAD_ID + YOO_AAD_ID present? ---\nUSER_AAD_ID = \"000163d9-3720-403c-a149-572d07a22c3c\"\n    if frm.get(\"aadObjectId\", \"\") != USER_AAD_ID: return False\n\n===== Apply fixes =====\n  removed 1 duplicate _post_reply_orig_protect def(s)\n--- after fix ---\nUSER_AAD_ID = \"000163d9-3720-403c-a149-572d07a22c3c\"\n    if frm.get(\"aadObjectId\", \"\") != USER_AAD_ID: return False\n\n===== Restart responder =====\nactive",
+  "stderr": ""
+}
