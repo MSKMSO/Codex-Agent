@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "{\n  \"etag\": \"\\\"27007ae3-0000-0200-0000-69fe88ba0000\\\"\",\n  \"id\": \"/subscriptions/15a60cd5-8766-431b-a003-49f4f1b1890f/resourceGroups/SDNeurosurgery-OpenClaw/providers/Microsoft.BotService/botServices/OpenClaw-JesusReyesClaude\",\n  \"kind\": \"azurebot\",\n  \"location\": \"global\",\n  \"name\": \"OpenClaw-JesusReyesClaude\",\n  \"properties\": {\n    \"allSettings\": null,\n    \"appPasswordHint\": null,\n    \"botDefinition\": null,\n    \"cmekEncryptionStatus\": \"Off\",\n    \"cmekKeyVaultUrl\": null,\n    \"configuredChannels\": [\n      \"webchat\",\n      \"directline\"\n    ],\n    \"description\": \"Jesus Reyes' Personal Claude Agent\",\n    \"developerAppInsightKey\": null,\n    \"developerAppInsightsApiKey\": null,\n    \"developerAppInsightsApplicationId\": null,\n    \"disableLocalAuth\": false,\n    \"displayName\": \"OpenClaw-JesusReyesClaude\",\n    \"enabledChannels\": [\n      \"webchat\",\n      \"directline\"\n    ],\n    \"endpoint\": \"https://openclaw-sdneuro.westus2.cloudapp.azure.com/jesus-reyes/api/messages\",\n    \"endpointVersion\": \"3.0\",\n    \"iconUrl\": \"https://docs.botframework.com/static/devportal/client/images/bot-framework-default.png\",\n    \"isAzureBotCreatedInMcsByAbs\": false,\nrc=0\n\n===== Verify endpoint set =====\nhttps://openclaw-sdneuro.westus2.cloudapp.azure.com/jesus-reyes/api/messages",
+  "stderr": ""
+}
