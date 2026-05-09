@@ -21,18 +21,71 @@ Apply this to every file the bots share by template:
 - `~/{name}-send-to.sh`
 - `~/.{name}-bot/creds.json` — only diff the SHAPE (`jq 'keys'`), never the values
 
-## Diagnostic order when a bot is silent in Teams
+## Don't trust `is-active`. Use the health-check helper.
 
-Run these top-to-bottom. Stop at the first one that fails. Don't skip ahead.
+`systemctl is-active` returns `active` for ~2-3 seconds during each restart cycle of a crash-looping service. With `Restart=always RestartSec=5`, a broken bot is "active" 30-50% of the time when sampled. **A passing `is-active` check on a crash-looping bot is the most common false positive in this debug.**
 
-### 1. Are the services running?
+The single-shot reliable check is `scripts/bot-health-check.sh` in this repo. Dispatch it via `dispatch-az-run-command`:
 
-```bash
-systemctl is-active {name}-bot.service {name}-responder.service
-# expect: active active
+```json
+{"vm":"openclaw-vm","script":"bash /home/azureuser/bot-health-check.sh cameron"}
 ```
 
-If either is failed, `journalctl -u {name}-bot -n 50 --no-pager`. Most common failure: port collision (another service grabbed the port).
+(Deploy the script first via the deploy-vm-script workflow, or inline its body in the request.)
+
+It returns JSON like:
+
+```json
+{
+  "name": "cameron",
+  "healthy": true,
+  "checks": {
+    "units_exist": "pass",
+    "pid_bot": "pass:371616",
+    "pid_responder": "pass:371620",
+    "uptime_bot": "pass:350s",
+    "uptime_responder": "pass:350s",
+    "restarts_bot": "pass:0/2min",
+    "restarts_responder": "pass:0/2min",
+    "creds_readable": "pass",
+    "dir_owner": "pass:azureuser",
+    "bf_auth": "pass"
+  }
+}
+```
+
+Exit 0 = healthy, exit 1 = sick. **All seven checks must pass.** A subset (e.g. only `bf_auth: pass`) is the trap that produced the 2026-05-09 false-positive on the Cameron/Ashley/Jesus bots — credentials were good but the bot processes couldn't read them off disk because the directory was owned by `root`. They were crashing every 5 seconds; `is-active` and `bf_auth` both reported healthy.
+
+## Diagnostic order when a bot is silent in Teams
+
+Run these top-to-bottom. **Run the health-check helper first.** Then if any individual check fails, the sections below explain what to do.
+
+### 1. Are the services running AND staying running?
+
+```bash
+# Don't just check is-active. Check process uptime.
+PID=$(systemctl show {name}-bot.service -p MainPID --value)
+ps -o etimes= -p "$PID"   # seconds alive — should be 30+
+journalctl -u {name}-bot.service --since "2 minutes ago" --no-pager | grep -c Started
+# expect: 0 or 1 (not many)
+```
+
+If uptime is small or starts/2min is high, the service is in a crash loop. `journalctl -u {name}-bot -n 50 --no-pager` for the actual error.
+
+### 1a. Is the bot's directory owned by `azureuser`?
+
+This is a recurring provisioning bug. The bot runs as `azureuser` but the dir gets left as `root`-owned, so it cannot read its own creds. Symptom in journal: `PermissionError: [Errno 13] Permission denied: '/home/azureuser/.{name}-bot/creds.json'`.
+
+```bash
+ls -ld /home/azureuser/.{name}-bot
+# expect: drwxr-xr-x ... azureuser azureuser ...
+```
+
+Fix:
+```bash
+sudo chown -R azureuser:azureuser /home/azureuser/.{name}-bot /home/azureuser/{name}-*
+sudo systemctl restart {name}-bot.service {name}-responder.service
+```
 
 ### 2. Can the bot's SP authenticate to Bot Framework?
 
