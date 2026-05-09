@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "========== Jesus R Claude ==========\n  install FAILED: ERROR: Forbidden({\"error\":{\"code\":\"Forbidden\",\"message\":\"App is blocked by app permission policy. TenantId: 50186224-2255-444a-b321-60a84114115c, UserObjectId: 000163d9-3720-403c-a149-572d07a22c3c, AppId: 2c4a8184-13db-4d42-a65e-5def7414ce2c, AppType: Private\",\"innerError\":{\"code\":\"AccessDenied\",\"me\n========== Cameron Claude ==========\n  install FAILED: ERROR: Forbidden({\"error\":{\"code\":\"Forbidden\",\"message\":\"App is blocked by app permission policy. TenantId: 50186224-2255-444a-b321-60a84114115c, UserObjectId: c94b30a3-9286-44e2-8b80-308635bcbfdd, AppId: ee80c194-7458-488f-bd68-60c0611daf82, AppType: Private\",\"innerError\":{\"code\":\"AccessDenied\",\"me\n========== Ashley Claude ==========\n  install FAILED: ERROR: Forbidden({\"error\":{\"code\":\"Forbidden\",\"message\":\"App is blocked by app permission policy. TenantId: 50186224-2255-444a-b321-60a84114115c, UserObjectId: c9acefa4-8ecf-49e0-982d-fe5f392461b3, AppId: 2055981c-eb41-4060-9ea3-c4f5d6e24792, AppType: Private\",\"innerError\":{\"code\":\"AccessDenied\",\"me",
+  "stderr": ""
+}
