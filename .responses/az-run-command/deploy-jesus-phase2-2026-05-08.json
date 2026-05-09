@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "===== STEP 1: Enable Microsoft Teams channel on Bot Service =====\n  rc=0  {\n  \"etag\": \"W/\\\"c189a518dda9426fd545bb4b20729ba05/9/2026 1:08:55 AM\\\"\",\n  \"id\": \"/subscriptions/15a60cd5-8766-431b-a003\n===== STEP 2: Build Teams app zip =====\n  zip: /home/azureuser/jesus-reyes-teams-app.zip\n  manifest_id (externalId): 7fae2158-998f-427a-855c-5c3ed1f6b274\n===== STEP 3: Upload to catalog =====\n  HTTP=201 catalog_id=2c4a8184-13db-4d42-a65e-5def7414ce2c display=Jesus R Claude\n===== STEP 4: Try install for user via Graph =====\n  HTTP=403 {\"error\":{\"code\":\"Forbidden\",\"message\":\"Missing scope permissions on the request. API requires one of 'TeamsAppInstallation.ReadWriteSelfForUser, TeamsAppInstallation.ReadWriteAndConsentSelfForUser, TeamsAppInstallation.ReadWriteForUser, TeamsAppInstallation.ReadWriteAndConsentForUser, TeamsAppInsta\n  → Likely missing TeamsAppInstallation.ReadWriteForUser.All scope. Will keep catalog entry so admin can finish manually.\n===== STEP 5: Delete catalog entry (only if install succeeded) =====\n  SKIP — install failed, leaving catalog entry 2c4a8184-13db-4d42-a65e-5def7414ce2c for manual install/cleanup\n\n===== PHASE 2 DONE =====\nAPP_ID=e6e0f8dd-411a-485d-8d93-39149cb84204\nmanifest_id (externalId) = 7fae2158-998f-427a-855c-5c3ed1f6b274\ncatalog_id = 2c4a8184-13db-4d42-a65e-5def7414ce2c\ninstall_ok = False",
+  "stderr": ""
+}
