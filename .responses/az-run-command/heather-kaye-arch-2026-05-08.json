@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "========== heather ==========\n----- service unit -----\nDescription=Dr. Heather Yoo AI Agent Bot Endpoint (receive-only)\nExecStart=/usr/bin/python3 /home/heather/heather-bot.py\n----- bot/responder source files -----\n/home/azureuser/heather-teams-app-v2.zip\n/home/azureuser/heather-teams-app.zip\n----- model used (anthropic / openai / claude / gpt search) -----\n----- Teams catalog entry -----\n{\n  \"id\": \"12019ee9-7102-4625-8fd4-9744ededa515\",\n  \"externalId\": \"488c17d5-0736-4397-86ce-a6547aa412f9\",\n  \"displayName\": \"Dr. Heather's AI Agent\"\n}\n\n========== kaye ==========\n----- service unit -----\nDescription=Kaye Elamparo AI Agent Bot Endpoint (receive-only)\nExecStart=/usr/bin/python3 /home/kaye/kaye-bot.py\n----- bot/responder source files -----\n/home/azureuser/kaye-teams-app.zip\n----- model used (anthropic / openai / claude / gpt search) -----\n----- Teams catalog entry -----\n{\n  \"id\": \"05072996-ad56-47fd-be81-5e34760aa5a2\",\n  \"externalId\": \"515f7dd8-cede-4e89-8012-a861e0a71f3d\",\n  \"displayName\": \"Kaye AI\"\n}",
+  "stderr": ""
+}
