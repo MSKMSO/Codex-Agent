@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "for B in jesus-reyes cameron ashley; do echo \"========== $B ==========\"; bash /home/azureuser/bot-health-check.sh $B 2>&1; echo \"exit=$?\"; echo; done"
+}
