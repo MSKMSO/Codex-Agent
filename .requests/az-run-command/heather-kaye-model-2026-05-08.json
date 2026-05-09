@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "for U in heather kaye; do echo \"========== $U ==========\"; sudo ls -la /home/$U/ 2>/dev/null | head -10; echo '----- model search in bot/responder -----'; for f in /home/$U/${U}-bot.py /home/$U/${U}-responder.py; do if sudo test -f $f; then echo \"  $f:\"; sudo grep -iE 'anthropic|openai|claude|gpt|api.openai|api.anthropic|model.*[=:].*\"' $f 2>/dev/null | head -5; fi; done; echo; done"
+}
