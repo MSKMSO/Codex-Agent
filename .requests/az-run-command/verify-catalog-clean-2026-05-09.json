@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "TOKEN=$(/home/azureuser/yoomd-appcatalog-token.sh); for ID in '2c4a8184-13db-4d42-a65e-5def7414ce2c|Jesus R Claude' 'ee80c194-7458-488f-bd68-60c0611daf82|Cameron Claude' '2055981c-eb41-4060-9ea3-c4f5d6e24792|Ashley Claude'; do CAT=$(echo $ID | cut -d'|' -f1); NAME=$(echo $ID | cut -d'|' -f2); CODE=$(curl -s -o /dev/null -w '%{http_code}' \"https://graph.microsoft.com/v1.0/appCatalogs/teamsApps/$CAT\" -H \"Authorization: Bearer $TOKEN\"); if [ \"$CODE\" = \"404\" ]; then echo \"  $NAME: GONE (404 — private to user only)\"; elif [ \"$CODE\" = \"200\" ]; then echo \"  $NAME: still in catalog (HTTP 200) — needs delete\"; else echo \"  $NAME: HTTP $CODE\"; fi; done"
+}
