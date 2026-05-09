@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "===== Verify port 3998 is free =====\n  port 3998 free\n\n===== Run make-mso-claude-bot.sh =====\n→ Looking up AAD object id for jesusr@musculoskeletalmso.com\nERROR: Temporarily throttled, too many requests\nRun the command below to authenticate interactively; additional arguments may be added as needed:\naz logout\naz login\n\n===== Verify services =====\ninactive\ninactive\n\n===== Verify nginx route =====\n\n===== End-to-end BF token test =====\n{\n  \"has_token\": true,\n  \"error\": null\n}",
+  "stderr": ""
+}
