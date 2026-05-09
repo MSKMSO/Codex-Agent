@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "catalog has 14 org apps total\nalejandro: no catalog match for 'alejandro'\nemily-claude: 'Emily Claude' -> 'ETC' (v1.0.0->1.0.1) [201]\ngabriel: no catalog match for 'gabriel'\nheather: 'Dr. Heather's AI Agent' -> 'HYC' (v1.0.1->1.0.2) [201]\nneil-claude: 'Neil Claude' -> 'NZC' (v1.0.0->1.0.1) [201]\nstephanie-claude: 'Stephanie Claude' -> 'SGC' (v1.0.0->1.0.1) [201]",
+  "stderr": ""
+}
