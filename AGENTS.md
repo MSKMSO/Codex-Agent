@@ -38,6 +38,40 @@ Don't try to debug Codex from scratch — start with `HANDOFF.md`.
 
 Don't ping the user with intermediate "I'm checking…" messages. Run the diagnostic, fix the thing, then report the outcome in one message. The four-field summary format Dr. Yoo prefers: what I did / which thing was affected / what to verify / what's next.
 
+## Read 4xx error bodies literally — don't guess at causes
+
+When a Microsoft Graph or Azure REST call returns 403/401, **the error body says what's actually wrong**. Read it literally. Don't pattern-match a phrase and jump to a fashionable hypothesis.
+
+Concrete example from 2026-05-08: `POST /users/{id}/teamwork/installedApps` returned `403 Forbidden` with `"App is blocked by app permission policy"`. I assumed "tenant policy block" and spent multiple round-trips trying to bypass it — granting more app roles, attempting tenant settings updates, etc. The actual cause was **missing scopes on the delegated token** (`TeamsAppInstallation.ReadWriteForUser.All` and `AppCatalog.ReadWrite.All` weren't in the YooMD oauth2PermissionGrant). The "policy" wording in the error came from Microsoft's catch-all message; once the scopes were added to the YooMD grant and the refresh token rotated, install worked first try.
+
+Rule:
+- `403` on Microsoft Graph → first check the **scopes on the token** (decode the JWT or check `scope` returned by the token endpoint). Don't move past this until you've confirmed scopes match what the API requires.
+- `401 AADSTS65001` → consent / scope issue.
+- Only after eliminating scope-side causes should you investigate tenant policies, conditional access, or RBAC.
+
+## Installing a bot for a user (Graph + delegated YooMD token)
+
+Pattern (works as of 2026-05-08, after Yoo added the scopes):
+
+```bash
+# 1. Get a YooMD delegated token with the right scopes
+RT=$(az keyvault secret show --vault-name SDN-YooVault --name yoomd-graph-refresh-token --query value -o tsv)
+TOKEN=$(curl -s -X POST 'https://login.microsoftonline.com/organizations/oauth2/v2.0/token' \
+  -d 'client_id=14d82eec-204b-4c2f-b7e8-296a70dab67e' \
+  -d 'grant_type=refresh_token' \
+  -d "refresh_token=$RT" \
+  -d 'scope=AppCatalog.ReadWrite.All TeamsAppInstallation.ReadWriteForUser.All offline_access' \
+  | python3 -c 'import json,sys; print(json.load(sys.stdin)["access_token"])')
+
+# 2. Install for the user
+curl -X POST "https://graph.microsoft.com/v1.0/users/${AAD_OBJECT_ID}/teamwork/installedApps" \
+  -H "Authorization: Bearer $TOKEN" -H 'Content-Type: application/json' \
+  -d "{\"teamsApp@odata.bind\":\"https://graph.microsoft.com/v1.0/appCatalogs/teamsApps/${TEAMS_APP_ID}\"}"
+# 201 = installed
+```
+
+If a future scope is needed, PATCH the org-wide oauth2PermissionGrant for client `14d82eec-204b-4c2f-b7e8-296a70dab67e` (Microsoft Graph CLI public client) — `consentType: AllPrincipals` — and append the new scope to the `scope` string. Then re-mint the YooMD refresh token to pick up the new scope.
+
 ## Diff-first when sibling bots diverge
 
 **If a bot is broken and a sibling bot from the same template works, the FIRST diagnostic step is `diff <broken>.py <working>.py`.** Not "check the secret," not "check the URL," not "check the manifest." Diff first.
