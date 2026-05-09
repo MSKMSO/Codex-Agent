@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "for B in heather kaye; do echo \"========== $B ==========\"; echo '----- service unit -----'; systemctl cat ${B}-bot.service --no-pager 2>&1 | grep -E 'ExecStart|Description' | head -3; echo '----- bot/responder source files -----'; ls /home/azureuser/${B}-* 2>/dev/null | head -10; echo '----- model used (anthropic / openai / claude / gpt search) -----'; for f in $(ls /home/azureuser/${B}-*.py 2>/dev/null); do echo \"  $f:\"; grep -iE 'anthropic|openai|claude|gpt|api.openai|api.anthropic|model.*=.*\"' $f 2>/dev/null | head -5; done; echo '----- Teams catalog entry -----'; TOKEN=$(/home/azureuser/yoomd-appcatalog-token.sh 2>/dev/null); curl -s \"https://graph.microsoft.com/v1.0/appCatalogs/teamsApps?%24filter=distributionMethod%20eq%20%27organization%27\" -H \"Authorization: Bearer $TOKEN\" | jq \".value[] | select(.displayName | test(\\\"$B\\\"; \\\"i\\\")) | {id, externalId, displayName}\" 2>&1 | head -10; echo; done"
+}
