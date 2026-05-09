@@ -51,7 +51,7 @@ Rule:
 
 ## Installing a bot for a user (Graph + delegated YooMD token)
 
-Pattern (works as of 2026-05-08, after Yoo added the scopes):
+**First-line approach (no admin UI needed):** Graph + YooMD delegated token. Pattern (works as of 2026-05-08, after Yoo added the scopes):
 
 ```bash
 # 1. Get a YooMD delegated token with the right scopes
@@ -71,6 +71,21 @@ curl -X POST "https://graph.microsoft.com/v1.0/users/${AAD_OBJECT_ID}/teamwork/i
 ```
 
 If a future scope is needed, PATCH the org-wide oauth2PermissionGrant for client `14d82eec-204b-4c2f-b7e8-296a70dab67e` (Microsoft Graph CLI public client) — `consentType: AllPrincipals` — and append the new scope to the `scope` string. Then re-mint the YooMD refresh token to pick up the new scope.
+
+**Fallback when Graph install hits a real wall (tenant policy, scope you can't add, etc):** dispatch the `install-teams-app.yml` workflow in `MSKMSO/Virtual-Machines`. It drives the Teams Admin Center UI through Yoo's EdgeBridge:
+
+```bash
+gh workflow run install-teams-app.yml -R MSKMSO/Virtual-Machines \
+  -f app_id=<teamsAppId> \
+  -f query=<picker-search-string>
+gh run watch <run-id>
+```
+
+Chain: this sandbox → GitHub Actions runner → OIDC into Azure → pulls bridge URL + token from `SDN-YooVault` → Cloudflare tunnel → Yoo's Mac EdgeBridge → Edge → Teams Admin Center → install. Reports `install verified` on success.
+
+Most common failure: cloudflared tunnel stale on Yoo's Mac. Fix is one `launchctl` bounce, documented in the workflow's playbook.
+
+This requires `gh` CLI access AND a session scoped to dispatch in `MSKMSO/Virtual-Machines`. Codex-Agent-only sessions can't dispatch it — they need to ask the user to launch a properly-scoped session.
 
 ## Diff-first when sibling bots diverge
 
