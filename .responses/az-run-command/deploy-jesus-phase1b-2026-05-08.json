@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "===== Wait 30s for AAD propagation =====\n===== STEP 2: Create SP (with retry) =====\n  SP created\n===== STEP 3: Add password (with retry) =====\n  secret_len=40\n===== STEP 4: Store in vault =====\n  vault_secret_rc=0 vault_appid_rc=0\n===== STEP 5: Create Bot Service resource =====\n  bot create rc=1 stderr=ERROR: (InvalidBotCreationData) Multitenant bot creation is deprecated. Please use SingleTenant or UserAssignedMSI\nCode: InvalidBotCreationData\nMessage: Multitenant bot creation is deprecated. Please use SingleTenant or UserAssignedMSI\n\n===== STEP 6: Wait 30s for BF / AAD =====\n===== STEP 7: Test BF token =====\n  BF_TOKEN_OK=True expires_in=3599\n\n===== PHASE 1 SUMMARY =====\nAPP_ID=e6e0f8dd-411a-485d-8d93-39149cb84204\nvault: jesus-reyes-bot-client-secret, jesus-reyes-bot-app-id\nBotService: OpenClaw-JesusReyesClaude, endpoint=https://openclaw-sdneuro.westus2.cloudapp.azure.com/jesus-reyes/api/messages",
+  "stderr": ""
+}
