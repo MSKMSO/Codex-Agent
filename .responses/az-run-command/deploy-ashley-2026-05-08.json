@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "===== STEP 1-8: AAD + SP + Vault + BotService + Teams channel =====\n  app_id=bd7a45fa-9d2c-41a0-b988-405e79779747\n  bot create rc=0\n  BF token test:\n  BF_TOKEN_OK=True\n===== STEP 9-10: Build & upload Teams app =====\n  catalog_id=2055981c-eb41-4060-9ea3-c4f5d6e24792\n===== STEP 11: Wait 90s for throttle =====\n===== STEP 12: make-mso-claude-bot.sh =====\n-teams-app/manifest.json\n  /etc/systemd/system/ashley-{bot,responder}.service\n  nginx: location /ashley/ → 127.0.0.1:4000\n  Bot Framework messaging endpoint: https://openclaw-sdneuro.westus2.cloudapp.azure.com/ashley/api/messages\n\nRemaining manual steps (one-time per user):\n  1. Ashley does device-code consent → save refresh token as ashley-graph-refresh-token in SDN-YooVault\n  2. Repackage ashley-teams-app into a .zip and upload to Teams Admin Center → Apps catalog\n  3. (optional) Add a chat with the user; bot responds in 1:1 personal chat to AAD id c9acefa4-8ecf-49e0-982d-fe5f392461b3 only.\n\n===== STEP 13: Apply template fixes =====\n  removed 0 dup def(s); allow-list updated\n  responder: active\n\n===== ASHLEY SUMMARY =====\nAPP_ID=bd7a45fa-9d2c-41a0-b988-405e79779747\nCAT_ID=2055981c-eb41-4060-9ea3-c4f5d6e24792\nPORT=4000",
+  "stderr": ""
+}
