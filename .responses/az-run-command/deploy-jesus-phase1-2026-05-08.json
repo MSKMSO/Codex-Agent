@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "===== STEP 1: Create AAD app =====\n  app_id=e6e0f8dd-411a-485d-8d93-39149cb84204\n===== STEP 2: Create SP =====\n  rc=1 ERROR: The appId 'e6e0f8dd-411a-485d-8d93-39149cb84204' of the service principal does not reference a valid application \n===== STEP 3: Add password =====\n  FAIL rc=1: ERROR: Resource 'e6e0f8dd-411a-485d-8d93-39149cb84204' does not exist or one of its queried reference-property objects are not present.",
+  "stderr": ""
+}
