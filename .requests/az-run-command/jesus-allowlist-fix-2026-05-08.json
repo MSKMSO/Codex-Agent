@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "F=/home/azureuser/jesus-reyes-responder.py; python3 -c \"\nimport re\nsrc = open('$F').read()\nfixed = re.sub(r'^USER_AAD_ID = (\\\".*\\\")$', r'USER_AAD_ID = \\1\\nYOO_AAD_ID = \\\"e0d48eb4-1eb3-4263-a72e-f6ad4ef32238\\\"', src, flags=re.MULTILINE)\nfixed = re.sub(r'frm\\.get\\(\\\"aadObjectId\\\", \\\"\\\"\\) != USER_AAD_ID', 'frm.get(\\\"aadObjectId\\\", \\\"\\\") not in (USER_AAD_ID, YOO_AAD_ID)', fixed)\nopen('$F','w').write(fixed)\nprint('done')\n\"; echo; echo '===== AFTER ====='; grep -E '_AAD_ID|aadObjectId.*not in' $F | head -4; echo; sudo systemctl restart jesus-reyes-responder.service && systemctl is-active jesus-reyes-responder.service"
+}
