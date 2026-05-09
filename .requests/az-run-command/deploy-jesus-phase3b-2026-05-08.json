@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "echo 'Sleeping 120s for rate-limit to clear...'; sleep 120; echo; echo '===== Retry make-mso-claude-bot.sh ====='; bash /home/azureuser/make-mso-claude-bot.sh --short jesus-reyes --full 'Jesus Reyes' --title 'RPS Admin PSG' --upn jesusr@musculoskeletalmso.com --port 3998 --app-id e6e0f8dd-411a-485d-8d93-39149cb84204 --teams-catalog 2c4a8184-13db-4d42-a65e-5def7414ce2c --bot-name 'Jesus R Claude' 2>&1 | tail -50; echo; echo '===== Service state ====='; systemctl is-active jesus-reyes-bot.service jesus-reyes-responder.service; echo; echo '===== nginx jesus-reyes route ====='; grep -A 1 'jesus-reyes' /etc/nginx/sites-enabled/mskai-bot 2>&1 | head -6"
+}
