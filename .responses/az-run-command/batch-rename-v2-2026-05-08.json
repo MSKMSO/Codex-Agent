@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "aixa: 'Aixa Claude' -> 'AMC' (v1.2.0->1.2.1) [201]\nalejandro: not in catalog (extId=7b6c5bdb-eb6e-4992-a211-8c60839f9424), SKIP\ndavid: 'David AI Agent' -> 'DGC' (v1.0.0->1.0.1) [201]\nemily-claude: not in catalog (extId=cd48746e-f48e-4c5c-b773-3437d6eaa3b8), SKIP\ngabriel: no zip or source dir found, SKIP\nheather: UPLOAD FAILED HTTP=409: {\"error\":{\"code\":\"Conflict\",\"message\":\"Update tenant app definition manifest version exists. UserId: 'e0d48eb4-1eb3-4263-a72e-f6ad4ef32238', TenantId: '50186224-2255-444a-b321-60a84114115c', AppId: '12019ee9-7102-4625-8fd4-9744ededa515', ExternalId: '488c17d5-0736-4397-86ce-a6547aa412f9', exist app \nkaye: 'Kaye AI' -> 'KEC' (v1.0.0->1.0.1) [201]\nneil-claude: not in catalog (extId=d028d5d9-ccb0-459e-a895-ec5e52241997), SKIP\nrosi: 'Rosi Claude' -> 'RCC' (v1.0.0->1.0.1) [201]\nstephanie-claude: not in catalog (extId=37254bd3-7544-473e-8b46-abf2994012be), SKIP\nyooai: 'Dr. Yoo's Anthropic Agent' -> 'KYC' (v1.0.8->1.0.9) [201]\nzahid: 'Zahid AI Agent' -> 'MZC' (v1.0.3->1.0.4) [201]",
+  "stderr": ""
+}
