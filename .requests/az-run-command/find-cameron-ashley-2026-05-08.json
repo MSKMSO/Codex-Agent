@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "echo '===== Cameron =====' && az ad user list --filter \"startswith(givenName,'Cameron')\" -o json 2>&1 | python3 -m json.tool 2>&1 | head -40; echo; echo '===== Ashley =====' && az ad user list --filter \"startswith(givenName,'Ashley')\" -o json 2>&1 | python3 -m json.tool 2>&1 | head -40"
+}
