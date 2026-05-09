@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "token-len=3371\n\n===== Try install for Jesus with Yoo delegated token =====\n--- Jesus ---\n  HTTP=403\n{\"error\":{\"code\":\"Forbidden\",\"message\":\"Missing scope permissions on the request. API requires one of 'TeamsAppInstallation.ReadWriteSelfForUser, TeamsAppInstallation.ReadWriteAndConsentSelfForUser, TeamsAppInstallation.ReadWriteForUser, TeamsAppInstallation.ReadWriteAndConsentForUser, TeamsAppInsta\n--- Cameron ---\n  HTTP=403\n{\"error\":{\"code\":\"Forbidden\",\"message\":\"Missing scope permissions on the request. API requires one of 'TeamsAppInstallation.ReadWriteSelfForUser, TeamsAppInstallation.ReadWriteAndConsentSelfForUser, TeamsAppInstallation.ReadWriteForUser, TeamsAppInstallation.ReadWriteAndConsentForUser, TeamsAppInsta\n--- Ashley ---\n  HTTP=403\n{\"error\":{\"code\":\"Forbidden\",\"message\":\"Missing scope permissions on the request. API requires one of 'TeamsAppInstallation.ReadWriteSelfForUser, TeamsAppInstallation.ReadWriteAndConsentSelfForUser, TeamsAppInstallation.ReadWriteForUser, TeamsAppInstallation.ReadWriteAndConsentForUser, TeamsAppInsta",
+  "stderr": ""
+}
