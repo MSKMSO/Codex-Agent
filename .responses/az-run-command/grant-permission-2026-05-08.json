@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "===== Step 1: Find the appRole id for TeamsAppInstallation.ReadWriteForUser.All on Microsoft Graph =====\n  appRole id: 74ef0291-ca83-4d02-8c7e-d2391e6a444f\n===== Step 2: Find the OIDC SP's object id =====\n  OIDC SP object id: 2f632469-51f6-4daf-a718-f3b161cf3cbf\n===== Step 3: Find Graph SP's object id =====\n  Graph SP object id: ef405a56-6699-4680-99c6-ed4ee56ee27f\n===== Step 4: Grant the app role assignment =====\n  GRANTED: {\n  \"@odata.context\": \"https://graph.microsoft.com/v1.0/$metadata#appRoleAssignments/$entity\",\n  \"appRoleId\": \"74ef0291-ca83-4d02-8c7e-d2391e6a444f\",\n  \"createdDateTime\": \"2026-05-09T01:22:17.5560634Z",
+  "stderr": ""
+}
