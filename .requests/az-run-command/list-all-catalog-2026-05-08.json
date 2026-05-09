@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "TOKEN=$(/home/azureuser/yoomd-appcatalog-token.sh); curl -s 'https://graph.microsoft.com/v1.0/appCatalogs/teamsApps?%24filter=distributionMethod%20eq%20%27organization%27' -H \"Authorization: Bearer $TOKEN\" | jq '[.value[] | {id, externalId, displayName}] | sort_by(.displayName)'; echo; echo '===== Locate gabriel + alejandro source files ====='; find /home /tmp -maxdepth 4 \\( -iname '*gabriel*' -o -iname '*alejandro*' \\) -type f 2>/dev/null | grep -E '\\.(zip|json)$' | grep -v '\\.bak\\|\\.requests\\|\\.responses' | head -20"
+}
