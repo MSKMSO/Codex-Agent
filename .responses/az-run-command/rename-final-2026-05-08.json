@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "aixa: 'Aixa Claude' -> 'Aixa Claude' (v1.2.1->1.2.2) [201]\ndavid: 'David AI Agent' -> 'David Claude' (v1.0.1->1.0.2) [201]\nemily-claude: 'Emily AI Agent' -> 'Emily Claude' (v1.0.1->1.0.2) [201]\nheather: 'Dr. Heather AI' -> 'Dr. Heather Claude' (v1.0.2->1.0.3) [201]\nkaye: 'Kaye AI' -> 'Kaye Claude' (v1.0.1->1.0.2) [201]\nyooai: 'Dr. Yoo's Anthropic Agent' -> 'Dr. Yoo Claude' (v1.0.9->1.0.10) [201]\nzahid: 'Zahid AI Agent' -> 'Zahid Claude' (v1.0.4->1.0.5) [201]\nneil-claude: 'Neil AI Agent' -> 'Neil Claude' (v1.0.1->1.0.2) [201]\nrosi: 'Rosi AI Agent' -> 'Rosi Claude' (v1.0.1->1.0.2) [201]\nstephanie-claude: 'Stephanie Claude' -> 'Stephanie Claude' (v1.0.1->1.0.2) [201]\nyooopenai: 'Dr. Yoo's Open AI Agent' -> 'Dr. Yoo ChatGPT' (v1.0.0->1.0.1) [201]\nneil: 'Neil's Open AI Agent' -> 'Neil ChatGPT' (v1.0.0->1.0.1) [201]\n\n===== Publishing Alejandro (new) =====\nalejandro: HTTP=409: {\"error\":{\"code\":\"Conflict\",\"message\":\"App with same id already exists in the tenant. UserId: 'e0d48eb4-1eb3-4263-a72e-f6ad4ef32238', TenantId: '50186224-2255-444a-b321-60a84114115c', AppId: '2e5e42a8",
+  "stderr": ""
+}
