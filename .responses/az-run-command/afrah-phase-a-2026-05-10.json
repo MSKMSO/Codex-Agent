@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "=== Step 1: Create Linux user afrah ===\n  created\n\n=== Step 2: Grant afrah read on azureuser's .claude* via ACL ===\nsudo: setfacl: command not found",
+  "stderr": ""
+}
