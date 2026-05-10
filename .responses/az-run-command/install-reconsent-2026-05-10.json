@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "  installed: /home/azureuser/yoomd-appcatalog-reconsent.sh\n-rwxr-xr-x 1 root root 2408 May 10 15:32 /home/azureuser/yoomd-appcatalog-reconsent.sh",
+  "stderr": ""
+}
