@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "[\n  {\n    \"businessPhones\": [],\n    \"displayName\": \"Afrah Mohammed, RPS SDN Clinic\",\n    \"givenName\": \"Afrah\",\n    \"id\": \"93f122a6-d4e5-4643-abd3-155597a2a0a6\",\n    \"jobTitle\": null,\n    \"mail\": \"Afrahm@musculoskeletalmso.com\",\n    \"mobilePhone\": null,\n    \"officeLocation\": null,\n    \"preferredLanguage\": null,\n    \"surname\": \"Mohammed\",\n    \"userPrincipalName\": \"Afrahm@musculoskeletalmso.com\"\n  }\n]",
+  "stderr": ""
+}
