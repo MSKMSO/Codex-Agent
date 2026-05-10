@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "echo '=== Linux users (uid 1000+) ===' ; getent passwd | awk -F: '$3 >= 1000 && $3 < 65000' ; echo ; echo '=== heather-bot.service unit ===' ; systemctl cat heather-bot.service 2>&1 | head -20 ; echo ; echo '=== heather-responder.service unit ===' ; systemctl cat heather-responder.service 2>&1 | head -20 ; echo ; echo '=== /home/heather contents (sudo) ===' ; sudo ls -la /home/heather/ 2>&1 | head -25 ; echo ; echo '=== /home/heather/.npm-global/bin (claude CLI per-user?) ===' ; sudo ls -la /home/heather/.npm-global/bin/ 2>&1 | head -10 ; echo ; echo '=== Compare cameron-bot.service unit ===' ; systemctl cat cameron-bot.service 2>&1 | head -15 ; echo ; echo '=== Compare cameron-responder.service unit ===' ; systemctl cat cameron-responder.service 2>&1 | head -15"
+}
