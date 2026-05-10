@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "az ad user list --filter \"startswith(givenName,'Afrah')\" -o json 2>&1"
+}
