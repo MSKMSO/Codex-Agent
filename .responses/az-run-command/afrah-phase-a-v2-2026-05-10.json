@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "=== Step 2 (retry): Grant afrah read via group ===\n  done\n\n=== Step 3: Symlinks ===\n  done\n\n=== Step 4: Verify afrah can read shared CLI ===\n  .claude readable: yes\n  .claude.json readable: yes\n  claude bin exec: yes\n\n=== Step 5: Create AAD app ===\n  app_id=05d6eaea-373a-4f23-8ec5-eed37ac83f19\n\n=== Step 6: Wait 30s + SP create ===\n  SP created\n\n=== Step 7: Add password ===\n  secret_len=40\n\n=== Step 8: Vault ===\n  stored\n\n=== Step 9: Bot Service ===\n  created\n\n=== Step 10: Teams channel ===\nWARNING: Command group 'bot msteams' is in preview and under development. Reference and support levels: https://aka.ms/CLI_refstatus\n  enabled\n\n=== Step 11: Wait 30s + BF token ===\n  HTTP=200\n\n=== Step 12: Build & upload Teams app ===\nERROR:\nAADSTS50173: The provided grant has expired due to it being revoked, a fresh auth token is needed. The user might have changed or reset their password. The grant was issued on '2026-05-07T02:54:22.8319748Z' and the TokensValidFrom date (before which tokens are not valid) for this user is '2026-05-10T20:06:16.0000000Z'. Trace ID: bf9d620a-e05b-4739-b8df-6a8339141a00 Correlation ID: 98e2ece4-4e53-4e70-9499-1bd2d7476c50 Timestamp: 2026-05-10 22:27:00Z",
+  "stderr": ""
+}
