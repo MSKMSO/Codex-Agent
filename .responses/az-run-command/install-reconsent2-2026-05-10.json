@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "  installed: /home/azureuser/yoomd-graph-reconsent.sh\n\n=== Bot health check on Afrah (per-user pattern) ===\n{\n  \"name\": \"afrah\",\n  \"healthy\": false,\n  \"checks\": {\n    \"units_exist\": \"pass\",\n    \"pid_bot\": \"pass:2541863\",\n    \"pid_responder\": \"pass:2541864\",\n    \"uptime_bot\": \"pass:124s\",\n    \"uptime_responder\": \"pass:124s\",\n    \"restarts_bot\": \"pass:0/2min\",\n    \"restarts_responder\": \"pass:0/2min\",\n    \"creds_readable\": \"fail:cannot-read\",\n    \"dir_owner\": \"fail:missing\",\n    \"bf_auth\": \"skip:no-creds\"\n  }\n}\nexit=1",
+  "stderr": ""
+}
