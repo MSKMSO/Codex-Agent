@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "== Jose Claude ==\n  chat_id=19:e0d48eb4-1eb3-4263-a72e-f6ad4ef32238_f1cff123-735c-43a8-9e78-b26d4735ffb7@unq.gbl.spaces\n  install -> 403\n{\"error\":{\"code\":\"Forbidden\",\"message\":\"Forbidden\",\"innerError\":{\"code\":\"AppIsBlockedByAppPermissionPolicy\",\"date\":\"2026-05-11T19:49:14\",\"request-id\":\"6daaccf3-245d-4ff8-b384-92302f6a335c\",\"client-request-id\":\"6daaccf3-245d-4ff8-b384-92302f6a335c\"}}}\n== Axel Claude ==\n  chat_id=19:e0d48eb4-1eb3-4263-a72e-f6ad4ef32238_f19c9082-be60-4704-91ed-9154a4e0bd17@unq.gbl.spaces\n  install -> 403\n{\"error\":{\"code\":\"Forbidden\",\"message\":\"Forbidden\",\"innerError\":{\"code\":\"AppIsBlockedByAppPermissionPolicy\",\"date\":\"2026-05-11T19:49:15\",\"request-id\":\"cb96afef-6c30-4b2c-beb9-dfa64af4577a\",\"client-request-id\":\"cb96afef-6c30-4b2c-beb9-dfa64af4577a\"}}}\n== Lia Claude ==\n  chat_id=19:80da67bd-640a-4b9e-a5e2-884be6807bce_e0d48eb4-1eb3-4263-a72e-f6ad4ef32238@unq.gbl.spaces\n  install -> 403\n{\"error\":{\"code\":\"Forbidden\",\"message\":\"Forbidden\",\"innerError\":{\"code\":\"AppIsBlockedByAppPermissionPolicy\",\"date\":\"2026-05-11T19:49:17\",\"request-id\":\"7d6e7dc8-49b4-4065-a4d3-1d3825a929b9\",\"client-request-id\":\"7d6e7dc8-49b4-4065-a4d3-1d3825a929b9\"}}}",
+  "stderr": ""
+}
