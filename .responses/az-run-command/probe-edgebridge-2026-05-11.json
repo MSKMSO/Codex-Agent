@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "url:https://products-butter-pos-handle.trycloudflare.com\ntok-len:64\n\n=== GET /  ===\n\n  HTTP=000\n\n=== GET /health ===\n\n  HTTP=000\n\n=== GET /openapi.json or /docs ===\npath=/openapi.json\n  HTTP=000\n\npath=/docs\n  HTTP=000\n\npath=/api\n  HTTP=000\n\npath=/api/health\n  HTTP=000\n\npath=/api/spec\n  HTTP=000\n\npath=/version\n  HTTP=000",
+  "stderr": ""
+}
