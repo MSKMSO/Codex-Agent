@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "url=https://ran-invitations-plugins-kills.trycloudflare.com\n{\"detail\":\"no tab matching 'chartwire' (scanned 4 pages)\"}\n  --- sleeping 8s for SPA to load ---\n\n=== tabs after navigation ===\n  1: https://site586-bnt29viq.chartwire.com/mobiledoc/jsp/webemr/index.jsp#/mobiledoc/jsp/webemr/progress\n  2: https://outlook.cloud.microsoft/mail/deeplink/read/AAMkADMyNzM5OTlhLTY0YzQtNDc1ZS1iYzU3LWVlNzMwNmFlO\n  3: https://abns-post.ihp.iqvia.com/candidate/cases\n  4: https://eacgp-my.sharepoint.com/personal/mso_musculoskeletalmso_com/_layouts/15/onedrive.aspx?id=%2F\n  5: https://eacgp-my.sharepoint.com/personal/mso_musculoskeletalmso_com/_layouts/15/onedrive.aspx?id=%2F\n  6: https://eacgp-my.sharepoint.com/personal/mso_musculoskeletalmso_com/_layouts/15/onedrive.aspx?id=%2F\n\n=== DOM read of TAC tab (visible buttons, dropdowns, headings) ===\n{\"detail\":\"no tab matching 'admin.teams.microsoft.com' (scanned 4 pages)\"}",
+  "stderr": ""
+}
