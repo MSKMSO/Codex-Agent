@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "echo '=== Look up Axel Manosalvas ==='; az ad user list --filter \"startswith(givenName,'Axel')\" --query \"[].{id:id, displayName:displayName, upn:userPrincipalName, mail:mail}\" -o json 2>&1; echo; echo '=== Search by surname Manosalvas ==='; az ad user list --filter \"startswith(surname,'Manosalvas')\" --query \"[].{id:id, displayName:displayName, upn:userPrincipalName, mail:mail}\" -o json 2>&1"
+}
