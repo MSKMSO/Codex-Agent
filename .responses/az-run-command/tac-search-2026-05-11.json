@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "{\"result\":\"{\\\"set\\\":true,\\\"value\\\":\\\"Jose Claude\\\"}\",\"type\":\"string\"}\n\n=== After search 'Jose Claude' — list matching rows ===\n{\"detail\":\"JS exception: Uncaught\"}",
+  "stderr": ""
+}
