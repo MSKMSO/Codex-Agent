@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "=== Try filter 'outlook' ===\n{\"detail\":\"no tab matching 'outlook' (scanned 4 pages)\"}\n=== List tabs ===\n  1: https://site586-bnt29viq.chartwire.com/mobiledoc/jsp/webemr/index.jsp#/mobiledoc/jsp/webemr/progressnotes/physiciansdash\n  2: https://outlook.cloud.microsoft/mail/deeplink/read/AAMkADMyNzM5OTlhLTY0YzQtNDc1ZS1iYzU3LWVlNzMwNmFlOGYwYQBGAAAAAACznMvUS\n  3: https://auth.abns-post.ihp.iqvia.com/login?state=hKFo2SB0VWZFNmRmM0tKRDIzRk1kc2N5T1VrNGtqQzdzZUtaM6FupWxvZ2luo3RpZNkgdFp\n  4: https://eacgp-my.sharepoint.com/personal/mso_musculoskeletalmso_com/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fmso%5Fmus\n  5: https://eacgp-my.sharepoint.com/personal/mso_musculoskeletalmso_com/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fmso%5Fmus\n  6: https://eacgp-my.sharepoint.com/personal/mso_musculoskeletalmso_com/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fmso%5Fmus\n\n=== Try executing in TAC tab ===\n{\"detail\":\"no tab matching 'admin.teams' (scanned 4 pages)\"}",
+  "stderr": ""
+}
