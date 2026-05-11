@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\nKeyError: 'access_token'",
+  "stderr": ""
+}
