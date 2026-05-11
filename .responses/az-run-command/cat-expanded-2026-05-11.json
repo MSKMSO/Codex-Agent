@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "total: 15\n\"Dr. Yoo's Open AI Agent\" / 588ddf4a-6d20-48ee-b004-05026d2a5871 / states=[('published', None)]\n'Jesus Claude' / 9b08a5fa-dd44-40d8-a7e3-598342bb98c3 / states=[('published', None)]\n'Rosi Claude' / 424084cd-8eab-417d-91fc-9a9a5d70b66b / states=[('published', None)]\n'Emily Claude' / 2aa63aec-c267-446f-b1b7-d88605e76885 / states=[('published', None)]\n'Ashley Claude' / b0ff0abd-e4da-4d03-bca9-047e7f0593f5 / states=[('published', None)]\n'Claude' / 7bf1ab4b-ff0d-4dc1-8252-e14b60751d4a / states=[('published', None)]\n\"Neil's Open AI Agent\" / 628995d6-ac93-4d7e-b1c5-5d5ff2150645 / states=[('published', None)]\n'David Claude' / a53861ee-c762-4dfc-ba7b-88cf069eebf6 / states=[('published', None)]\n\"Dr. Yoo's Anthropic Agent\" / 2e7d226b-852a-4dfa-93fa-006fc6f7c337 / states=[('published', None)]\n'Stephanie Claude' / ab7c9439-fca1-4002-8463-cffe4b9f4115 / states=[('published', None)]\n'Zahid Claude' / eef4623b-4778-4fe7-bb2f-1dd11f4e47ca / states=[('published', None)]\n'Aixa Claude' / 838b509f-cb65-4d65-85ef-d1d4db247368 / states=[('published', None)]\n'Codex' / c8a45526-1c16-47a9-b340-45ef6d2d1611 / states=[('published', None)]\n'Neil Claude' / a5dbb9f0-543b-4cf8-b86f-4c0f30fa3432 / states=[('published', None)]\n'Cameron Claude' / b5c8b236-189b-48e7-95a9-0d8c55494252 / states=[('published', None)]",
+  "stderr": ""
+}
