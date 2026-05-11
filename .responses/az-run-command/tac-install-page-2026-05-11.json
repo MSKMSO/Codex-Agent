@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "=== Navigate to Jose Claude users-and-groups page ===\n{\"detail\":\"no tab matching 'manage-apps' (scanned 2 pages)\"}\n\n=== Read users-and-groups page body + interactive elements ===\n{\"detail\":\"no tab matching 'manage-apps' (scanned 2 pages)\"}",
+  "stderr": ""
+}
