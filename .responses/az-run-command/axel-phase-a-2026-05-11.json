@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "=== Step 1: Create Linux user axel ===\n  created uid=1006\n\n=== Step 2: Grant axel read via group ===\n  done\n\n=== Step 3: Symlinks ===\n  done\n\n=== Step 4: Verify axel can read shared CLI ===\n  .claude readable: yes\n  .claude.json readable: yes\n  claude bin exec: yes\n\n=== Step 5: Create AAD app ===\n  app_id=e9bc615d-546e-49fc-9acf-78f4d095b4ee\n\n=== Step 6: Wait 30s + SP create ===\n  SP created\n\n=== Step 7: Add password ===\n  secret_len=40\n\n=== Step 8: Vault ===\n  stored\n\n=== Step 9: Bot Service ===\n  created\n\n=== Step 10: Teams channel ===\nWARNING: Command group 'bot msteams' is in preview and under development. Reference and support levels: https://aka.ms/CLI_refstatus\n  enabled\n\n=== Step 11: Wait 30s + BF token check ===\n  HTTP=200\n\n=== Step 12: Build & upload Teams app ===\n  cat=e1a45203-05f2-48da-814c-15e6211a7ea2\n\n=== PHASE A SUMMARY ===\nLinux user: axel uid=1006 groups=axel azureuser\nApp: e9bc615d-546e-49fc-9acf-78f4d095b4ee\nCatalog: e1a45203-05f2-48da-814c-15e6211a7ea2\nPort: 4003\nUser AAD: f19c9082-be60-4704-91ed-9154a4e0bd17",
+  "stderr": ""
+}
