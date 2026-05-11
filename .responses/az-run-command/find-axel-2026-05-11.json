@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "=== Look up Axel Manosalvas ===\n[\n  {\n    \"displayName\": \"Axel Manosalvas, RPS Clinic SDN\",\n    \"id\": \"f19c9082-be60-4704-91ed-9154a4e0bd17\",\n    \"mail\": \"AxelM@musculoskeletalmso.com\",\n    \"upn\": \"AxelM@musculoskeletalmso.com\"\n  }\n]\n\n=== Search by surname Manosalvas ===\n[\n  {\n    \"displayName\": \"Axel Manosalvas, RPS Clinic SDN\",\n    \"id\": \"f19c9082-be60-4704-91ed-9154a4e0bd17\",\n    \"mail\": \"AxelM@musculoskeletalmso.com\",\n    \"upn\": \"AxelM@musculoskeletalmso.com\"\n  }\n]",
+  "stderr": ""
+}
