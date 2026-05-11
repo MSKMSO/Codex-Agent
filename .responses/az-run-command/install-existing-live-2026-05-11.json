@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "Jesus (000163d9-3720-403c-a149-572d07a22c3c) <- 9b08a5fa-dd44-40d8-a7e3-598342bb98c3 -> 201\nCameron (c94b30a3-9286-44e2-8b80-308635bcbfdd) <- b5c8b236-189b-48e7-95a9-0d8c55494252 -> 409\nAshley (c9acefa4-8ecf-49e0-982d-fe5f392461b3) <- b0ff0abd-e4da-4d03-bca9-047e7f0593f5 -> 409",
+  "stderr": ""
+}
