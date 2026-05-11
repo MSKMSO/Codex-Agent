@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "== Full list of ALL distributionMethod=organization (no expand) ==\n  HTTP via -w:\n  400\n  response head:\n{\"error\":{\"code\":\"\",\"message\":\"The query specified in the URI is not valid. Query option 'Top' is not allowed. To allow it, set the 'AllowedQueryOptions' property on EnableQueryAttribute or QueryValid\n  total=0\n\n== With $expand=appDefinitions ==\n  total=0",
+  "stderr": ""
+}
