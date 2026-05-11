@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "apppub scp: AppCatalog.ReadWrite.All profile openid email\napppub app: OpenClaw-AppPublisher\n\n== A. AppPublisher GET on the 4 fresh catalog ids ==\n  7091e35a-bfe3-4244-a4ad-840008028d4e -> GET=404  state= / []\n  0a68bdf7-08e1-47d6-bf8b-80e180aa102d -> GET=404  state= / []\n  3230c29f-e135-49a8-9e5c-26d7738b156d -> GET=404  state= / []\n  3376fa6a-c608-43ac-a2f8-b8e269bc0c65 -> GET=404  state= / []\n\n== B. AppPublisher list ALL catalogs (no filter) ==\n  total: 3124\n  'Josef Q'  id=98130101-7499-4a72-83cc-6011b8ae67b4  dist=store  states=[('published',)]\n\n== C. Try install via AppPublisher (instead of YooMD) ==\n  install via AppPublisher: 403\n{\"error\":{\"code\":\"Forbidden\",\"message\":\"Missing scope permissions on the request. API requires one of 'TeamsAppInstallation.ReadWriteSelfForUser, TeamsAppInstallation.ReadWriteAndConsentSelfForUser, TeamsAppInstallation.ReadWriteForUser, TeamsAppInst\n\n== D. Check tenant teamsAppSettings ==\n{\"error\":{\"code\":\"Forbidden\",\"message\":\"API requires one of the following permissions: 'TeamworkAppSettings.Read.All', 'TeamworkAppSettings.ReadWrite.All'.\",\"innerError\":{\"date\":\"2026-05-11T20:14:28\",\"request-id\":\"66ab3ee8-5db0-478a-8278-4a97a2592229\",\"client-request-id\":\"66ab3ee8-5db0-478a-8278-4a97a2592229\"}}}\n  HTTP=403",
+  "stderr": ""
+}
