@@ -26,6 +26,17 @@ If the user's question is about Emily / Neil / Stephanie / Aixa / Zahid / David 
 
 This applies whenever a sibling bot is acting up. Don't guess; diff.
 
+## When creating a new bot from scratch — read this first
+
+Dr. Yoo's "build a new bot for <user>" request is the highest-leverage moment to follow the playbook exactly. **Read [`docs/bot-creation-end-to-end.md`](docs/bot-creation-end-to-end.md) start to finish before doing ANY work.** It has six phases (Preflight, Entra+BotService, VM service files, Teams catalog publish, Install, Health check), each with mandatory verify gates.
+
+**Phase 0 (Preflight) is non-negotiable** — run [`scripts/preflight-bot-creation.sh`](scripts/preflight-bot-creation.sh) before anything that creates state. It catches:
+- Tenant Teams App Permission Policy gate closed (the 2026-05-11 wall — wasted ~6 hours)
+- AppPublisher / YooMD refresh tokens expired
+- Reference bot health pre-existing problems
+
+If preflight fails, **STOP and escalate**. Don't try to power through.
+
 ## When publishing or installing a Teams app — read this first
 
 If the user's question is about uploading a new bot to the Teams catalog, installing a bot in someone's personal Teams, or debugging an `App is blocked by app permission policy` 403, read [`docs/teams-app-publishing.md`](docs/teams-app-publishing.md) **before** any `POST /appCatalogs/teamsApps` call. It encodes the rules learned from the 2026-05-11 incident where MSO Claude triggered Microsoft's anti-abuse cooldown via repeated upload-delete-reupload and bricked six apps for ~24h.
