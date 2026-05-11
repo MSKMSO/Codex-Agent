@@ -26,6 +26,17 @@ If the user's question is about Emily / Neil / Stephanie / Aixa / Zahid / David 
 
 This applies whenever a sibling bot is acting up. Don't guess; diff.
 
+## When publishing or installing a Teams app — read this first
+
+If the user's question is about uploading a new bot to the Teams catalog, installing a bot in someone's personal Teams, or debugging an `App is blocked by app permission policy` 403, read [`docs/teams-app-publishing.md`](docs/teams-app-publishing.md) **before** any `POST /appCatalogs/teamsApps` call. It encodes the rules learned from the 2026-05-11 incident where MSO Claude triggered Microsoft's anti-abuse cooldown via repeated upload-delete-reupload and bricked six apps for ~24h.
+
+The five rules in summary:
+1. **One upload, one app, forever.** Version updates via `POST .../appDefinitions`, never via fresh `POST .../teamsApps`.
+2. **Verify-before-retry.** When install returns 403, FIRST do `GET /v1.0/appCatalogs/teamsApps/{id}`. If 404, the app is gone; retrying is pointless and harmful.
+3. **Verify success after upload.** 201 doesn't mean published. Poll `displayName` filter for up to 5 minutes; if it doesn't appear, the upload was silently rejected.
+4. **403 "blocked by app permission policy" is ambiguous.** It can mean a real policy block OR a stale-cache reference to a deleted app. Always run rule 2 first.
+5. **Stop signal.** If you've done >2 upload-delete cycles on the same logical app in an hour, STOP. You've triggered Microsoft's anti-abuse logic; continuing makes it worse.
+
 ## Talk in plain English
 
 Dr. Yoo isn't a software engineer. Write the way you'd explain something to a smart friend who doesn't work in tech.
