@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "=== Lia Lopez ===\n[\n  {\n    \"displayName\": \"Lia Lopez RMS SDN Clinic\",\n    \"id\": \"80da67bd-640a-4b9e-a5e2-884be6807bce\",\n    \"mail\": \"Lialopez@musculoskeletalmso.com\",\n    \"upn\": \"Lialopez@musculoskeletalmso.com\"\n  }\n]\n\n=== Surname Lopez ===\n[\n  {\n    \"displayName\": \"Lia Lopez RMS SDN Clinic\",\n    \"id\": \"80da67bd-640a-4b9e-a5e2-884be6807bce\",\n    \"mail\": \"Lialopez@musculoskeletalmso.com\",\n    \"upn\": \"Lialopez@musculoskeletalmso.com\"\n  }\n]",
+  "stderr": ""
+}

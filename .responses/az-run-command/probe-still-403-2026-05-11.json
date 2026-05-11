@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "=== Confirm catalog entries still present ===\n\n=== Try install Jose Claude → Jose, capture body ===\n{\"error\":{\"code\":\"Forbidden\",\"message\":\"App is blocked by app permission policy. TenantId: 50186224-2255-444a-b321-60a84114115c, UserObjectId: f1cff123-735c-43a8-9e78-b26d4735ffb7, AppId: 8cdd25e7-fcac-4e4b-9617-38f8c6a8d631, AppType: Private\",\"innerError\":{\"code\":\"AccessDenied\",\"message\":\"App is blocked by app permission policy. TenantId: 50186224-2255-444a-b321-60a84114115c, UserObjectId: f1cff1\n\n=== Try install with OLD catalog id (d927ccfc, now deleted) - should be 404 ===\n  HTTP=404",
+  "stderr": ""
+}
