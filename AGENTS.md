@@ -49,6 +49,37 @@ Rule:
 - `401 AADSTS65001` → consent / scope issue.
 - Only after eliminating scope-side causes should you investigate tenant policies, conditional access, or RBAC.
 
+## Verify token scope before asking Dr. Yoo to re-consent
+
+**Never ask Dr. Yoo to re-consent without first proving the scope is actually missing.** The YooMD delegated grant has been continuously expanded since 2026-04-19 and now covers a wide surface: Chat / Files / Sites / Mail / Calendars / Contacts / User / Group / Directory / AppCatalog / Teams* / AuditLog. Most "I need new scopes" assumptions turn out to be wrong — the scope was already there, but a previous step (token mint failure, expired access token, typo in the `scope=` parameter) hid it.
+
+Concrete example from 2026-05-10: Afrah's install step printed `KeyError: 'access_token'` from a Python json parse. The reflex was "the YooMD refresh token is expired / scope missing — Yoo needs to re-consent." Wrong. Re-minting the token and base64-decoding the `scp` claim showed `AppCatalog.ReadWrite.All` and `TeamsAppInstallation.ReadWriteForUser.All` were both already present. The actual cause was a temp-file race in the script (the python parser read an empty file). Once corrected, install returned 201 first try — no reconsent.
+
+Verified contents of YooMD `scp` claim as of 2026-05-11:
+```
+AppCatalog.ReadWrite.All AuditLog.Read.All Calendars.ReadWrite Chat.Read Chat.ReadWrite
+Contacts.ReadWrite Directory.Read.All Directory.ReadWrite.All Files.Read.All Files.ReadWrite.All
+Mail.ReadWrite Mail.Send Sites.Read.All Sites.ReadWrite.All
+TeamsAppInstallation.ReadWriteAndConsentForUser TeamsAppInstallation.ReadWriteForChat
+TeamsAppInstallation.ReadWriteForUser.All User.Read User.Read.All User.ReadWrite.All
+openid profile email
+```
+
+Procedure before any "Yoo needs to re-consent" claim:
+```bash
+RT=$(az keyvault secret show --vault-name SDN-YooVault --name yoomd-graph-refresh-token --query value -o tsv)
+TOKEN=$(curl -s -X POST 'https://login.microsoftonline.com/organizations/oauth2/v2.0/token' \
+  -d 'client_id=14d82eec-204b-4c2f-b7e8-296a70dab67e' \
+  -d 'grant_type=refresh_token' \
+  -d "refresh_token=$RT" \
+  -d 'scope=<the scope you think you need> offline_access' \
+  | python3 -c 'import json,sys; print(json.load(sys.stdin)["access_token"])')
+echo "$TOKEN" | cut -d. -f2 | base64 -d 2>/dev/null \
+  | python3 -c 'import json,sys; d=json.load(sys.stdin); print("scp:", d.get("scp",""))'
+```
+
+If the scope you need is in `scp`, no reconsent. Diagnose elsewhere (token mint failure, script bug, wrong AAD id, etc). Only ask Yoo to re-consent if the JWT genuinely lacks the scope AND the org-wide `oauth2PermissionGrant` for client `14d82eec-204b-4c2f-b7e8-296a70dab67e` doesn't contain it either.
+
 ## Installing a bot for a user (Graph + delegated YooMD token)
 
 **Which context are you in?** That changes which approach is right:
