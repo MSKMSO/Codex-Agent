@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "=== Step 1: Create Linux user lia ===\n  created uid=1007\n\n=== Step 2: Grant lia read via group ===\n  done\n\n=== Step 3: Symlinks ===\n  done\n\n=== Step 4: Verify lia can read shared CLI ===\n  .claude readable: yes\n  .claude.json readable: yes\n  claude bin exec: yes\n\n=== Step 5: Create AAD app ===\n  app_id=78eed480-4980-4933-812c-cc59c6d2b366\n\n=== Step 6: Wait 30s + SP create ===\n  SP created\n\n=== Step 7: Add password ===\n  secret_len=40\n\n=== Step 8: Vault ===\n  stored\n\n=== Step 9: Bot Service ===\n  created\n\n=== Step 10: Teams channel ===\nWARNING: Command group 'bot msteams' is in preview and under development. Reference and support levels: https://aka.ms/CLI_refstatus\n  enabled\n\n=== Step 11: Wait 30s + BF token check ===\n  HTTP=200\n\n=== Step 12: Build & upload Teams app ===\n  cat=28021e9a-ff9d-4663-ad68-1408546cd4bc\n\n=== PHASE A SUMMARY ===\nLinux user: lia uid=1007 groups=lia azureuser\nApp: 78eed480-4980-4933-812c-cc59c6d2b366\nCatalog: 28021e9a-ff9d-4663-ad68-1408546cd4bc\nPort: 4004\nUser AAD: 80da67bd-640a-4b9e-a5e2-884be6807bce",
+  "stderr": ""
+}
