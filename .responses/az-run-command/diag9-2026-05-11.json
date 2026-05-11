@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "== A. Install Cameron Claude (existing) for Jose ==\n  cam→jose user: 409 — Conflict / AppEntitlement id: 'b5c8b236-189b-48e7-95a9-0d8c55494252' already exists in thread : '' for user : 'f1cff123-735c-43a8-9\n\n== B. Create chat Yoo↔Jose then install Jose Claude to chat ==\n  chat_id=19:e0d48eb4-1eb3-4263-a72e-f6ad4ef32238_...\n  jose claude → chat: 201 — parse-err\n\n== C. Token wids (Yoo's directory role IDs) ==\n  wids: ['3f04f91a-4ad7-4bd3-bcfa-49882ea1a88a', 'f023fd81-a637-4b56-95fd-791ac0226033', 'd2562ede-74db-457e-a7b6-544e236ebb61', 'f28a1f50-f6e7-4571-818b-6a12f2af6b6c', '69091246-20e8-4a56-aa4d-066075b2a7a8', '729827e3-9c14-49f7-bb1b-9608f156bbb8', 'f2ef992c-3afb-46b9-b7cf-a126ee74c451', 'fe930be7-5e62-47db-91af-98c3a49a38b1', '27460883-1df1-4691-b032-3b79643e5e63', '62e90394-69f5-4237-9190-012177145e10', '29232cdf-9323-42fd-ade2-1d097af3e4de', 'b79fbf4d-3ef9-4689-8143-76b194e85509']\n  upn: YooMD@SDNeurosurgery.com",
+  "stderr": ""
+}
