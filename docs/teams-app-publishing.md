@@ -2,6 +2,36 @@
 
 When provisioning a new personal Claude bot for a user, you need to publish a custom Teams app to the org catalog and install it for that user. The Graph API for this is friendly-looking but has **two failure modes that look identical** but require completely different responses. This playbook encodes the rules learned from the 2026-05-11 incident where every Teams app uploaded by MSO Claude was silently quarantined by Microsoft after a few delete-and-reupload cycles.
 
+## RULE 0: Use the dedicated AppPublisher identity, NOT the chat YooMD token
+
+The `yoomd-graph-refresh-token` secret in `SDN-YooVault` is the **general-purpose** YooMD delegated token (Microsoft Graph Command Line Tools client, `14d82eec-...`). It's used for chat/files/mail/calendar/sites operations. **Do NOT use it for `appCatalogs/teamsApps` uploads** — there's a separate identity built specifically for that, and using the wrong one is what triggers the per-identity anti-abuse cooldown.
+
+The right identity for catalog publishes:
+
+| Field | Value |
+|---|---|
+| Vault secret | `SDN-YooVault/yoomd-graph-refresh-token-appcatalog` |
+| Client ID (OAuth `client_id`) | `9f4cd925-fcc7-4f42-8dc2-ae98bcad28a6` |
+| App display name | `OpenClaw-AppPublisher` |
+| Scopes | `AppCatalog.ReadWrite.All` |
+| Token endpoint | `https://login.microsoftonline.com/organizations/oauth2/v2.0/token` |
+
+Mint pattern:
+
+```bash
+RT=$(az keyvault secret show --vault-name SDN-YooVault --name yoomd-graph-refresh-token-appcatalog --query value -o tsv)
+AT=$(curl -sS -X POST "https://login.microsoftonline.com/organizations/oauth2/v2.0/token" \
+  --data-urlencode "client_id=9f4cd925-fcc7-4f42-8dc2-ae98bcad28a6" \
+  --data-urlencode "grant_type=refresh_token" \
+  --data-urlencode "refresh_token=$RT" \
+  --data-urlencode "scope=AppCatalog.ReadWrite.All offline_access" \
+  | python3 -c "import json,sys;print(json.load(sys.stdin).get('access_token',''))")
+```
+
+Use `$AT` as the Authorization bearer for all `POST /v1.0/appCatalogs/teamsApps` and `POST .../appDefinitions` calls.
+
+For per-user **installs** (different operation), use the YooMD chat token (`yoomd-graph-refresh-token`, client `14d82eec-...`) with the install scope — that one's fine for installs, just not for uploads. The two operations use different identities.
+
 ## The five rules
 
 ### Rule 1: One upload, one app, forever
