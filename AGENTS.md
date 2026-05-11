@@ -51,6 +51,13 @@ Rule:
 
 ## Installing a bot for a user (Graph + delegated YooMD token)
 
+**Which context are you in?** That changes which approach is right:
+
+| Session context | Auth path |
+|---|---|
+| Cloud sandbox (this codex-agent repo, no `az` CLI, only proxy) | YooMD delegated refresh token in vault — pattern below |
+| Desktop Codex (on Yoo's Mac, has `az` CLI logged in as Yoo) | `az rest` directly — see "Desktop Codex" section below |
+
 **First-line approach (no admin UI needed):** Graph + YooMD delegated token. Pattern (works as of 2026-05-08, after Yoo added the scopes):
 
 ```bash
@@ -86,6 +93,33 @@ Chain: this sandbox → GitHub Actions runner → OIDC into Azure → pulls brid
 Most common failure: cloudflared tunnel stale on Yoo's Mac. Fix is one `launchctl` bounce, documented in the workflow's playbook.
 
 This requires `gh` CLI access AND a session scoped to dispatch in `MSKMSO/Virtual-Machines`. Codex-Agent-only sessions can't dispatch it — they need to ask the user to launch a properly-scoped session.
+
+## Desktop Codex — use `az rest` directly, no new SP needed
+
+If you're running as Desktop Codex on Yoo's Mac (not the cloud sandbox), the `az` CLI is already logged in as Dr. Yoo (Global Administrator). Don't build a new app registration. Don't create client secrets. Don't run reconsent scripts. Just use `az rest` — it inherits Yoo's delegated token automatically, with these scopes:
+
+`Application.ReadWrite.All`, `AppRoleAssignment.ReadWrite.All`, `Directory.ReadWrite.All`, `Directory.AccessAsUser.All`, `User.ReadWrite.All`, `AuditLog.Read.All`, `DelegatedPermissionGrant.ReadWrite.All`, `Group.ReadWrite.All`.
+
+Verify the scopes any time with:
+
+```bash
+az account get-access-token --resource https://graph.microsoft.com --query accessToken -o tsv \
+  | cut -d. -f2 | base64 -d 2>/dev/null \
+  | python3 -c "import sys,json; print(json.load(sys.stdin).get('scp',''))"
+```
+
+With these scopes Desktop Codex can:
+
+- `az rest --method POST --url https://graph.microsoft.com/v1.0/applications --body '{...}'` — create app registrations
+- `.../applications/{id}/addPassword` — mint client secrets (save `secretText`, NEVER `keyId`)
+- `.../servicePrincipals` — create SPs
+- `.../servicePrincipals/{spId}/appRoleAssignments` — grant any Microsoft Graph application role. With `AppRoleAssignment.ReadWrite.All` already in the token, this call IS the admin consent for app permissions — no browser step, no second user.
+
+Worked example for the Outlook Rules plugin: build app (`signInAudience: AzureADMyOrg`), addPassword, create SP, POST appRoleAssignment for `MailboxSettings.ReadWrite` (role id `6931bccd-447a-43d1-b442-00a195474933` on Microsoft Graph SP `ef405a56-6699-4680-99c6-ed4ee56ee27f`). Four calls, zero browser.
+
+**Do NOT** transplant this pattern into the cloud sandbox session — that session doesn't have Yoo's `az` login, only an OIDC SP. Use the YooMD-refresh-token pattern there.
+
+If you ever need Desktop Codex to keep these powers when Yoo is logged out (headless runs, expired session), the answer is to create a dedicated `Desktop-Codex` SP with the same umbrella perms and client-credentials auth. Don't do this preemptively — only if you hit the case.
 
 ## Diff-first when sibling bots diverge
 
