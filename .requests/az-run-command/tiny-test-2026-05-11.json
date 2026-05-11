@@ -1,0 +1,1 @@
+{"vm":"openclaw-vm","rg":"SDNeurosurgery-OpenClaw","script":"echo hello world; date; whoami; az account show --query tenantId -o tsv 2>&1"}
