@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "== Afrah's current Claude apps (to learn if Yoo's previous installs survived catalog delete) ==\n/tmp/reup.sh: line 14: /tmp/afrah.json: Permission denied",
+  "stderr": ""
+}
