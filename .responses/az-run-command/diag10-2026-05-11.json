@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "== A. Re-attempt Jose Claude → Jose user (was 403, has 1h propagation now) ==\n  jose user → 201 \n\n== B. Re-attempt Axel Claude → Axel user ==\n  axel user → 201 \n\n== C. Try installing existing Aixa Claude (known working) → Axel ==\n  aixa→axel → 201 \n\n== D. Check Jose's installed apps — which Claude apps are there? ==\n    'Cameron Claude'  ta_id=b5c8b236-189b-48e7-95a9-0d8c55494252\n\n== E. Check Axel's installed apps — which Claude apps are there? ==\n    'Claude'  ta_id=7bf1ab4b-ff0d-4dc1-8252-e14b60751d4a\n    'Axel Claude'  ta_id=e1a45203-05f2-48da-814c-15e6211a7ea2\n    'Aixa Claude'  ta_id=838b509f-cb65-4d65-85ef-d1d4db247368\n    'Codex'  ta_id=c8a45526-1c16-47a9-b340-45ef6d2d1611",
+  "stderr": ""
+}
