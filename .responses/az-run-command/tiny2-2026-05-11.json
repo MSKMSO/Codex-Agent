@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "step 1\nstep 2 len=1532\nstep 3 resp_len=5603\nstep 4 token_pfx=eyJ0eXAiOiJKV1QiLCJub25jZSI6ImM0cFp0VnBUeU9LazE1cV\ndone\nEXIT=0",
+  "stderr": ""
+}
