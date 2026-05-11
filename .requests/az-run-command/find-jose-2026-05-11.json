@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "echo '=== Look up Jose Sotillo ==='; az ad user list --filter \"startswith(givenName,'Jose')\" --query \"[].{id:id, displayName:displayName, upn:userPrincipalName, mail:mail}\" -o json 2>&1; echo; echo '=== Search by displayName containing Sotillo ==='; az ad user list --filter \"startswith(surname,'Sotillo')\" --query \"[].{id:id, displayName:displayName, upn:userPrincipalName, mail:mail}\" -o json 2>&1"
+}
