@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "url=https://rio-cos-ralph-taxi.trycloudflare.com\ntok-len=64\n\n=== GET / ===\n{\"detail\":\"Not Found\"}\n  HTTP=404\n\n\n=== POST /edge/list_tabs ===\n{\"tabs\":[{\"index\":1,\"url\":\"https://site586-bnt29viq.chartwire.com/mobiledoc/jsp/webemr/index.jsp#/mobiledoc/jsp/webemr/progressnotes/physiciansdashboard/dashboard.jsp/T3NFdGZtc0ZtSmxzc29BVlhpSWFnUGU5REVSNU5GS1FxdzJySGd0VEFLYUxBNXlrcndGaml5anJ2RFI3ZE1BWGhOT3pFN3Y0NlFxS0RaSU9HSzJwc09zZ1VrTVI5cFVnKzlnc3d3SVVNbHVCOUVPWjJXVUt0WkZQNmxBUy9ackp4bzVwdUorR3JKL1J2RUh1RGREL2JPOEUvREZBSFNCblBENU96RUlJMTQ0PQ==\"},{\"index\":2,\"url\":\"https://outlook.cloud.microsoft/mail/deeplink/read/AAMkADMyNzM5OTlhLTY0YzQtNDc1ZS1iYzU3LWVlNzMwNmFlOGYwYQBGAAAAAACznMvUSM2TQKYN4IeXTlEWBwCHe_U46NoAT5QHUVyEdcR6AAPPIdzfAACHe_U46NoAT5QHUVyEdcR6AAsMnTdbAAA%3d?ItemID=AAMkADMyNzM5OTlhLTY0YzQtNDc1ZS1iYzU3LWVlNzMwNmFlOGYwYQBGAAAAAACznMvUSM2TQKYN4IeXTlEWBwCHe%2BU46NoAT5QHUVyEdcR6AAPPIdzfAACHe%2BU46NoAT5QHUVyEdcR6AAsMnTdbAAA%3D&exvsurl=1\"},{\"index\":3,\"url\":\"https://abns-post.ihp.iqvia.com/candidate/cases\"},{\"index\":4,\"url\":\"https://eacgp-my.sharepoint.com/personal/mso_musculoskeletalmso_com/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fmso%5Fmusculoskeletalmso%5Fcom%2FDocuments%2FMicrosoft%20Teams%20Chat%20Files%2FAaron%5FSamuel%5FCV%5Fv2%2Epdf&parent=%2Fpersonal%2Fmso%5Fmusculoskeletalmso%5Fcom%2FDocuments%2FMicrosoft%20Teams%20Ch",
+  "stderr": ""
+}
