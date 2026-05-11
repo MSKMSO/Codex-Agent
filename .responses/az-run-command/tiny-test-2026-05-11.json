@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "hello world\nMon May 11 09:01:39 PDT 2026\nroot\n50186224-2255-444a-b321-60a84114115c",
+  "stderr": ""
+}
