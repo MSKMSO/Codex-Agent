@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "=== Step 1: Verify YooMD graph token + decode scp claim ===\n  token-len=3526\n  decoded scp claim:\n    AppCatalog.ReadWrite.All AuditLog.Read.All Calendars.ReadWrite Chat.Read Chat.ReadWrite Contacts.ReadWrite Directory.Read.All Directory.ReadWrite.All Files.Read.All Files.ReadWrite.All Mail.ReadWrite Mail.Send openid profile Sites.Read.All Sites.ReadWrite.All TeamsAppInstallation.ReadWriteAndConsentForUser TeamsAppInstallation.ReadWriteForChat TeamsAppInstallation.ReadWriteForUser.All User.Read User.Read.All User.ReadWrite.All email\n\n=== Step 2: Confirm Afrah's install (GET /users/{id}/teamwork/installedApps) ===\n  found Afrah Claude installed: True\n  install id: OTNmMTIyYTYtZDRlNS00NjQzLWFiZDMtMTU1NTk3YTJhMGE2IyM4YTg3ZTY5Zi1kYmQ5LTQ4MDAtOGQ4NS01MGQ4YzU4ZGQ2NWE=\n\n=== Step 3: DELETE catalog entry (make private) ===\n  delete HTTP=204\n\n=== Step 4: Verify catalog now 404 ===\n  GET after delete HTTP=404 (expect 404)\n\n=== Step 5: Afrah bot service health (manual, since helper doesn't know per-user) ===\n--- service state ---\nactive\nactive\n--- uptime ---\nSun 2026-05-10 16:22:05 PDT\nSun 2026-05-10 16:47:30 PDT\n--- creds.json owned by afrah, readable as afrah ---\nafrah:afrah 600\n  readable: yes\n--- bot dir owned correctly ---\nafrah:afrah 750\nafrah:afrah 755",
+  "stderr": ""
+}
