@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "=== Look up Jose Sotillo ===\n[\n  {\n    \"displayName\": \"Jose  Sotillo RPS DDA\",\n    \"id\": \"f1cff123-735c-43a8-9e78-b26d4735ffb7\",\n    \"mail\": \"josesotillo@musculoskeletalmso.com\",\n    \"upn\": \"josesotillo@musculoskeletalmso.com\"\n  }\n]\n\n=== Search by displayName containing Sotillo ===\n[\n  {\n    \"displayName\": \"Jose  Sotillo RPS DDA\",\n    \"id\": \"f1cff123-735c-43a8-9e78-b26d4735ffb7\",\n    \"mail\": \"josesotillo@musculoskeletalmso.com\",\n    \"upn\": \"josesotillo@musculoskeletalmso.com\"\n  }\n]",
+  "stderr": ""
+}
