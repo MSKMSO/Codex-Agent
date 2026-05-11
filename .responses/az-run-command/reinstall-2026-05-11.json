@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "\n============ Jose Claude → Jose Sotillo ============\n  zip built: 1862 bytes\n  upload HTTP=201\n  new_cat=41f24222-17fb-4db0-9fbf-a10f7c2060b0\n  GET catalog HTTP=404\n  install HTTP=403\n  install body:\n{\"error\":{\"code\":\"Forbidden\",\"message\":\"App is blocked by app permission policy. TenantId: 50186224-2255-444a-b321-60a84114115c, UserObjectId: f1cff123-735c-43a8-9e78-b26d4735ffb7, AppId: 41f24222-17fb-4db0-9fbf-a10f7c2060b0, AppType: Private\",\"innerError\":{\"code\":\"AccessDenied\",\"message\":\"App is blocked by app permission policy. TenantId: 50186224-2255-444a-b321-60a84114115c, UserObjectId: f1cff1\n\n============ Axel Claude → Axel Manosalvas ============\n  zip built: 1859 bytes\n  upload HTTP=201\n  new_cat=5ddfd3e1-de0b-4c09-88cb-fccb2d47d329\n  GET catalog HTTP=404\n  install HTTP=403\n  install body:\n{\"error\":{\"code\":\"Forbidden\",\"message\":\"App is blocked by app permission policy. TenantId: 50186224-2255-444a-b321-60a84114115c, UserObjectId: f19c9082-be60-4704-91ed-9154a4e0bd17, AppId: 5ddfd3e1-de0b-4c09-88cb-fccb2d47d329, AppType: Private\",\"innerError\":{\"code\":\"AccessDenied\",\"message\":\"App is blocked by app permission policy. TenantId: 50186224-2255-444a-b321-60a84114115c, UserObjectId: f19c90\n\n============ Uninstall Dr.Yoo Open AI from Jose (added during diag) ============\n  uninstall HTTP=204",
+  "stderr": ""
+}
