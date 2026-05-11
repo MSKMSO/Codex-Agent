@@ -71,9 +71,22 @@ What to do:
 1. Finish phase A (upload + bot resource + manifest).
 2. Move on — deploy code under the Linux user, get services running.
 3. After ~1 hour from upload, run user install. It will succeed 201.
-4. Delete the catalog entry to make it private.
+4. **Leave the catalog entry in place.** See the next section for why.
 
 Do **not** retry the install repeatedly during the 1-hour window — it just burns proxy round-trips. Do **not** mint new tokens, change scopes, ask for reconsent, or re-upload the manifest; none of those fix it. Wait the hour.
+
+## Do NOT delete the catalog entry after install — it cascade-uninstalls from the user
+
+**Deleting a teamsApp from the org catalog (`DELETE /appCatalogs/teamsApps/{id}`) also removes every existing install of that app from every user.** This was assumed-safe under the previous "make private by delete" pattern; it is not.
+
+Concrete pattern from 2026-05-11: after `Jose Claude` and `Axel Claude` were successfully installed for their users (HTTP 201), the catalog DELETE returned 204 — and a subsequent `GET /users/{id}/teamwork/installedApps?$expand=teamsApp` showed the bots gone from both users. Same retroactively explains why yesterday's Afrah Claude install does not appear in Afrah's installed apps today (the catalog was deleted yesterday afternoon).
+
+Privacy is enforced **inside the bot**, not in the catalog. Every responder script has an allow-list (`USER_AAD_ID` plus `YOO_AAD_ID`) that silently refuses messages from anyone else (Phase B8 of the runbook patches this in). Even if a random employee searches the org catalog and adds `Jose Claude` to a chat with themselves, the bot won't reply to them — the AAD gate blocks it. Catalog visibility is OK; catalog deletion breaks the install.
+
+What to do instead:
+- After successful install, **leave the catalog entry alone**. It is visible to org users by name, but the bot ignores everyone except the intended user.
+- If you absolutely want to hide it from the org catalog search, the only path is the Teams Admin Center "Block" toggle on the app — which is reversible and does NOT uninstall. Graph API DELETE is destructive.
+- When auditing, if a per-user bot is "missing" from the user's Teams, the first hypothesis is "catalog entry was deleted at some point in the past."
 
 If install still 403s after 90+ minutes, then check (in order): token scp claim, catalog entry's `publishingState`, the user's `installedApps` list for a stale install conflict, and finally fall back to chat-scope install or the EdgeBridge workflow.
 
