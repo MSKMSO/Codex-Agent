@@ -49,17 +49,31 @@ Rule:
 - `401 AADSTS65001` → consent / scope issue.
 - Only after eliminating scope-side causes should you investigate tenant policies, conditional access, or RBAC.
 
-## Catalog upload → user install: wait ~1 hour before installing
+## Catalog upload → user install: do it ONCE per bot, no retries
 
-**After you upload a Teams app to the org catalog (`POST /appCatalogs/teamsApps?requiresReview=false`), the user-install endpoint (`POST /users/{id}/teamwork/installedApps`) rejects it for roughly an hour with HTTP 403 and the body `"App is blocked by app permission policy. AppType: Private"` — even though the catalog entry is published and the token has every needed scope.**
+**Critical rule discovered the hard way on 2026-05-11:** after ~3 upload-delete-reupload cycles on `appCatalogs/teamsApps` against the same tenant within a few hours, Microsoft's anti-abuse layer silently quarantines every new upload. The API keeps returning `201 Created` with a new catalog id, but the entry is never actually published — `GET /v1.0/appCatalogs/teamsApps/{id}` returns 404, the catalog list query returns 0 matches by displayName, and the user-install endpoint returns `403 "App is blocked by app permission policy. AppType: Private"`.
 
-This is a propagation delay, not a real block. Concrete pattern from 2026-05-11 (Jose Sotillo + Axel Manosalvas deployments):
+The 403 error message is a red herring. It's not a real policy block. It fires because the install endpoint reads from a different backstore than the public catalog list, and that backstore has stale references to the deleted apps. The user-policy check passes/fails on `AppType: Private` from a cache; the real failure is upstream — the app simply isn't published.
 
-| t = 0  | Upload to catalog | 201 Created, returns catalog id |
-| t = 0  | GET catalog entry by id | 404 NotFound (yes, even though upload succeeded) |
-| t = 0  | List with `$expand=appDefinitions` | entry IS there, `publishingState: published` |
-| t = 0 to ~60 min | Install for user | 403 "App is blocked by app permission policy" |
-| t ≈ 60 min | Install for user | **201 Created** — works first try |
+Symptoms you're in this state:
+- `GET /v1.0/appCatalogs/teamsApps/{your-just-uploaded-id}` → 404
+- `GET /v1.0/appCatalogs/teamsApps?$filter=startswith(displayName,'YourApp')` → `count=0`
+- `POST /users/{id}/teamwork/installedApps` → 403 "App is blocked by app permission policy"
+- Waiting 60/90/120 minutes does not change any of this — the apps were never published, they're not propagating slowly
+
+What to do:
+1. **One upload per bot. Period.** No delete-and-reupload. If a single upload doesn't appear in the catalog list within ~5 minutes, stop, investigate, do not retry. Filing an investigation = grep the actual error body, decode the JWT, check the catalog list — but **do not upload again**.
+2. **Never delete a catalog entry that has installs against it.** Catalog DELETE cascades to remove the install from every user (documented in the section below). Privacy is enforced inside the bot's allow-list, not by hiding the catalog entry.
+3. If you've already burned the cooldown budget for the day: stop. Wait ~24 hours for Microsoft's anti-abuse cooldown to lift. Then resume with rule #1.
+
+Concrete case study from 2026-05-11 (Jose Sotillo + Axel Manosalvas + Lia Lopez deployments):
+- 15:23 UTC: Phase A uploaded `Jose Claude` (d927ccfc) and `Axel Claude` (e1a45203). Worked. Installed successfully at 16:48 (85-min wait was real propagation, this once).
+- 17:01 UTC: catalog DELETEd those entries to "make private." Cascade-uninstalled both from users.
+- 17:13 UTC: reup2 uploaded fresh entries (8cdd25e7, 8ac71d00). `201 Created` returned. Catalog list never showed them. All subsequent install attempts 403'd.
+- 18:48 UTC: fresh-upload tried *again* with new manifests (50d6b84e, 6e404205) + Lia (28021e9a). Same outcome — 201, then 404/0-count, then 403 forever.
+- 19:31 UTC: confirmed via direct GET that every catalog id this session generated (six of them, including Jesus/Cameron/Afrah morning IDs) returned 404. The cooldown was real and global to that day's session.
+
+The "85-minute propagation" hypothesis was wrong. The first Phase A upload happened to slip through before the cooldown engaged; everything after that was quarantined and the wait was meaningless. Don't repeat that mistake — if the catalog list doesn't show the entry within minutes, the upload didn't actually publish, and more waiting won't fix it.
 
 Symptoms that confirm "this is the delay, not a real policy block":
 - The `$expand=appDefinitions` list shows your entry with `publishingState: 'published'`.
