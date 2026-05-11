@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "AppPublisher token: len=2988\n  app_displayname: OpenClaw-AppPublisher\nInstall token: len=3524\n\n==========================\n== Jose Claude\n==========================\n  zipdir: /home/jose/jose-teams-app\n  zip: 1862 bytes\n  upload HTTP=409\n  upload failed body: {\"error\":{\"code\":\"Conflict\",\"message\":\"App with same id already exists in the tenant. UserId: 'e0d48eb4-1eb3-4263-a72e-f6ad4ef32238', TenantId: '50186224-2255-444a-b321-60a84114115c', AppId: '7fca6ae9-edb1-409f-8637-b338114e96a3', ExternalId: '1bf09caa-3826-4671-912e-56ef60c2d6e6', entitlementId: 8c",
+  "stderr": ""
+}
