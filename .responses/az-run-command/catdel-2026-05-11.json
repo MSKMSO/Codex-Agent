@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "tok_len=3522\nd927ccfc-fd7f-4dff-8395-176742887c51 -> 404\ne1a45203-05f2-48da-814c-15e6211a7ea2 -> 404\n41f24222-17fb-4db0-9fbf-a10f7c2060b0 -> 404\n5ddfd3e1-de0b-4c09-88cb-fccb2d47d329 -> 404",
+  "stderr": ""
+}
