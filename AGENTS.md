@@ -49,6 +49,34 @@ Rule:
 - `401 AADSTS65001` → consent / scope issue.
 - Only after eliminating scope-side causes should you investigate tenant policies, conditional access, or RBAC.
 
+## Catalog upload → user install: wait ~1 hour before installing
+
+**After you upload a Teams app to the org catalog (`POST /appCatalogs/teamsApps?requiresReview=false`), the user-install endpoint (`POST /users/{id}/teamwork/installedApps`) rejects it for roughly an hour with HTTP 403 and the body `"App is blocked by app permission policy. AppType: Private"` — even though the catalog entry is published and the token has every needed scope.**
+
+This is a propagation delay, not a real block. Concrete pattern from 2026-05-11 (Jose Sotillo + Axel Manosalvas deployments):
+
+| t = 0  | Upload to catalog | 201 Created, returns catalog id |
+| t = 0  | GET catalog entry by id | 404 NotFound (yes, even though upload succeeded) |
+| t = 0  | List with `$expand=appDefinitions` | entry IS there, `publishingState: published` |
+| t = 0 to ~60 min | Install for user | 403 "App is blocked by app permission policy" |
+| t ≈ 60 min | Install for user | **201 Created** — works first try |
+
+Symptoms that confirm "this is the delay, not a real policy block":
+- The `$expand=appDefinitions` list shows your entry with `publishingState: 'published'`.
+- Direct GET by catalog id returns 404 (admin-distributed entries don't index for GET until propagated).
+- Other already-existing org apps (e.g. `Cameron Claude`, `Dr. Yoo's Open AI Agent`) install fine for the same target user.
+- Chat-scope install (`POST /chats/{chatId}/installedApps`) of the same app id succeeds 201 immediately — only user-scope install is gated.
+
+What to do:
+1. Finish phase A (upload + bot resource + manifest).
+2. Move on — deploy code under the Linux user, get services running.
+3. After ~1 hour from upload, run user install. It will succeed 201.
+4. Delete the catalog entry to make it private.
+
+Do **not** retry the install repeatedly during the 1-hour window — it just burns proxy round-trips. Do **not** mint new tokens, change scopes, ask for reconsent, or re-upload the manifest; none of those fix it. Wait the hour.
+
+If install still 403s after 90+ minutes, then check (in order): token scp claim, catalog entry's `publishingState`, the user's `installedApps` list for a stale install conflict, and finally fall back to chat-scope install or the EdgeBridge workflow.
+
 ## Verify token scope before asking Dr. Yoo to re-consent
 
 **Never ask Dr. Yoo to re-consent without first proving the scope is actually missing.** The YooMD delegated grant has been continuously expanded since 2026-04-19 and now covers a wide surface: Chat / Files / Sites / Mail / Calendars / Contacts / User / Group / Directory / AppCatalog / Teams* / AuditLog. Most "I need new scopes" assumptions turn out to be wrong — the scope was already there, but a previous step (token mint failure, expired access token, typo in the `scope=` parameter) hid it.
