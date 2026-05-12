@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "apppub token len=2986\n\n=================\n== Jose S Claude  (catalog 50d6b84e-9e90-4e61-bea2-e961a37585d8)\n=================\n  zipdir: /home/jose/jose-teams-app\n  current: extId=423c7dd5-85b1-4f42-a6dc-5662beb49e18 botId=3a6941e3-526e-4c11-a4d5-4483b95f4a72 ver=1.0.0\n  new ver: 1.0.1\n  zip: 1868 bytes\n  update HTTP=400\n{\"error\":{\"code\":\"BadRequest\",\"message\":\"Tenant app external.id doesn't match existing tenant app external.id. UserId: 'e0d48eb4-1eb3-4263-a72e-f6ad4ef32238', TenantId: '50186224-2255-444a-b321-60a84114115c', AppId: '50d6b84e-9e90-4e61-bea2-e961a37585d8', Exist externalId: '39184334-11f9-4b52-8188-3cc5e4041ee7', ExternalId: '423c7dd5-85b1-4f42-a6dc-5662beb49e18'\",\"innerError\":{\"code\":\"TenantAppExt\n\n=================\n== Jesus R Claude  (catalog 9b08a5fa-dd44-40d8-a7e3-598342bb98c3)\n=================\n  no teams-app dir for jesus",
+  "stderr": ""
+}
