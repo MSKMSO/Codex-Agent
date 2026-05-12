@@ -1,0 +1,1 @@
+{"vm":"openclaw-vm","rg":"SDNeurosurgery-OpenClaw","script":"sudo -u axel az login --identity 2>&1 | head -5; sudo -u axel az account show 2>&1 | head -5"}
