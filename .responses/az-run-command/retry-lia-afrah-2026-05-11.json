@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "\n=== Lia ===\n  install -> 409\n{\"error\":{\"code\":\"Conflict\",\"message\":\"AppEntitlement id: '7091e35a-bfe3-4244-a4ad-840008028d4e' already exists in thread : '' for user : '80da67bd-640a-4b9e-a5e2-884be6807bce' \",\"innerError\":{\"code\":\"AppEntitlementAlreadyExists\",\"message\":\"AppEntitlement id: '7091e35a-bfe3-4244-a4ad-840008028d4e' a\n\n=== Afrah ===\n  install -> 409\n{\"error\":{\"code\":\"Conflict\",\"message\":\"AppEntitlement id: '0a68bdf7-08e1-47d6-bf8b-80e180aa102d' already exists in thread : '' for user : '93f122a6-d4e5-4643-abd3-155597a2a0a6' \",\"innerError\":{\"code\":\"AppEntitlementAlreadyExists\",\"message\":\"AppEntitlement id: '0a68bdf7-08e1-47d6-bf8b-80e180aa102d' a\n\n=== Wait 30s then list ===\n  Lia:\n    Claude\n    Codex\n  Afrah:\n    Claude",
+  "stderr": ""
+}
