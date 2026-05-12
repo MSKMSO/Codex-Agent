@@ -1,0 +1,1 @@
+{"vm":"openclaw-vm","rg":"SDNeurosurgery-OpenClaw","script":"systemctl status afrah-bot.service --no-pager 2>&1 | head -5; echo ---; systemctl status afrah-responder.service --no-pager 2>&1 | head -5; echo ---; sudo ls /etc/systemd/system/ | grep -i afrah; echo ---; sudo ls /home/afrah/"}
