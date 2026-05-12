@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "token_len=3571\n\n=== Install for Axel/Lia/Afrah ===\n  Axel Claude → Axel -> 201\n  Lia Claude → Lia -> 201\n  Afrah Claude → Afrah -> 201\n\n=== Final installed-apps check for each user ===\n  Jose:\n    Jose Claude\n    Cameron Claude\n  Axel:\n    Axel Claude\n    Claude\n    Codex\n  Lia:\n    Claude\n    Codex\n  Afrah:\n    Claude",
+  "stderr": ""
+}
