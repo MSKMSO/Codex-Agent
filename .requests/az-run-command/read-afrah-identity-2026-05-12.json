@@ -1,0 +1,1 @@
+{"vm":"openclaw-vm","rg":"SDNeurosurgery-OpenClaw","script":"echo === identity.md ===; sudo cat /home/afrah/.afrah-bot/identity.md 2>&1; echo; echo === context.md ===; sudo cat /home/afrah/.afrah-bot/context.md 2>&1; echo; echo === memory.md ===; sudo head -20 /home/afrah/.afrah-bot/memory.md 2>&1; echo; echo === ls .afrah-bot ===; sudo ls /home/afrah/.afrah-bot/"}
