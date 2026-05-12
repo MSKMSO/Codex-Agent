@@ -1,0 +1,1 @@
+{"vm":"openclaw-vm","rg":"SDNeurosurgery-OpenClaw","script":"echo step1; sudo ls /home/azureuser/.azure 2>&1 | head -5; echo step2; sudo ls /home/axel/ 2>&1 | head -5"}
