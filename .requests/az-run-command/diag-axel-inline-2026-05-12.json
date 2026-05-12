@@ -1,0 +1,1 @@
+{"vm":"openclaw-vm","rg":"SDNeurosurgery-OpenClaw","script":"echo A; systemctl is-active axel-bot.service axel-responder.service; echo B; sudo journalctl -u axel-responder.service -n 30 --no-pager 2>&1 | tail -30; echo C; sudo grep -nE 'USER_AAD_ID|YOO_AAD_ID|aadObjectId' /home/axel/axel-responder.py | head -8"}
