@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "echo ping; date -u +%FT%TZ; systemctl list-units --type=service --no-pager --state=running 2>/dev/null | grep -iE 'claude|agent' | head -40"
+}
