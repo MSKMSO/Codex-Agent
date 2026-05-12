@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "=== Verify Jose via Graph install endpoint ===\n  install attempt -> 201\n\n\n=== Also check Jose's installedApps list ===\n  Jose Claude / 50d6b84e-9e90-4e61-bea2-e961a37585d8\n  Cameron Claude / b5c8b236-189b-48e7-95a9-0d8c55494252\n\n=== Now start Axel — navigate to his page ===\n{\"result\":\"nav\",\"type\":\"string\"}\n\n=== Verify Axel Claude entry visible ===\n{\"result\":\"{\\\"title\\\":\\\"Manage app - Microsoft Teams admin center\\\",\\\"url\\\":\\\"https://admin.teams.microsoft.com/policies/manage-apps/6e404205-7c22-4fc2-8148-317930afd26b/users-and-groups?action=installs\\\",\\\"headings\\\":[\\\"Axel Claude\\\"],\\\"install_btn\\\":true}\",\"type\":\"string\"}",
+  "stderr": ""
+}
