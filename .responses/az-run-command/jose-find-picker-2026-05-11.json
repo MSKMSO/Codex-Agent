@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "{\"result\":\"{\\\"label_found\\\":true,\\\"nearby\\\":[{\\\"tag\\\":\\\"DIV\\\",\\\"role\\\":\\\"combobox\\\",\\\"a\\\":\\\"Install to\\\",\\\"p\\\":\\\"\\\",\\\"id\\\":\\\"deployedToDropdown\\\",\\\"t\\\":\\\"No one\\\\n\\\"},{\\\"tag\\\":\\\"BUTTON\\\",\\\"role\\\":\\\"\\\",\\\"a\\\":\\\"Apply\\\",\\\"p\\\":\\\"\\\",\\\"id\\\":\\\"flexPaneApply\\\",\\\"t\\\":\\\"Apply\\\"},{\\\"tag\\\":\\\"BUTTON\\\",\\\"role\\\":\\\"\\\",\\\"a\\\":\\\"Cancel\\\",\\\"p\\\":\\\"\\\",\\\"id\\\":\\\"flexPaneCancel\\\",\\\"t\\\":\\\"Cancel\\\"}]}\",\"type\":\"string\"}",
+  "stderr": ""
+}
