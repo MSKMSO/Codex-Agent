@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "echo '=== services matching claude ==='; systemctl list-units --type=service --no-pager --all | grep -iE 'claude|^claude' || true; echo; echo '=== home files (top-level claude*) ==='; ls -1 /home/azureuser/ 2>/dev/null | grep -iE '^claude' || true; echo; echo '=== home dirs (.claude*) ==='; ls -1d /home/azureuser/.*claude* 2>/dev/null || true; echo; echo '=== all *-responder.py files ==='; ls -1 /home/azureuser/*-responder.py 2>/dev/null || true; echo; echo '=== all *-bot.py files ==='; ls -1 /home/azureuser/*-bot.py 2>/dev/null || true"
+}
