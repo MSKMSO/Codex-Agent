@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "axel: Azure subscription 1\njose: Azure subscription 1\nlia: Azure subscription 1\nafrah: Azure subscription 1\naxel-responder: active\njose-responder: active\nlia-responder: active\nafrah-responder: active",
+  "stderr": ""
+}
