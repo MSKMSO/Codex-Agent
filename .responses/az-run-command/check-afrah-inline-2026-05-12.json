@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "● afrah-bot.service - afrah-bot (per-user Linux account: afrah)\n     Loaded: loaded (/etc/systemd/system/afrah-bot.service; enabled; preset: enabled)\n     Active: active (running) since Sun 2026-05-10 16:22:05 PDT; 1 day 16h ago\n   Main PID: 2541863 (python3)\n      Tasks: 1 (limit: 77076)\n---\n● afrah-responder.service - afrah-responder (per-user Linux account: afrah)\n     Loaded: loaded (/etc/systemd/system/afrah-responder.service; enabled; preset: enabled)\n     Active: active (running) since Tue 2026-05-12 08:20:19 PDT; 6min ago\n   Main PID: 1128810 (python3)\n      Tasks: 1 (limit: 77076)\n---\nafrah-bot.service\nafrah-responder.service\n---\n__pycache__\nafrah-bot.py\nafrah-graph-token.sh\nafrah-install-chat-app.sh\nafrah-remember.sh\nafrah-responder.py\nafrah-responder.py.bak-enroller-1778456850\nafrah-responder.py.bak-recurdup-1778599219\nafrah-send-to.sh\nafrah-teams-app",
+  "stderr": ""
+}
