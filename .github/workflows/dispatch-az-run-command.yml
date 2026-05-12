@@ -109,8 +109,24 @@ jobs:
           set -euo pipefail
           git config user.name "az-proxy-bot"
           git config user.email "az-proxy-bot@users.noreply.github.com"
-          if [ -n "$(git status --porcelain .responses/az-run-command/)" ]; then
-            git add .responses/az-run-command/
-            git commit -m "az-proxy: response for push $GITHUB_SHA"
-            git push
+          if [ -z "$(git status --porcelain .responses/az-run-command/)" ]; then
+            echo "no response files to commit"; exit 0
           fi
+          git add .responses/az-run-command/
+          git commit -m "az-proxy: response for push $GITHUB_SHA"
+
+          # Retry-with-rebase loop to handle concurrent workflow runs
+          # racing to push response files onto the same branch.
+          BRANCH="${GITHUB_REF_NAME}"
+          for attempt in 1 2 3 4 5; do
+            if git push origin "HEAD:$BRANCH"; then
+              echo "  ✓ pushed on attempt $attempt"
+              exit 0
+            fi
+            echo "  push attempt $attempt rejected, rebasing..."
+            git fetch origin "$BRANCH"
+            git rebase "origin/$BRANCH" || git rebase --abort || true
+            sleep 2
+          done
+          echo "✗ FAILED to push after 5 retries"
+          exit 1
