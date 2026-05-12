@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "---\nAll secrets sorted:\nedge-bridge-token\nedge-bridge-url",
+  "stderr": ""
+}
