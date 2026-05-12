@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "=== Heather AAD lookup ===\n[\n  {\n    \"displayName\": \"Dr. Heather Yoo, SDN\",\n    \"id\": \"0e06a27c-11e0-442a-b6a7-10bedc7e4364\",\n    \"mail\": \"HeatherY@SDNeurosurgery.com\",\n    \"upn\": \"HeatherY@SDNeurosurgery.com\"\n  }\n]\n\n=== Heather teams-app dir ===\n\n=== Vault keys for heather ===",
+  "stderr": ""
+}
