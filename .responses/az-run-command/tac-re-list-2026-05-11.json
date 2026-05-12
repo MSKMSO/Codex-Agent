@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "=== list_tabs (all) ===\n  1: https://outlook.office.com/mail/ABTSignout.html\n  2: https://site586-bnt29viq.chartwire.com/mobiledoc/jsp/webemr/login/newLogin.jsp?isLogout=yes\n  3: https://login.microsoftonline.com/common/oauth2/deviceauth?otc=AKKKWVPLX\n  4: https://login.microsoftonline.com/common/oauth2/deviceauth?otc=AKKKWVPLX\n\n=== Try execute_js on each tab to see which are accessible ===\n  needle=admin.teams -> {\"detail\":\"no tab matching 'admin.teams' (scanned 4 pages)\"}\n  needle=chartwire -> {\"result\":\"https://site586-bnt29viq.chartwire.com/mobiledoc/jsp/webemr/login/newLogin.jsp?i\",\"type\":\"string\"}\n  needle=outlook -> {\"result\":\"https://outlook.office.com/mail/ABTSignout.html\",\"type\":\"string\"}\n  needle=sharepoint -> {\"detail\":\"no tab matching 'sharepoint' (scanned 4 pages)\"}\n  needle=iqvia -> {\"detail\":\"no tab matching 'iqvia' (scanned 4 pages)\"}\n  needle=microsoft -> {\"result\":\"https://login.microsoftonline.com/common/oauth2/deviceauth?otc=AKKKWVPLX\",\"type\":\"string\"}",
+  "stderr": ""
+}
