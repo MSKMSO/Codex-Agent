@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "=== identity.md ===\n# Identity — Afrah Mohammed\n\n## Who he/she is\n- **Name:** Afrah Mohammed\n- **Role:** RPS SDN Clinic, Musculoskeletal MSO\n- **Work email:** Afrahm@musculoskeletalmso.com\n- **AAD object id:** 93f122a6-d4e5-4643-abd3-155597a2a0a6\n- **Primary timezone:** America/Los_Angeles (PST)\n\n## Boundaries\n- Afrah may direct his/her own bot to act on his/her behalf without confirmation gating.\n- Memory updates should come from Afrah.\n\n=== context.md ===\n# Context — short, curated, loaded into every prompt\n\nThis file should stay small. Use memory.md for durable facts.\n\n## Currently active context\n\n- Org: Musculoskeletal MSO.\n- This is Afrah's personal assistant bot (RPS SDN Clinic).\n- Tools: Microsoft 365 (Outlook, Teams, Calendar, OneDrive, OneNote, SharePoint).\n- Rules of engagement: the bot acts first and confirms after.\n\n=== memory.md ===\n\n=== ls .afrah-bot ===\nactivities.jsonl\ncontext.md\nconversation-refs.jsonl\ncreds.json\nidentity.md\nmanifest-id.txt\nmemory.md\noutbound.jsonl\nresponder-debug.log\nresponder-offset.txt",
+  "stderr": ""
+}
