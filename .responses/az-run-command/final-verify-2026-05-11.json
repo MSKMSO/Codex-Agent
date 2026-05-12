@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "=== Final list — all 7 users with their personal Claude ===\n  Jose Sotillo: Cameron Claude,Jose Claude\n  Axel Manosalvas: Axel Claude,Claude,Codex\n  Lia Lopez: Claude,Codex\n  Afrah Mohammed: Claude\n  Jesus Reyes: Jesus Claude,Codex\n  Cameron Patton: Cameron Claude\n  Ashley Staley: Ashley Claude",
+  "stderr": ""
+}
