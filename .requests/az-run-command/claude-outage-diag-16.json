@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "set +e\necho '=== current state right now ==='\nstat -c '%a %U:%G %n' /home/aixa/.claude /home/aixa/.claude/.credentials.json 2>&1\necho '=== try su (not sudo) to read file ==='\nsu -s /bin/bash aixa -c 'stat /home/aixa/.claude/.credentials.json; echo ---; head -c 60 /home/aixa/.claude/.credentials.json' 2>&1 | head -10\necho '=== try runuser ==='\nrunuser -u aixa -- stat /home/aixa/.claude/.credentials.json 2>&1 | head -8\necho '=== recreate the file as aixa via install ==='\nDST=/home/aixa/.claude/.credentials.json\ncp -a \"$DST\" \"${DST}.preserve\" 2>&1\ninstall -m 600 -o aixa -g aixa \"${DST}.preserve\" \"${DST}\" 2>&1\nstat -c '%a %U:%G %n' \"$DST\" 2>&1\nrm -f \"${DST}.preserve\"\necho '=== verify aixa can read now ==='\nrunuser -u aixa -- head -c 60 \"$DST\" 2>&1\necho\necho '=== test claude as aixa ==='\nrunuser -u aixa -- bash -c 'echo hi | timeout 30 /home/azureuser/.npm-global/bin/claude -p --model claude-opus-4-7 --max-turns 1 --output-format text 2>&1' | head -10\necho '===END==='\n"
+}
