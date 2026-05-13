@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "set +e\necho '=== BEFORE: credential ownership ==='\nls -la /home/*/.claude/.credentials.json 2>/dev/null\necho\necho '=== applying chown per affected user ==='\nfor u in afrah aixa alejandro ashley axel cameron david emily gabriel jesusr jose lia neil neilc rosi stephanie zahid; do\n  if [ -d \"/home/$u/.claude\" ]; then\n    chown -R \"$u:$u\" \"/home/$u/.claude\"\n    echo \"chowned /home/$u/.claude -> $u:$u\"\n  fi\ndone\necho\necho '=== AFTER: credential ownership ==='\nls -la /home/*/.claude/.credentials.json 2>/dev/null\necho\necho '=== test claude as aixa (sample) ==='\nsudo -u aixa bash -c 'echo hi | timeout 45 /home/aixa/.npm-global/bin/claude -p --model claude-opus-4-7 --max-turns 1 --output-format text 2>&1' | head -8\necho '===END==='\n"
+}
