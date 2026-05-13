@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "set +e\necho '=== chain perms: /home -> /home/aixa -> /.claude -> /file ==='\nstat -c '%a %U:%G %n' /home /home/aixa /home/aixa/.claude /home/aixa/.claude/.credentials.json 2>&1\necho '=== ACLs on aixa creds ==='\ngetfacl /home/aixa/.claude/.credentials.json 2>&1\necho '=== compare heather (working) ==='\nstat -c '%a %U:%G %n' /home/heather /home/heather/.claude /home/heather/.claude/.credentials.json 2>&1\ngetfacl /home/heather/.claude/.credentials.json 2>&1 | head -10\necho '=== sudo -u aixa stat its own file ==='\nsudo -u aixa stat /home/aixa/.claude/.credentials.json 2>&1\necho '===END==='\n"
+}
