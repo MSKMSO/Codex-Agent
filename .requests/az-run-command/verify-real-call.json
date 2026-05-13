@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "#!/bin/bash\nset +e\necho '=== state checks ==='\nstat -c '/home/azureuser: %a %U:%G' /home/azureuser 2>&1\nstat -c 'aixa cred: %a %U:%G inode=%i' /home/aixa/.claude/.credentials.json 2>&1\necho '=== mimic responder: claude as aixa with --dangerously-skip-permissions + stdin prompt + 120s ==='\nrunuser -u aixa -- bash -c 'cd /home/aixa && echo \"Please respond with the single word HELLO and nothing else.\" | timeout 120 /home/azureuser/.npm-global/bin/claude -p --model claude-opus-4-7 --dangerously-skip-permissions > /tmp/aixa_real 2>/tmp/aixa_real_err; echo \"rc=$?\"; echo \"--stdout (first 500)--\"; head -c 500 /tmp/aixa_real; echo; echo \"--stderr (first 500)--\"; head -c 500 /tmp/aixa_real_err'\necho '=== check aixa debug.log to see what real responder call output ==='\ntail -40 /home/aixa/.aixa-bot/responder-debug.log 2>/dev/null | grep -A3 '(claude)' | tail -20\necho '===END==='\n"
+}
