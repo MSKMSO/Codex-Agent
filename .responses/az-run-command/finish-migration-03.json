@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "=== before: /home/azureuser perms ===\n750 azureuser:azureuser /home/azureuser\n=== chmod 0711 /home/azureuser (world-traversable, no listing) ===\n711 azureuser:azureuser /home/azureuser\n=== verify aixa can execute claude binary now ===\nrc=0\n--stdout--\n\n--stderr--\n=== verify mskai (azureuser) still works ===\n===END===",
+  "stderr": ""
+}
