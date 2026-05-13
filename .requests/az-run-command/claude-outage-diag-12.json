@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "set +e\necho '=== stat aixa creds ==='\nstat /home/aixa/.claude/.credentials.json 2>&1\necho '=== where is aixa-responder.py now ==='\nfind /home -maxdepth 3 -name 'aixa-responder.py' 2>/dev/null\necho '=== CLAUDE constant in aixa responder ==='\ngrep -n 'CLAUDE\\|claude.*bin\\|/claude' /home/aixa/aixa-responder.py 2>/dev/null | head -10\necho '=== aixa runs which claude ==='\nsudo -u aixa bash -lc 'which claude; ls -la $(which claude) 2>&1; echo PATH=$PATH' 2>&1 | head -10\necho '=== aixa errors tail (correct path) ==='\ntail -20 /home/aixa/.aixa-bot/responder-errors.log 2>&1\necho '===END==='\n"
+}
