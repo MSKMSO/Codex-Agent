@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "set +e\necho '=== chattr attributes on aixa creds ==='\nlsattr /home/aixa/.claude/.credentials.json 2>&1\necho '=== fuser - is file open by a process? ==='\nfuser -v /home/aixa/.claude/.credentials.json 2>&1\necho '=== explicit chown -v just the file ==='\nchown -v aixa:aixa /home/aixa/.claude/.credentials.json 2>&1\nstat -c '%U:%G %n' /home/aixa/.claude/.credentials.json 2>&1\necho '=== test aixa can read the file now ==='\nsudo -u aixa cat /home/aixa/.claude/.credentials.json 2>&1 | head -c 80\necho\necho '=== test claude as aixa ==='\nsudo -u aixa bash -c 'echo hi | timeout 30 /home/azureuser/.npm-global/bin/claude -p --model claude-opus-4-7 --max-turns 1 --output-format text 2>&1' | head -8\necho '===END==='\n"
+}
