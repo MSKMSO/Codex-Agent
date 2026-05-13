@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "=== state right now ===\nmaster: 600 zahid:zahid /home/azureuser/.claude/.credentials.json\n=== RESTORE master to azureuser:azureuser mode 0600 ===\nmaster: 600 azureuser:azureuser /home/azureuser/.claude/.credentials.json\n=== verify mskai (azureuser) can read its cred ===\n{\"claudeAiOauth\":{\"accessToken\":\"sk-ant-oat01-vHWxIY298PmDAx\n=== INVESTIGATE: is /home/<user>/.claude a symlink or real dir per user? ===\nafrah SYMLINK -> /home/azureuser/.claude\naixa SYMLINK -> /home/azureuser/.claude\nalejandro SYMLINK -> /home/azureuser/.claude\nashley SYMLINK -> /home/azureuser/.claude\naxel SYMLINK -> /home/azureuser/.claude\ncameron SYMLINK -> /home/azureuser/.claude\ndavid SYMLINK -> /home/azureuser/.claude\nemily SYMLINK -> /home/azureuser/.claude\ngabriel realdir 700 gabriel:gabriel\nheather realdir 755 heather:heather\njesusr SYMLINK -> /home/azureuser/.claude\njose SYMLINK -> /home/azureuser/.claude\nkaye realdir 700 kaye:kaye\nlia SYMLINK -> /home/azureuser/.claude\nneil SYMLINK -> /home/azureuser/.claude\nneilc SYMLINK -> /home/azureuser/.claude\nrosi SYMLINK -> /home/azureuser/.claude\nstephanie SYMLINK -> /home/azureuser/.claude\nzahid SYMLINK -> /home/azureuser/.claude\n===END===",
+  "stderr": ""
+}
