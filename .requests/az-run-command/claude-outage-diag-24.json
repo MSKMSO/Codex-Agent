@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "#!/bin/bash\nset +e\necho '=== aixa: stat + read cred now (master is 0640 azureuser:azureuser, aixa in group) ==='\nrunuser -u aixa -- stat /home/aixa/.claude/.credentials.json 2>&1 | head -6\necho '--- read attempt ---'\nrunuser -u aixa -- head -c 50 /home/aixa/.claude/.credentials.json 2>&1\necho\necho '=== aixa: live claude CLI test with full output capture ==='\nrunuser -u aixa -- bash -c 'echo \"say one word\" | timeout 30 /home/azureuser/.npm-global/bin/claude -p --model claude-opus-4-7 --max-turns 1 --output-format text > /tmp/aixa_out 2>/tmp/aixa_err; echo rc=$?; echo \"--stdout--\"; head -c 200 /tmp/aixa_out; echo; echo \"--stderr--\"; head -c 200 /tmp/aixa_err'\necho '=== aixa /home/aixa/.claude perms ==='\nstat -c '%a %U:%G %n' /home/aixa /home/aixa/.claude /home/aixa/.claude/.credentials.json 2>&1\necho '===END==='\n"
+}
