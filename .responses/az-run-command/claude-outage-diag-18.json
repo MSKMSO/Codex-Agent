@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "=== inode + link count for each per-user .credentials.json ===\n263523 links=1 mode=640 azureuser:azureuser /home/azureuser/.claude/.credentials.json\n263523 links=1 mode=640 azureuser:azureuser /home/afrah/.claude/.credentials.json\n263523 links=1 mode=640 azureuser:azureuser /home/aixa/.claude/.credentials.json\n263523 links=1 mode=640 azureuser:azureuser /home/alejandro/.claude/.credentials.json\n263523 links=1 mode=640 azureuser:azureuser /home/ashley/.claude/.credentials.json\n3672034 links=1 mode=600 heather:heather /home/heather/.claude/.credentials.json\n3672690 links=1 mode=600 kaye:kaye /home/kaye/.claude/.credentials.json\n4272571 links=1 mode=600 gabriel:gabriel /home/gabriel/.claude/.credentials.json\n=== runuser -u aixa -- id (verify supplementary groups in switch) ===\nuid=1008(aixa) gid=1008(aixa) groups=1008(aixa),1000(azureuser)\n=== runuser test 1: aixa stat its file ===\nstat: cannot statx '/home/aixa/.claude/.credentials.json': Permission denied\n=== try sg azureuser inside runuser ===\nhead: cannot open '/home/aixa/.claude/.credentials.json' for reading: Permission denied\n=== su -l aixa (login shell, full group init) ===\nuid=1008(aixa) gid=1008(aixa) groups=1008(aixa),1000(azureuser)\n--\nhead: cannot open '/home/aixa/.claude/.credentials.json' for reading: Permission denied\n=== try setpriv (explicit) ===\nhead: cannot open '/home/aixa/.claude/.credentials.json' for reading: Permission denied\n===END===",
+  "stderr": ""
+}
