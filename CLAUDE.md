@@ -34,13 +34,15 @@ If the user says Claude (mskai, the "main Claude Agent without a user name") is 
 
 If the 16 per-user Claude bots (Aixa/Alejandro/Ashley/Axel/Cameron/David/Emily/Jesus/Jose/Lia/Neil/Neil-Claude/Rosi/Stephanie/Zahid/Afrah) all post the **"Had trouble generating a reply"** fallback while mskai/yooai are fine, the symptom is almost always: `/home/azureuser/.claude/.credentials.json` was refreshed by Claude CLI and dropped to mode 0600, blocking per-user accounts (who only have group-read via the `azureuser` group through the symlinked `.claude`). **Read [`docs/2026-05-13-per-user-bot-credential-outage.md`](docs/2026-05-13-per-user-bot-credential-outage.md) before touching anything.**
 
-A systemd timer (`claude-creds-maint.timer`) auto-re-normalizes the credential mode every 5 min, so the symptom should self-heal within that window. If it's persistent, first check `systemctl list-timers claude-creds-maint.timer` and `journalctl -t claude-creds-maint --since '1 hour ago'`. Manual one-line fix if the timer is missing or broken:
+An azureuser cron entry (`* * * * * /home/azureuser/.claude-cred-chmod.sh`) re-applies mode 0640 every minute, so the symptom should self-heal within 60 seconds. If it's persistent, first check `crontab -u azureuser -l` and `stat -c '%a' /home/azureuser/.claude/.credentials.json` (should be 640). Manual one-line fix if the cron is missing or broken:
 
 ```bash
 chmod 0640 /home/azureuser/.claude/.credentials.json
 ```
 
-**Do NOT run `chown -R` on any per-user `.claude` directory.** Those are symlinks back to `/home/azureuser/.claude`. Recursion will follow the symlinks and corrupt the master credential, breaking mskai. The proper per-user-isolation migration requires an interactive `claude /login` per account — it cannot be done over run-command, and the 16 are still on the shared-credential model.
+**Do NOT run `chown -R` on any per-user `.claude` directory.** Those are symlinks back to `/home/azureuser/.claude`. Recursion will follow the symlinks and corrupt the master credential, breaking mskai.
+
+**Do NOT try to give each per-user bot its own real `.claude/` + copied `.credentials.json`.** That's the trap I fell into on 2026-05-13. A copy of the credential file produces `rc=0` with empty stdout — Claude CLI silently fails when the credential lacks matching device/session state (which only an interactive `claude /login` can generate). The 16 per-user bots must stay on the shared-credential-via-symlink model. **If per-bot isolation later becomes a requirement, use `CLAUDE_CODE_OAUTH_TOKEN` env var sourced from Key Vault** — same pattern as the PACS watchdog pipeline.
 
 ## When creating a new bot from scratch — read this first
 
