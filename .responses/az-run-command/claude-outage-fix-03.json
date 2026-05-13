@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "=== verify per-user accounts are in azureuser group ===\nafrah : afrah azureuser\naixa : aixa azureuser\nalejandro : alejandro azureuser\nashley : ashley azureuser\naxel : axel azureuser\ncameron : cameron azureuser\ndavid : david azureuser\nemily : emily azureuser\njesusr : jesusr azureuser\njose : jose azureuser\nlia : lia azureuser\nneil : neil azureuser\nneilc : neilc azureuser\nrosi : rosi azureuser\nstephanie : stephanie azureuser\nzahid : zahid azureuser\n=== chmod 0640 master credential (was 0600) ===\n640 azureuser:azureuser /home/azureuser/.claude/.credentials.json\n=== verify aixa can read via group membership now ===\nhead: cannot open '/home/aixa/.claude/.credentials.json' for reading: Permission denied\n\n=== test claude as aixa ===\n=== test claude as azureuser (mskai) still works ===\n===END===",
+  "stderr": ""
+}
