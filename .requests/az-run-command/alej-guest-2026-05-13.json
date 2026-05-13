@@ -1,0 +1,1 @@
+{"vm":"openclaw-vm","rg":"SDNeurosurgery-OpenClaw","script":"sudo sed -n '380,430p' /home/alejandro/alejandro-responder.py"}
