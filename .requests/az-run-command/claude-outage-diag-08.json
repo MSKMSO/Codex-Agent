@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "set +e\necho '=== alive ==='; date -u +%FT%TZ\necho '=== per-user CLAUDE constants ==='\ngrep -H '^CLAUDE\\s*=' /home/azureuser/*-responder.py 2>/dev/null\necho '=== per-user model lines ==='\ngrep -H -E '\"--model\",\\s*\"claude' /home/azureuser/*-responder.py 2>/dev/null\necho '=== aixa errors tail ==='\ntail -10 /home/azureuser/.aixa-bot/responder-errors.log 2>/dev/null\necho '=== alejandro errors tail ==='\ntail -10 /home/azureuser/.alejandro-bot/responder-errors.log 2>/dev/null\necho '=== ashley errors tail ==='\ntail -10 /home/azureuser/.ashley-bot/responder-errors.log 2>/dev/null\necho '=== cameron errors tail ==='\ntail -10 /home/azureuser/.cameron-bot/responder-errors.log 2>/dev/null\necho '=== jesus-reyes errors tail ==='\ntail -10 /home/azureuser/.jesus-reyes-bot/responder-errors.log 2>/dev/null\necho '=== claude creds dir ==='\nls -la /home/azureuser/.claude/ 2>/dev/null\necho '===END==='\n"
+}
