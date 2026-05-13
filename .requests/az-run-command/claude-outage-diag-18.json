@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "set +e\necho '=== inode + link count for each per-user .credentials.json ==='\nfor u in azureuser afrah aixa alejandro ashley heather kaye gabriel; do\n  stat -c '%i links=%h mode=%a %U:%G %n' /home/$u/.claude/.credentials.json 2>&1\ndone\necho '=== runuser -u aixa -- id (verify supplementary groups in switch) ==='\nrunuser -u aixa -- id 2>&1\necho '=== runuser test 1: aixa stat its file ==='\nrunuser -u aixa -- stat /home/aixa/.claude/.credentials.json 2>&1 | head -8\necho '=== try sg azureuser inside runuser ==='\nrunuser -u aixa -- sg azureuser -c 'head -c 30 /home/aixa/.claude/.credentials.json' 2>&1\necho '=== su -l aixa (login shell, full group init) ==='\nsu -l aixa -s /bin/bash -c 'id; echo --; head -c 30 /home/aixa/.claude/.credentials.json' 2>&1 | head -8\necho '=== try setpriv (explicit) ==='\nsetpriv --reuid=aixa --regid=aixa --init-groups head -c 30 /home/aixa/.claude/.credentials.json 2>&1 | head -3\necho '===END==='\n"
+}
