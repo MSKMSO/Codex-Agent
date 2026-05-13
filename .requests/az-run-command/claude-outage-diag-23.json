@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "set +e\necho '=== mskai claude call with explicit RC ==='\nrunuser -u azureuser -- bash -c 'echo hi | timeout 30 /home/azureuser/.npm-global/bin/claude -p --model claude-opus-4-7 --max-turns 1 --output-format text > /tmp/mskai_out 2>/tmp/mskai_err; echo \"rc=$?\"; echo \"--stdout--\"; head -c 200 /tmp/mskai_out; echo; echo \"--stderr--\"; head -c 200 /tmp/mskai_err'\necho '=== check all per-user homes for symlinks pointing into azureuser ==='\nfor u in afrah aixa alejandro ashley axel cameron david emily gabriel heather jesusr jose kaye lia neil neilc rosi stephanie zahid; do\n  find /home/$u -maxdepth 3 -type l 2>/dev/null | while read l; do\n    tgt=$(readlink \"$l\")\n    if [[ \"$tgt\" == /home/azureuser* ]]; then echo \"$l -> $tgt\"; fi\n  done\ndone | head -30\necho '=== per-user .credentials.json mode/owner after master restore ==='\nstat -c '%a %U:%G %n' /home/azureuser/.claude/.credentials.json /home/aixa/.claude/.credentials.json /home/alejandro/.claude/.credentials.json /home/rosi/.claude/.credentials.json 2>&1\necho '===END==='\n"
+}
