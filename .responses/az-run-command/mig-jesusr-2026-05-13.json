@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "== Migrate jesus-reyes (lu: jesusr) ==\ncreated\n  PORT=3998\n  bot=active resp=active user=jesusr",
+  "stderr": ""
+}
