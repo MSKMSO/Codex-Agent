@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "set +e\necho '=== aixa errors (claude lines, last 10) ==='\ngrep -E 'claude rc=|Not logged in|claude timeout' /home/azureuser/.aixa-bot/responder-errors.log 2>/dev/null | tail -10\necho '=== alejandro errors ==='\ngrep -E 'claude rc=|Not logged in|claude timeout' /home/azureuser/.alejandro-bot/responder-errors.log 2>/dev/null | tail -10\necho '=== cameron errors ==='\ngrep -E 'claude rc=|Not logged in|claude timeout' /home/azureuser/.cameron-bot/responder-errors.log 2>/dev/null | tail -10\necho '=== jesus-reyes errors ==='\ngrep -E 'claude rc=|Not logged in|claude timeout' /home/azureuser/.jesus-reyes-bot/responder-errors.log 2>/dev/null | tail -10\necho '=== ashley errors ==='\ngrep -E 'claude rc=|Not logged in|claude timeout' /home/azureuser/.ashley-bot/responder-errors.log 2>/dev/null | tail -10\necho '===END==='\n"
+}
