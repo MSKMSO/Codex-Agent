@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "  aixa: user=aixa bot=active\n  ashley: user=azureuser bot=active\n  cameron: user=azureuser bot=active\n  david: user=azureuser bot=active\n  emily-claude: user=azureuser bot=active\n  gabriel: user=azureuser bot=active\n  jesus-reyes: user=azureuser bot=active\n  neil: user=azureuser bot=active\n  neil-claude: user=azureuser bot=active\n  rosi: user=azureuser bot=active\n  stephanie-claude: user=azureuser bot=active\n  zahid: user=azureuser bot=active",
+  "stderr": ""
+}
