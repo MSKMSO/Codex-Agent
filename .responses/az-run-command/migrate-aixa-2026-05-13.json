@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "== 1. Create aixa user + groups ==\n  created uid=1008\n\n== 2. Symlinks + .azure for managed identity ==\n\n== 3. Stop existing services ==\n\n== 4. Move bot files into /home/aixa/ ==\n\n== 5. Sed-replace azureuser->aixa paths ==\n\n== 6. Chown all moved files ==\n\n== 7. Read existing PORT + write new systemd units ==\n  PORT=3992\n\n== 8. Start services ==\n  bot: active\n  responder: active\n\n== 9. Verify aixa az login works ==\nAzure subscription 1",
+  "stderr": ""
+}
