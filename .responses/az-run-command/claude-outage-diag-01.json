@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "=== mskai err log (last 60 lines) ===\n=== aixa err log (sample sibling) ===\n=== mskai debug log claude rc samples ===\n=== try claude binary directly with trivial prompt ===\nbash: line 1: claude: command not found\n===END===",
+  "stderr": ""
+}
