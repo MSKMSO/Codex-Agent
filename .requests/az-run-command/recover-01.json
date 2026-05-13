@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "#!/bin/bash\nset +e\necho '=== state right now ==='\nstat -c 'master: %a %U:%G %n' /home/azureuser/.claude/.credentials.json 2>&1\necho '=== RESTORE master to azureuser:azureuser mode 0600 ==='\nchown azureuser:azureuser /home/azureuser/.claude/.credentials.json\nchmod 0600 /home/azureuser/.claude/.credentials.json\nstat -c 'master: %a %U:%G %n' /home/azureuser/.claude/.credentials.json 2>&1\necho '=== verify mskai (azureuser) can read its cred ==='\nrunuser -u azureuser -- head -c 60 /home/azureuser/.claude/.credentials.json 2>&1\necho\necho '=== INVESTIGATE: is /home/<user>/.claude a symlink or real dir per user? ==='\nfor u in afrah aixa alejandro ashley axel cameron david emily gabriel heather jesusr jose kaye lia neil neilc rosi stephanie zahid; do\n  if [ -L /home/$u/.claude ]; then\n    echo \"$u SYMLINK -> $(readlink /home/$u/.claude)\"\n  elif [ -d /home/$u/.claude ]; then\n    echo \"$u realdir $(stat -c '%a %U:%G' /home/$u/.claude)\"\n  else\n    echo \"$u MISSING\"\n  fi\ndone\necho '===END==='\n"
+}
