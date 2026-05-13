@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "set +e\necho '=== ts ==='; date -u +%FT%TZ\necho '=== all *-bot.service running ==='; systemctl list-units --type=service --no-pager --state=running --no-legend | grep -E '(bot|responder)\\.service$' || true\necho '=== home recently-modified responders (last 14d) ==='; find /home/azureuser -maxdepth 1 -name '*-responder.py' -mtime -14 -printf '%T@ %p\\n' 2>/dev/null | sort -rn | head -20\necho '=== bot display names from any manifest.json ==='; find /home/azureuser -maxdepth 3 -name 'manifest.json' 2>/dev/null | head -20\necho '=== grep all responders for display string Claude AI ==='; grep -l -i 'Claude AI' /home/azureuser/*-responder.py /home/azureuser/*-bot.py /home/azureuser/*-send-to.sh 2>/dev/null || true\necho '=== az bot list (display names) ==='; az bot list -g SDNeurosurgery-OpenClaw --query \"[].{name:name,display:properties.displayName}\" -o tsv 2>/dev/null || true\necho '=== END ==='\n"
+}
