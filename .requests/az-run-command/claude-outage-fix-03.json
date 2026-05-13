@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "set +e\necho '=== verify per-user accounts are in azureuser group ==='\nfor u in afrah aixa alejandro ashley axel cameron david emily jesusr jose lia neil neilc rosi stephanie zahid; do\n  groups \"$u\" 2>&1 | head -1\ndone\necho '=== chmod 0640 master credential (was 0600) ==='\nchmod 0640 /home/azureuser/.claude/.credentials.json 2>&1\nstat -c '%a %U:%G %n' /home/azureuser/.claude/.credentials.json 2>&1\necho '=== verify aixa can read via group membership now ==='\nrunuser -u aixa -- head -c 60 /home/aixa/.claude/.credentials.json 2>&1\necho\necho '=== test claude as aixa ==='\nrunuser -u aixa -- bash -c 'echo hi | timeout 30 /home/azureuser/.npm-global/bin/claude -p --model claude-opus-4-7 --max-turns 1 --output-format text 2>&1' | head -8\necho '=== test claude as azureuser (mskai) still works ==='\nrunuser -u azureuser -- bash -c 'echo hi | timeout 30 /home/azureuser/.npm-global/bin/claude -p --model claude-opus-4-7 --max-turns 1 --output-format text 2>&1' | head -8\necho '===END==='\n"
+}
