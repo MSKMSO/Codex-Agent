@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "set +e\nsed -n '25,120p' /home/azureuser/mskai-send-to.sh 2>/dev/null\necho '===END==='\n"
+}
