@@ -1,0 +1,1 @@
+{"vm":"openclaw-vm","rg":"SDNeurosurgery-OpenClaw","script":"for s in aixa ashley cameron emily-claude gabriel jesus-reyes neil neil-claude rosi stephanie-claude zahid; do LU=$(systemctl show ${s}-bot.service -p User --value); echo \"--- ${s} (lu=${LU})\"; sudo grep -nE 'aadObjectId' /home/${LU}/${s}-responder.py | head -3; done"}
