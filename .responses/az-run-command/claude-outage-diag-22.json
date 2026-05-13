@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "=== confirm current mode/owner of master ===\n640 azureuser:azureuser /home/azureuser/.claude/.credentials.json\n=== xattrs / special flags ===\n--------------e------- /home/azureuser/.claude/.credentials.json\n/var/lib/waagent/run-command/download/4294/script.sh: 6: getfattr: not found\n=== control test: fresh test file group-readable ===\n-rw-r----- 1 azureuser azureuser 15 May 13 10:05 /home/azureuser/.claude/test-perm-1033261\n--- aixa read of fresh test file ---\nhead: cannot open '/home/azureuser/.claude/test-perm-1033261' for reading: Permission denied\n\n=== control test 2: put fresh file in aixa home, group azureuser ===\n-rw-r----- 1 azureuser azureuser 7 May 13 10:05 /home/aixa/test-perm-1033261\nsecret\n\n=== /home/azureuser/.claude perms ===\n750 azureuser:azureuser /home/azureuser\n700 gabriel:gabriel /home/azureuser/.claude\n===END===",
+  "stderr": ""
+}
