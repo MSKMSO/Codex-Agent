@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "=== verify azureuser cron is in place ===\n* * * * * /home/azureuser/.claude-cred-chmod.sh >/dev/null 2>&1\n-rwxr-xr-x 1 azureuser azureuser 326 May 13 11:02 /home/azureuser/.claude-cred-chmod.sh\n=== disable + remove my redundant systemd timer ===\nFailed to disable unit: Unit file claude-creds-maint.timer does not exist.\n=== verify timer is gone ===\nOK: timer removed\n=== final cred state ===\n640 azureuser:azureuser /home/azureuser/.claude/.credentials.json\n===END===",
+  "stderr": ""
+}
