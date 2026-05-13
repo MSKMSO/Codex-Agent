@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "=== heather ALLOWED + aad gates ===\n223:HEATHER_AAD = \"0e06a27c-11e0-442a-b6a7-10bedc7e4364\"\n225:ALLOWED = {HEATHER_AAD, KEVIN_AAD}\n292:    if frm.get(\"aadObjectId\",\"\") not in ALLOWED: return False\n\n=== alejandro gates ===\n238:ALEJANDRO_AAD_ID = \"b85780f2-e891-40a4-922e-b48e427675c2\"\n392:    if frm.get(\"aadObjectId\", \"\") == ALEJANDRO_AAD_ID:",
+  "stderr": ""
+}
