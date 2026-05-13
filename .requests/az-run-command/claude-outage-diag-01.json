@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "set +e\necho '=== mskai err log (last 60 lines) ==='\ngrep -E 'claude (rc|timeout|spawn|rate-limited)|empty reply|first attempt failed' /home/azureuser/.mskai-bot/errors.log 2>/dev/null | tail -60\necho '=== aixa err log (sample sibling) ==='\ngrep -E 'claude (rc|timeout|spawn|rate-limited)|empty reply|first attempt failed' /home/azureuser/.aixa-bot/errors.log 2>/dev/null | tail -20\necho '=== mskai debug log claude rc samples ==='\ntail -200 /home/azureuser/.mskai-bot/debug.log 2>/dev/null | grep -E 'RC:|usage limit|claude rate' | tail -20\necho '=== try claude binary directly with trivial prompt ==='\ntimeout 60 sudo -u azureuser bash -lc 'echo hi | claude -p --max-turns 1 --output-format text 2>&1' 2>&1 | head -30\necho '===END==='\n"
+}
