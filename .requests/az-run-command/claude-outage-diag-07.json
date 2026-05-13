@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "set +e\necho '=== CLAUDE constants in per-user responders ==='\ngrep -H '^CLAUDE\\s*=' /home/azureuser/*-responder.py 2>/dev/null\necho '=== model in per-user responders ==='\ngrep -H -E '\"--model\",\\s*\"claude' /home/azureuser/*-responder.py 2>/dev/null\necho '=== aixa last 8 errors any ==='\ntail -8 /home/azureuser/.aixa-bot/responder-errors.log 2>/dev/null\necho '=== alejandro last 8 errors ==='\ntail -8 /home/azureuser/.alejandro-bot/responder-errors.log 2>/dev/null\necho '=== ashley last 8 errors ==='\ntail -8 /home/azureuser/.ashley-bot/responder-errors.log 2>/dev/null\necho '=== cameron last 8 errors ==='\ntail -8 /home/azureuser/.cameron-bot/responder-errors.log 2>/dev/null\necho '=== jesus-reyes last 8 errors ==='\ntail -8 /home/azureuser/.jesus-reyes-bot/responder-errors.log 2>/dev/null\necho '=== shared claude credential file ==='\nls -la /home/azureuser/.claude/ 2>/dev/null\necho '=== per-bot .claude dirs (if any) ==='\nls -ld /home/azureuser/.*-bot/.claude 2>/dev/null\necho '===END==='\n"
+}
