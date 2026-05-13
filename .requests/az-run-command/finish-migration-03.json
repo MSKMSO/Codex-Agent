@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "#!/bin/bash\nset +e\necho '=== before: /home/azureuser perms ==='\nstat -c '%a %U:%G %n' /home/azureuser 2>&1\necho '=== chmod 0711 /home/azureuser (world-traversable, no listing) ==='\nchmod 0711 /home/azureuser\nstat -c '%a %U:%G %n' /home/azureuser 2>&1\necho '=== verify aixa can execute claude binary now ==='\nrunuser -u aixa -- bash -c 'echo \"What is two plus two?\" | timeout 90 /home/azureuser/.npm-global/bin/claude -p --model claude-opus-4-7 --dangerously-skip-permissions > /tmp/aixa_v2 2>/tmp/aixa_v2_err; echo \"rc=$?\"; echo \"--stdout--\"; head -c 500 /tmp/aixa_v2; echo; echo \"--stderr--\"; head -c 500 /tmp/aixa_v2_err'\necho '=== verify mskai (azureuser) still works ==='\nrunuser -u azureuser -- bash -c 'echo hi | timeout 30 /home/azureuser/.npm-global/bin/claude -p --dangerously-skip-permissions 2>&1' | head -3\necho '===END==='\n"
+}
