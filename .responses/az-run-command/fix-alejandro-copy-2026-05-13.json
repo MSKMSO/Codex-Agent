@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "=== how do other bots find this module ===\n--- david\nnone\n--- cameron\nnone\n--- neil\nnone\n--- emily\nnone\n=== check pip ===\nTraceback (most recent call last):\n  File \"<string>\", line 1, in <module>\nModuleNotFoundError: No module named 'bot_framework_auth'\n=== sys.path as alejandro ===\n['', '/usr/lib/python312.zip', '/usr/lib/python3.12', '/usr/lib/python3.12/lib-dynload', '/usr/local/lib/python3.12/dist-packages', '/usr/lib/python3/dist-packages']\n=== replace symlink with real copy ===\n=== final state ===\nbot=active (restart counter: 0)\nMay 13 05:35:31 openclaw-vm systemd[1]: Started alejandro-bot.service - alejandro-bot (per-user Linux account: alejandro).\nMay 13 05:37:27 openclaw-vm systemd[1]: Stopping alejandro-bot.service - alejandro-bot (per-user Linux account: alejandro)...\nMay 13 05:37:27 openclaw-vm systemd[1]: alejandro-bot.service: Deactivated successfully.\nMay 13 05:37:27 openclaw-vm systemd[1]: Stopped alejandro-bot.service - alejandro-bot (per-user Linux account: alejandro).\nMay 13 05:37:27 openclaw-vm systemd[1]: alejandro-bot.service: Consumed 2.372s CPU time.\nMay 13 05:37:27 openclaw-vm systemd[1]: Started alejandro-bot.service - alejandro-bot (per-user Linux account: alejandro).",
+  "stderr": ""
+}
