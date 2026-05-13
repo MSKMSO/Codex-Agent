@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "set +e\necho '=== last 2 outbound texts for each recently-active per-user bot ==='\nfor pair in \"afrah:.afrah-bot\" \"alejandro:.alejandro-bot\" \"axel:.axel-bot\" \"cameron:.cameron-bot\" \"emily:.emily-claude-bot\" \"gabriel:.gabriel-bot\" \"rosi:.rosi-bot\" \"stephanie:.stephanie-claude-bot\"; do\n  u=${pair%:*}; d=${pair#*:}\n  echo \"--- $u ---\"\n  tail -2 \"/home/$u/$d/outbound.jsonl\" 2>/dev/null | python3 -c 'import sys,json\nfor line in sys.stdin:\n  try:\n    o = json.loads(line)\n    print(o.get(\"ts\",\"?\"), \"|\", (o.get(\"text\",\"\") or \"\")[:80].replace(chr(10),\" \"))\n  except Exception as e:\n    print(\"err\",e)' 2>&1\ndone\necho '=== alejandro errors right after the fix (any post-fix attempts?) ==='\ntail -10 /home/alejandro/.alejandro-bot/responder-errors.log 2>&1\necho '=== rosi errors ==='\ntail -10 /home/rosi/.rosi-bot/responder-errors.log 2>&1\necho '===END==='\n"
+}
