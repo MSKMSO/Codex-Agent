@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "set +e\necho '=== ts ==='; date -u +%FT%TZ\necho '=== all *-bot/responder services running ==='; systemctl list-units --type=service --no-pager --state=running --no-legend > /tmp/units.txt 2>&1; grep -E '(bot|responder)\\.service' /tmp/units.txt 2>/dev/null\necho '=== home: bot.py and responder.py files ==='; ls -la /home/azureuser/*-bot.py /home/azureuser/*-responder.py 2>/dev/null\necho '=== grep responders/senders for literal Claude AI ==='; grep -l 'Claude AI' /home/azureuser/*-responder.py /home/azureuser/*-send-to.sh /home/azureuser/*-bot.py 2>/dev/null\necho '=== END ==='\n"
+}
