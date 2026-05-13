@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "#!/bin/bash\nset +e\necho '=== heather .claude contents ==='\nls -la /home/heather/.claude/ 2>&1\necho '=== aixa .claude contents (post-migration) ==='\nls -la /home/aixa/.claude/ 2>&1\necho '=== azureuser .claude top level (mskai) ==='\nls -la /home/azureuser/.claude/ 2>&1 | head -20\necho '=== heather settings.json (size + first 200 chars if exists) ==='\nls -la /home/heather/.claude/settings.json 2>&1\nhead -c 200 /home/heather/.claude/settings.json 2>&1\necho\necho '===END==='\n"
+}
