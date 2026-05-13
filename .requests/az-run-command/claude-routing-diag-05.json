@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "set +e\necho '=== ts ==='; date -u +%FT%TZ\necho '=== sender scripts present ==='; ls /home/azureuser/*-send-to.sh 2>/dev/null\necho '=== mskai-send-to.sh ==='; cat /home/azureuser/mskai-send-to.sh 2>/dev/null\necho '=== aixa-send-to.sh ==='; cat /home/azureuser/aixa-send-to.sh 2>/dev/null\necho '=== mskai-responder.py lines 760-810 ==='; sed -n '760,810p' /home/azureuser/mskai-responder.py 2>/dev/null\necho '=== aixa-responder.py lines 760-810 ==='; sed -n '760,810p' /home/azureuser/aixa-responder.py 2>/dev/null\necho '=== END ==='\n"
+}
