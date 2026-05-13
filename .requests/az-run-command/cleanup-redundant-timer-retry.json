@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "#!/bin/bash\nset +e\necho '=== verify azureuser cron is in place ==='\ncrontab -u azureuser -l 2>&1 | grep -F '.claude-cred-chmod.sh' || echo 'WARNING: not found in azureuser crontab'\nls -la /home/azureuser/.claude-cred-chmod.sh 2>&1\necho '=== disable + remove my redundant systemd timer ==='\nsystemctl disable --now claude-creds-maint.timer 2>&1\nrm -f /etc/systemd/system/claude-creds-maint.timer /etc/systemd/system/claude-creds-maint.service\nrm -f /etc/systemd/system/timers.target.wants/claude-creds-maint.timer\nrm -f /usr/local/sbin/maintain-claude-creds.sh\nsystemctl daemon-reload\necho '=== verify timer is gone ==='\nsystemctl list-timers --all 2>&1 | grep -F 'claude-creds-maint' || echo 'OK: timer removed'\necho '=== final cred state ==='\nstat -c '%a %U:%G %n' /home/azureuser/.claude/.credentials.json 2>&1\necho '===END==='\n"
+}
