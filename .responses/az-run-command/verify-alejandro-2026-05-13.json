@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "alejandro-bot: activating user=alejandro\nalejandro-responder: active user=alejandro\n=== recent journal ===\nMay 13 05:33:55 openclaw-vm systemd[1]: alejandro-bot.service: Scheduled restart job, restart counter is at 20.\nMay 13 05:33:55 openclaw-vm systemd[1]: Started alejandro-bot.service - alejandro-bot (per-user Linux account: alejandro).\nMay 13 05:33:55 openclaw-vm python3[687302]: Traceback (most recent call last):\nMay 13 05:33:55 openclaw-vm python3[687302]:   File \"/home/alejandro/alejandro-bot.py\", line 10, in <module>\nMay 13 05:33:55 openclaw-vm python3[687302]:     from bot_framework_auth import verify_jwt\nMay 13 05:33:55 openclaw-vm python3[687302]: ModuleNotFoundError: No module named 'bot_framework_auth'\nMay 13 05:33:55 openclaw-vm systemd[1]: alejandro-bot.service: Main process exited, code=exited, status=1/FAILURE\nMay 13 05:33:55 openclaw-vm systemd[1]: alejandro-bot.service: Failed with result 'exit-code'.",
+  "stderr": ""
+}
