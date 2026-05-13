@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "set +e\necho '=== aixa-responder grep for LLM call ==='\ngrep -n -E 'subprocess|openai|anthropic|claude|api_key|x-api-key|messages.create' /home/azureuser/aixa-responder.py 2>/dev/null | head -30\necho '=== aixa-responder lines 1-40 (imports + constants) ==='\nsed -n '1,40p' /home/azureuser/aixa-responder.py 2>/dev/null\necho '=== aixa-responder grep for log/err path ==='\ngrep -n -E 'ERR_LOG|DEBUG_LOG|errors\\.log|debug\\.log|/home/azureuser/\\.[a-z]+-bot' /home/azureuser/aixa-responder.py 2>/dev/null | head -20\necho '=== aixa bot dir contents ==='\nls -la /home/azureuser/.aixa-bot/ 2>/dev/null\necho '===END==='\n"
+}
