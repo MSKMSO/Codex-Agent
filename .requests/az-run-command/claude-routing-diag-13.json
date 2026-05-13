@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "set +e\nsed -n '880,990p' /home/azureuser/mskai-responder.py 2>/dev/null\necho '===END==='\n"
+}
