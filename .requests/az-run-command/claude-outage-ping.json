@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "echo alive; date -u +%FT%TZ\n"
+}
