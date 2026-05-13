@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "=== timer status ===\nNEXT                            LEFT LAST                          PASSED UNIT                     ACTIVATES\nWed 2026-05-13 11:07:02 PDT 4min 59s Wed 2026-05-13 11:02:02 PDT 37ms ago claude-creds-maint.timer claude-creds-maint.service\n\n1 timers listed.\nPass --all to see loaded but inactive timers, too.\n=== service last run ===\n○ claude-creds-maint.service - Normalize shared Claude credential ownership/mode (per-user bots depend on it)\n     Loaded: loaded (/etc/systemd/system/claude-creds-maint.service; static)\n     Active: inactive (dead) since Wed 2026-05-13 11:02:02 PDT; 24ms ago\nTriggeredBy: ● claude-creds-maint.timer\n    Process: 1134413 ExecStart=/usr/local/sbin/maintain-claude-creds.sh (code=exited, status=0/SUCCESS)\n   Main PID: 1134413 (code=exited, status=0/SUCCESS)\n        CPU: 20ms\n\nMay 13 11:02:02 openclaw-vm systemd[1]: Starting claude-creds-maint.service - Normalize shared Claude credential ownership/mode (per-user bots depend on it)...\nMay 13 11:02:02 openclaw-vm systemd[1]: claude-creds-maint.service: Deactivated successfully.\n=== current file state ===\n750 azureuser:azureuser /home/azureuser\n750 azureuser:azureuser /home/azureuser/.claude\n640 azureuser:azureuser /home/azureuser/.claude/.credentials.json\n===END===",
+  "stderr": "Created symlink /etc/systemd/system/timers.target.wants/claude-creds-maint.timer → /etc/systemd/system/claude-creds-maint.timer."
+}
