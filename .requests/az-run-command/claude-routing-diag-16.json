@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "set +e\necho marker-start\nls -la /home/azureuser/mskai-send-to.sh 2>&1\nwc -l /home/azureuser/mskai-send-to.sh 2>&1\nfile /home/azureuser/mskai-send-to.sh 2>&1\necho '---content---'\ncat /home/azureuser/mskai-send-to.sh 2>&1\necho marker-end\n"
+}
