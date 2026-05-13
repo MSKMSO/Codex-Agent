@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "set +e\necho '=== mskai-send-to.sh head ==='; head -25 /home/azureuser/mskai-send-to.sh 2>/dev/null\necho '=== aixa-send-to.sh head ==='; head -25 /home/azureuser/aixa-send-to.sh 2>/dev/null\necho '=== aixa-responder post_reply location ==='; grep -n 'def post_reply\\|def _post_reply\\|subprocess.run.*SENDER' /home/azureuser/aixa-responder.py 2>/dev/null\necho '=== END ==='\n"
+}
