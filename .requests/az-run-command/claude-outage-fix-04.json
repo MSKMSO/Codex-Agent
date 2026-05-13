@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "set +e\necho '=== before: /home/azureuser/.claude ==='\nstat -c '%a %U:%G %n' /home/azureuser/.claude 2>&1\nls -la /home/azureuser/.claude | head -30\necho '=== restore: chown azureuser /home/azureuser/.claude (non-recursive first) ==='\nchown azureuser:azureuser /home/azureuser/.claude 2>&1\nchmod 0750 /home/azureuser/.claude 2>&1\nstat -c '%a %U:%G %n' /home/azureuser/.claude 2>&1\necho '=== check what other dirs in /home/azureuser/.claude got mis-chowned ==='\nfind /home/azureuser/.claude -maxdepth 1 -not -user azureuser 2>/dev/null | head -20\necho '=== check the gabriel symlink theory ==='\nfile /home/gabriel/.claude 2>&1\nls -la /home/gabriel/ | grep -E '^l.*claude' 2>&1\necho '=== test mskai (azureuser) claude call works again ==='\nrunuser -u azureuser -- bash -c 'echo hi | timeout 25 /home/azureuser/.npm-global/bin/claude -p --model claude-opus-4-7 --max-turns 1 --output-format text 2>&1' | head -8\necho '===END==='\n"
+}
