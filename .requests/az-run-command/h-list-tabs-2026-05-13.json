@@ -1,0 +1,1 @@
+{"vm":"openclaw-vm","rg":"SDNeurosurgery-OpenClaw","script":"BURL=$(az keyvault secret show --vault-name SDN-YooVault --name edge-bridge-url --query value -o tsv); BTOK=$(az keyvault secret show --vault-name SDN-YooVault --name edge-bridge-token --query value -o tsv); curl -s -X POST -H \"Authorization: Bearer $BTOK\" $BURL/edge/list_tabs | python3 -m json.tool 2>&1 | head -40"}
