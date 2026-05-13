@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "inbound total: 1469; outbound total: 681\nunique inbound chats: 48; unique outbound chats: 34\ninbound a:* count: 429\noutbound a:* count: 240\ninbound 19:* count: 1038\noutbound 19:* count: 441\n\norphan outbound chats (got reply, no inbound on record): 0\n\nmatched (outbound has same-chat inbound within 30 min): 681\nproactive (no inbound within 60s and no same-chat inbound within 30 min): 0\nmisroute candidates (no same-chat inbound BUT another-chat inbound within 60s): 0\n===END===",
+  "stderr": ""
+}
