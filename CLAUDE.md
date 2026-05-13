@@ -42,7 +42,11 @@ chmod 0640 /home/azureuser/.claude/.credentials.json
 
 **Do NOT run `chown -R` on any per-user `.claude` directory.** Those are symlinks back to `/home/azureuser/.claude`. Recursion will follow the symlinks and corrupt the master credential, breaking mskai.
 
-**Do NOT try to give each per-user bot its own real `.claude/` + copied `.credentials.json`.** That's the trap I fell into on 2026-05-13. A copy of the credential file produces `rc=0` with empty stdout — Claude CLI silently fails when the credential lacks matching device/session state (which only an interactive `claude /login` can generate). The 16 per-user bots must stay on the shared-credential-via-symlink model. **If per-bot isolation later becomes a requirement, use `CLAUDE_CODE_OAUTH_TOKEN` env var sourced from Key Vault** — same pattern as the PACS watchdog pipeline.
+**Do NOT try to give each per-user bot its own real `.claude/` + copied `.credentials.json`.** That's the trap I fell into on 2026-05-13. A copy of the credential file produces `rc=0` with empty stdout — Claude CLI silently fails when the credential lacks matching device/session state (which only an interactive `claude /login` can generate).
+
+**Do NOT try the `CLAUDE_CODE_OAUTH_TOKEN` env-var path either.** Also tested 2026-05-13: with HOME=tempdir + env var only, the CLI returns `Your organization does not have access to Claude. Please login again or contact your administrator.` That's Anthropic's seat/session binding, not a credential problem — the OAuth token is valid; the per-user device just isn't registered as a seat. Heather/Kaye/Gabriel work only because someone interactively ran `claude /login` in their HOME long ago; that registration cannot be reproduced programmatically. **The current architecture IS the terminal architecture** — symlinks + azureuser group + 0640 master + chmod cron is the supported steady state. There is no migration to finish. (No-op env-var infrastructure was left in place — `claude-bot-token-refresh.service`/`.timer`, `EnvironmentFile=-/run/claude-bot-token.env` drop-ins — as harmless scaffolding only.)
+
+**Onboarding a new bot:** create the per-user Linux account, add to `azureuser` group, create `~/.claude` as a symlink to `/home/azureuser/.claude` (`chown -h` the symlink to the new user). Done. Don't run `claude /login`. Don't copy `.credentials.json`. Don't make a real `.claude/` dir.
 
 ## When creating a new bot from scratch — read this first
 

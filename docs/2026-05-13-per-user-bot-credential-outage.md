@@ -33,21 +33,55 @@ Why mode 0600 today: the master credential gets refreshed periodically (Claude C
 - Verify with: `crontab -u azureuser -l | grep claude-cred-chmod` and `stat -c '%a' /home/azureuser/.claude/.credentials.json` (should always be 640).
 - Worst-case window between refresh and re-chmod: 60 seconds. Per-user bots may post the "Had trouble" fallback for up to a minute after a CLI token refresh, then self-heal.
 
-## Permanent fix — the RIGHT pattern is `CLAUDE_CODE_OAUTH_TOKEN`, not per-user `claude /login`
+## Permanent fix — there is no per-bot credential isolation. The current architecture IS the terminal architecture.
 
-**Important architectural lesson learned 2026-05-13:** the migration path I attempted (give every bot its own real `.claude` dir + own `.credentials.json` copy) **cannot work** without an interactive browser-based `claude /login` per user. A copy of azureuser's credential file produces `rc=0` with empty stdout — claude CLI silently fails when the credential exists but the device/session state was generated for a different account. Don't repeat this attempt.
+**Important correction added later 2026-05-13:** the env-var approach (`CLAUDE_CODE_OAUTH_TOKEN`) I initially recommended **also doesn't work**, because Anthropic enforces seat/session binding per device on the MSO Claude Pro plan. End-to-end verified: with `HOME=tempdir` + `CLAUDE_CODE_OAUTH_TOKEN` env var (no `.credentials.json`), the CLI returns:
 
-**If genuine per-bot isolation becomes a requirement** (e.g., for audit reasons): use the `CLAUDE_CODE_OAUTH_TOKEN` environment variable. The Claude CLI honors it directly — no `.credentials.json` needed, no interactive flow, no token-rotation race. Each bot's systemd service can reference an env var sourced from a long-lived `sk-ant-oat01-...` token in Key Vault, made readable per-bot via per-bot Key Vault Secrets User roles:
+> `Your organization does not have access to Claude. Please login again or contact your administrator.`
 
-```ini
-# in /etc/systemd/system/<bot>-responder.service.d/oauth-token.conf
-[Service]
-Environment=CLAUDE_CODE_OAUTH_TOKEN=$(<read-token-from-keyvault-or-file>)
-```
+That's not a credential-validity problem. The OAuth token is valid. What fails is that Anthropic doesn't recognize the per-user account as a registered device on the org's seat allocation. There is no API path that bypasses this — env var, file copy, mounted token, all return the same error.
 
-This is the pattern the PACS pipeline uses (`reference_pacs_watchdog_pipeline.md` in user memory). It's the right pattern.
+**Heather/Kaye/Gabriel work only because someone ran `claude /login` interactively in their `HOME` months ago and that flow registered their per-user device with Anthropic.** That registration cannot be reproduced programmatically — it's a browser OAuth flow per user. So they're an artifact of past manual work, not a template for future bots.
 
-**Bottom line:** the shared-credential-via-symlink model + the per-minute chmod cron is the steady state for the 16. If isolation becomes a hard requirement later, switch to `CLAUDE_CODE_OAUTH_TOKEN` — NOT to per-user `.claude/` with copied credentials.
+**Ways to actually finish the migration (only manual options):**
+- 16 interactive `claude /login` flows, one per Linux user, at a real machine with a browser — manageable if scheduled, not automatable
+- 16 separate Claude Pro accounts (cost + management overhead)
+- Anthropic Enterprise seat block (architectural change, may or may not relax this)
+
+**None of these will be done from this bot session.** The current architecture is the terminal architecture for these bots.
+
+## The actual terminal architecture (no future migration to expect)
+
+For all 16 not-yet-isolated bots (afrah, aixa, alejandro, ashley, axel, cameron, david, emily, jesusr, jose, lia, neil, neilc, rosi, stephanie, zahid):
+
+1. Per-user Linux account exists (OS-level isolation: filesystem, process)
+2. `~/.claude` is a symlink to `/home/azureuser/.claude` (shared credential dir)
+3. Per-user account is in the `azureuser` group
+4. Master credential `/home/azureuser/.claude/.credentials.json` is mode `0640 azureuser:azureuser`
+5. Per-minute cron (`* * * * * /home/azureuser/.claude-cred-chmod.sh`) heals mode drift caused by Claude CLI token refresh
+
+This is the supported configuration. Don't try to migrate it further with code.
+
+## Env-var infrastructure (no-op safety net, left in place)
+
+On 2026-05-13 the env-var path was wired up for all 44 bot+responder services as a side effect of testing whether the migration could work:
+
+- Shared `claude-oauth-token` secret in Key Vault
+- `claude-bot-token-refresh.service` + `.timer` that writes `/run/claude-bot-token.env`
+- `EnvironmentFile=-/run/claude-bot-token.env` drop-in on every bot/responder unit (the `-` prefix makes it optional)
+
+This is **harmless and unused** — the CLI ignores the env var because the on-disk `.credentials.json` is present and takes precedence, and even if you removed the credential file the CLI would hit the Anthropic seat-binding error described above. It's left in place because (a) it costs nothing, (b) it's useful scaffolding if Anthropic ever changes the seat model. Don't tear it down expecting a benefit. Don't add new EnvironmentFile drop-ins expecting a benefit.
+
+## Onboarding pattern for new bots
+
+When adding a new bot (new per-user Linux account):
+
+1. Create the per-user Linux account
+2. Add the user to the `azureuser` group: `gpasswd -a <user> azureuser`
+3. Create `/home/<user>/.claude` as a symlink to `/home/azureuser/.claude`: `ln -s /home/azureuser/.claude /home/<user>/.claude && chown -h <user>:<user> /home/<user>/.claude`
+4. Ensure master credential mode is `0640` — the cron handles drift, but verify once
+
+That's the whole pattern. Do **not** run `claude /login` as the new user, do **not** copy `.credentials.json`, do **not** create a real `.claude/` directory. Just the symlink + group membership.
 
 ## Preserved data from failed migration attempts
 
