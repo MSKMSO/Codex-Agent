@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "=== aixa-responder grep for LLM call ===\n=== aixa-responder lines 1-40 (imports + constants) ===\n=== aixa-responder grep for log/err path ===\n=== aixa bot dir contents ===\n===END===",
+  "stderr": ""
+}
