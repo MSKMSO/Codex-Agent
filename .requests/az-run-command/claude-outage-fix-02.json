@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "set +e\necho '=== current master credential ownership (RECOVERY-CRITICAL) ==='\nstat -c '%a %U:%G %n' /home/azureuser/.claude/.credentials.json 2>&1\necho '=== restore master to azureuser:azureuser ==='\nchown azureuser:azureuser /home/azureuser/.claude/.credentials.json 2>&1\nchmod 600 /home/azureuser/.claude/.credentials.json 2>&1\nstat -c '%a %U:%G %n' /home/azureuser/.claude/.credentials.json 2>&1\necho '=== test mskai (azureuser) still works ==='\nsudo -u azureuser bash -c 'echo hi | timeout 25 /home/azureuser/.npm-global/bin/claude -p --model claude-opus-4-7 --max-turns 1 --output-format text 2>&1' | head -8\necho '=== which per-user .credentials.json files are SYMLINKS vs real ==='\nfor u in afrah aixa alejandro ashley axel cameron david emily gabriel heather jesusr jose kaye lia neil neilc rosi stephanie zahid; do\n  f=/home/$u/.claude/.credentials.json\n  if [ -L \"$f\" ]; then echo \"$u SYMLINK -> $(readlink \"$f\")\"; elif [ -f \"$f\" ]; then echo \"$u realfile $(stat -c '%U:%G' \"$f\")\"; else echo \"$u MISSING\"; fi\ndone\necho '===END==='\n"
+}
