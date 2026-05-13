@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "set +e\necho '=== confirm current mode/owner of master ==='\nstat -c '%a %U:%G %n' /home/azureuser/.claude/.credentials.json 2>&1\necho '=== xattrs / special flags ==='\nlsattr /home/azureuser/.claude/.credentials.json 2>&1\ngetfattr -d -m - /home/azureuser/.claude/.credentials.json 2>&1\necho '=== control test: fresh test file group-readable ==='\nT=/home/azureuser/.claude/test-perm-$$\necho secret-content > \"$T\"\nchown azureuser:azureuser \"$T\"\nchmod 0640 \"$T\"\nls -l \"$T\"\necho '--- aixa read of fresh test file ---'\nrunuser -u aixa -- head -c 30 \"$T\" 2>&1\necho\nrm -f \"$T\"\necho '=== control test 2: put fresh file in aixa home, group azureuser ==='\nT2=/home/aixa/test-perm-$$\necho secret > \"$T2\"\nchown azureuser:azureuser \"$T2\"; chmod 0640 \"$T2\"\nls -l \"$T2\"\nrunuser -u aixa -- head -c 30 \"$T2\" 2>&1\necho\nrm -f \"$T2\"\necho '=== /home/azureuser/.claude perms ==='\nstat -c '%a %U:%G %n' /home/azureuser /home/azureuser/.claude 2>&1\necho '===END==='\n"
+}
