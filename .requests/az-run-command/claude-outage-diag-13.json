@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "set +e\necho '=== aixa user exists? ==='\nid aixa 2>&1\ngetent passwd aixa 2>&1\necho '=== chown aixa test (verbose) ==='\nchown -Rv aixa:aixa /home/aixa/.claude 2>&1 | head -8\nstat -c '%U:%G %n' /home/aixa/.claude/.credentials.json 2>&1\necho '=== /home/azureuser permissions ==='\nstat -c '%a %U:%G %n' /home/azureuser /home/azureuser/.npm-global /home/azureuser/.npm-global/bin /home/azureuser/.npm-global/bin/claude 2>&1\necho '=== test claude readable by aixa ==='\nsudo -u aixa test -r /home/azureuser/.npm-global/bin/claude && echo readable || echo NOT-readable\nsudo -u aixa test -x /home/azureuser/.npm-global/bin/claude && echo executable || echo NOT-executable\necho '=== aixa journalctl (last 30 lines) ==='\njournalctl -u aixa-responder.service --since '60 min ago' --no-pager 2>&1 | tail -30\necho '===END==='\n"
+}
