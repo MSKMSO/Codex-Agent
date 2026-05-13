@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "=== aixa: stat + read cred now (master is 0640 azureuser:azureuser, aixa in group) ===\n  File: /home/aixa/.claude/.credentials.json\n  Size: 470       \tBlocks: 8          IO Block: 4096   regular file\nDevice: 8,1\tInode: 263523      Links: 1\nAccess: (0640/-rw-r-----)  Uid: ( 1000/azureuser)   Gid: ( 1000/azureuser)\nAccess: 2026-05-13 10:02:52.872607409 -0700\nModify: 2026-05-13 10:02:52.870819686 -0700\n--- read attempt ---\n{\"claudeAiOauth\":{\"accessToken\":\"sk-ant-oat01-vHWx\n=== aixa: live claude CLI test with full output capture ===\nrc=0\n--stdout--\n\n--stderr--\n=== aixa /home/aixa/.claude perms ===\n750 aixa:aixa /home/aixa\n777 aixa:aixa /home/aixa/.claude\n640 azureuser:azureuser /home/aixa/.claude/.credentials.json\n===END===",
+  "stderr": ""
+}
