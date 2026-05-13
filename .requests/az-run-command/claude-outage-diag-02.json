@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "set +e\necho '=== find claude binary ==='\nfind /home /usr/local /opt /root -maxdepth 6 -name claude -type f 2>/dev/null | head -20\nfind /home /usr/local /opt /root -maxdepth 6 -name claude -type l 2>/dev/null | head -20\necho '=== which claude as azureuser via login shell ==='\nsudo -u azureuser -i bash -c 'which claude; echo PATH=$PATH' 2>&1 | head -10\necho '=== which claude as azureuser non-login ==='\nsudo -u azureuser bash -c 'which claude; echo PATH=$PATH' 2>&1 | head -10\necho '=== claude reference in mskai-responder (args list build) ==='\ngrep -n -B2 -A2 'claude' /home/azureuser/mskai-responder.py 2>/dev/null | head -60\necho '=== systemd unit exec line + env for mskai-responder ==='\nsystemctl cat mskai-responder.service 2>/dev/null | head -40\necho '=== mskai responder err log discovery ==='\nls -la /home/azureuser/.mskai-bot/ 2>/dev/null\necho '===END==='\n"
+}
