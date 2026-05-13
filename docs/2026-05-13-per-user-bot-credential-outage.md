@@ -24,7 +24,10 @@ Why mode 0600 today: the master credential gets refreshed periodically (Claude C
 
 ## The fragile reality right now
 
-- **Next time `/home/azureuser/.claude/.credentials.json` gets refreshed by Claude CLI, mode will drop to 0600 and the 16 bots will break again.** This is the recurring failure mode. Until the per-user migration is finished, plan on someone applying `chmod 0640 /home/azureuser/.claude/.credentials.json` every time tokens refresh.
+- The Claude CLI rewrites `/home/azureuser/.claude/.credentials.json` at mode 0600 when it refreshes the OAuth token. That would normally break the 16 per-user bots each time it happens.
+- **A systemd timer (`claude-creds-maint.timer`) installed 2026-05-13 11:02 PDT re-normalizes the credential file + parent dirs every 5 minutes.** Implementation: `/usr/local/sbin/maintain-claude-creds.sh`. It ensures `/home/azureuser` is `0750 azureuser:azureuser`, `/home/azureuser/.claude` is `0750 azureuser:azureuser`, and `.credentials.json` is `0640 azureuser:azureuser`. Logs to syslog under tag `claude-creds-maint` when it actually changes anything (idempotent — only acts on drift).
+- Verify with: `systemctl list-timers claude-creds-maint.timer` and `journalctl -t claude-creds-maint --since '1 hour ago'`.
+- Worst-case window between refresh and timer fix: ~5 minutes, during which per-user bots will post the "Had trouble" fallback. Acceptable while the proper migration is pending.
 
 ## Permanent fix (per-user migration the right way)
 

@@ -32,7 +32,9 @@ If the user says Claude (mskai, the "main Claude Agent without a user name") is 
 
 ## When per-user bots return "Had trouble generating a reply" — read this first
 
-If the 16 per-user Claude bots (Aixa/Alejandro/Ashley/Axel/Cameron/David/Emily/Jesus/Jose/Lia/Neil/Neil-Claude/Rosi/Stephanie/Zahid/Afrah) all post the **"Had trouble generating a reply"** fallback while mskai/yooai are fine, the symptom is almost always: `/home/azureuser/.claude/.credentials.json` was refreshed by Claude CLI and dropped to mode 0600, blocking per-user accounts (who only have group-read via the `azureuser` group through the symlinked `.claude`). **Read [`docs/2026-05-13-per-user-bot-credential-outage.md`](docs/2026-05-13-per-user-bot-credential-outage.md) before touching anything.** The one-line fix is:
+If the 16 per-user Claude bots (Aixa/Alejandro/Ashley/Axel/Cameron/David/Emily/Jesus/Jose/Lia/Neil/Neil-Claude/Rosi/Stephanie/Zahid/Afrah) all post the **"Had trouble generating a reply"** fallback while mskai/yooai are fine, the symptom is almost always: `/home/azureuser/.claude/.credentials.json` was refreshed by Claude CLI and dropped to mode 0600, blocking per-user accounts (who only have group-read via the `azureuser` group through the symlinked `.claude`). **Read [`docs/2026-05-13-per-user-bot-credential-outage.md`](docs/2026-05-13-per-user-bot-credential-outage.md) before touching anything.**
+
+A systemd timer (`claude-creds-maint.timer`) auto-re-normalizes the credential mode every 5 min, so the symptom should self-heal within that window. If it's persistent, first check `systemctl list-timers claude-creds-maint.timer` and `journalctl -t claude-creds-maint --since '1 hour ago'`. Manual one-line fix if the timer is missing or broken:
 
 ```bash
 chmod 0640 /home/azureuser/.claude/.credentials.json
