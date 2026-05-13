@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "=== state checks ===\n/home/azureuser: 711 azureuser:azureuser\naixa cred: 600 aixa:aixa inode=3216190\n=== mimic responder: claude as aixa with --dangerously-skip-permissions + stdin prompt + 120s ===\nrc=0\n--stdout (first 500)--\n\n--stderr (first 500)--\n=== check aixa debug.log to see what real responder call output ===\n===END===",
+  "stderr": ""
+}
