@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "set +e\necho '=== mskai-responder.py lines 870-935 (worker pool) ==='; sed -n '870,935p' /home/azureuser/mskai-responder.py 2>/dev/null\necho '=== mskai-responder.py lines 800-870 (handle_activity caller) ==='; sed -n '800,870p' /home/azureuser/mskai-responder.py 2>/dev/null\necho '=== mskai-responder.py grep handle_activity definitions ==='; grep -n 'def handle_activity\\|def main\\|def loop\\|workers\\[' /home/azureuser/mskai-responder.py 2>/dev/null\necho '=== END ==='\n"
+}
