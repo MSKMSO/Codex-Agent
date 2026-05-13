@@ -30,6 +30,16 @@ This applies whenever a sibling bot is acting up. Don't guess; diff.
 
 If the user says Claude (mskai, the "main Claude Agent without a user name") is replying in the wrong chat, **read [`docs/2026-05-13-mskai-wrong-chat-non-incident.md`](docs/2026-05-13-mskai-wrong-chat-non-incident.md) before reading any responder code.** The 2026-05-13 investigation looked at every code path and the full inbound/outbound log (1,469 in, 681 out, 48 chats including DMs) and found **zero misroutes**. Re-run the log comparison first (the query is at `.requests/az-run-command/claude-routing-diag-20.json`); if still zero, the cause is almost certainly a Teams client display artifact, not the bot. Don't edit the responder for this symptom without a concrete repro (chat-asked, chat-replied, timestamp).
 
+## When per-user bots return "Had trouble generating a reply" — read this first
+
+If the 16 per-user Claude bots (Aixa/Alejandro/Ashley/Axel/Cameron/David/Emily/Jesus/Jose/Lia/Neil/Neil-Claude/Rosi/Stephanie/Zahid/Afrah) all post the **"Had trouble generating a reply"** fallback while mskai/yooai are fine, the symptom is almost always: `/home/azureuser/.claude/.credentials.json` was refreshed by Claude CLI and dropped to mode 0600, blocking per-user accounts (who only have group-read via the `azureuser` group through the symlinked `.claude`). **Read [`docs/2026-05-13-per-user-bot-credential-outage.md`](docs/2026-05-13-per-user-bot-credential-outage.md) before touching anything.** The one-line fix is:
+
+```bash
+chmod 0640 /home/azureuser/.claude/.credentials.json
+```
+
+**Do NOT run `chown -R` on any per-user `.claude` directory.** Those are symlinks back to `/home/azureuser/.claude`. Recursion will follow the symlinks and corrupt the master credential, breaking mskai. The proper per-user-isolation migration requires an interactive `claude /login` per account — it cannot be done over run-command, and the 16 are still on the shared-credential model.
+
 ## When creating a new bot from scratch — read this first
 
 Dr. Yoo's "build a new bot for <user>" request is the highest-leverage moment to follow the playbook exactly. **Read [`docs/bot-creation-end-to-end.md`](docs/bot-creation-end-to-end.md) start to finish before doing ANY work.** It has six phases (Preflight, Entra+BotService, VM service files, Teams catalog publish, Install, Health check), each with mandatory verify gates.
