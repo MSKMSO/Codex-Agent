@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "=== live claude as aixa with real prompt + captured output ===\nrc=126\n--stdout--\n\n--stderr--\ntimeout: failed to run command ‘/home/azureuser/.npm-global/bin/claude’: Permission denied\n=== outbound texts: most recent for each per-user (look for post-migration replies) ===\n  afrah: 2026-05-13T09:25:16 ⚠️ *Had trouble generating a reply — please retry in a moment.*\n  aixa: 2026-05-07T16:07:12 Per the AVD connection log, your only session today started at **9:27 AM PDT** o\n  alejandro: 2026-05-13T10:22:30 **Update on your open reminders:**  - **Stephanie** — add her to the **MSO time \n  axel: 2026-05-13T08:50:48 ⚠️ *Had trouble generating a reply — please retry in a moment.*\n  cameron: 2026-05-13T10:15:23 I can't pull NIPPINS, CHRISTINE's chart from eCW right now — the persistent brow\n  emily: 2026-05-13T08:47:21 ⚠️ *Had trouble generating a reply — please retry in a moment.*\n  rosi: 2026-05-13T09:37:59 ⚠️ *Had trouble generating a reply — please retry in a moment.*\n  stephanie: 2026-05-13T10:33:15 ⚠️ *Had trouble generating a reply — please retry in a moment.*\n===END===",
+  "stderr": ""
+}
