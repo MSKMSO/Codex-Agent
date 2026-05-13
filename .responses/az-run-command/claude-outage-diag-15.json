@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "=== chain perms: /home -> /home/aixa -> /.claude -> /file ===\n755 root:root /home\n750 aixa:aixa /home/aixa\n777 aixa:aixa /home/aixa/.claude\n600 aixa:aixa /home/aixa/.claude/.credentials.json\n=== ACLs on aixa creds ===\n/var/lib/waagent/run-command/download/4280/script.sh: 5: getfacl: not found\n=== compare heather (working) ===\n750 heather:heather /home/heather\n755 heather:heather /home/heather/.claude\n600 heather:heather /home/heather/.claude/.credentials.json\n/var/lib/waagent/run-command/download/4280/script.sh: 8: getfacl: not found\n=== sudo -u aixa stat its own file ===\nstat: cannot statx '/home/aixa/.claude/.credentials.json': Permission denied\n===END===",
+  "stderr": ""
+}
