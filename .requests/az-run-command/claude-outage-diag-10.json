@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "set +e\necho '=== /home/azureuser top-level: bots + responders ==='\nls /home/azureuser/ 2>&1 | grep -E '(bot|responder|send-to)' | head -40\necho '=== /home/azureuser/.*-bot dirs ==='\nls -d /home/azureuser/.*-bot 2>/dev/null\necho '=== running services right now ==='\nsystemctl list-units --type=service --state=running --no-legend --no-pager 2>&1 | grep -E '(bot|responder)\\.service' | head -50\necho '=== aixa specifically ==='\nls -la /home/azureuser/aixa* 2>&1\nls -la /home/azureuser/.aixa* 2>&1\necho '=== last 3 lines mskai outbound just to confirm proxy works ==='\ntail -3 /home/azureuser/.mskai-bot/outbound.jsonl 2>&1 | head -3\necho '===END==='\n"
+}
