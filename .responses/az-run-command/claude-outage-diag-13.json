@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "=== aixa user exists? ===\nuid=1008(aixa) gid=1008(aixa) groups=1008(aixa),1000(azureuser)\naixa:x:1008:1008::/home/aixa:/bin/bash\n=== chown aixa test (verbose) ===\nownership of '/home/aixa/.claude' retained as aixa:aixa\nazureuser:azureuser /home/aixa/.claude/.credentials.json\n=== /home/azureuser permissions ===\n750 azureuser:azureuser /home/azureuser\n775 azureuser:azureuser /home/azureuser/.npm-global\n775 azureuser:azureuser /home/azureuser/.npm-global/bin\n777 azureuser:azureuser /home/azureuser/.npm-global/bin/claude\n=== test claude readable by aixa ===\nreadable\nexecutable\n=== aixa journalctl (last 30 lines) ===\n-- No entries --\n===END===",
+  "stderr": ""
+}
