@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "set +e\necho '=== /home dirs ==='\nls -1 /home/ 2>&1\necho '=== systemd User= for every bot/responder service ==='\nfor u in $(systemctl list-units --type=service --state=running --no-legend --no-pager 2>&1 | awk '{print $1}' | grep -E '(bot|responder)\\.service'); do\n  user=$(systemctl show -p User --value \"$u\" 2>/dev/null)\n  echo \"$u user=$user\"\ndone\necho '=== per-user .claude/.credentials.json mtimes ==='\nls -la /home/*/.claude/.credentials.json 2>/dev/null\necho '=== per-user errors.log (most recent) ==='\nls -lt /home/*/.* -d 2>/dev/null | head -1\nfind /home -maxdepth 4 -name 'responder-errors.log' -mtime -2 2>/dev/null | head -20\necho '===END==='\n"
+}
