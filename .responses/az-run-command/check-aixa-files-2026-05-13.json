@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "=== current aixa-bot unit ExecStart ===\n{ path=/usr/bin/python3 ; argv[]=/usr/bin/python3 /home/aixa/aixa-bot.py ; ignore_errors=no ; start_time=[Tue 2026-05-12 22:09:08 PDT] ; stop_time=[n/a] ; pid=233456 ; code=(null) ; status=0/0 }\n\n=== aixa-bot process state ===\n233456\nsuccess\nactive\nrunning\n\n=== recent journal ===\nMay 12 18:06:06 openclaw-vm systemd[1]: aixa-bot.service: Deactivated successfully.\nMay 12 18:06:06 openclaw-vm systemd[1]: Stopped aixa-bot.service - Aixa Medina Claude Bot Endpoint.\nMay 12 18:06:06 openclaw-vm systemd[1]: aixa-bot.service: Consumed 56.156s CPU time, 24.0M memory peak, 0B memory swap peak.\n-- Boot 3b0658158f9244a78ea00131599eeb35 --\nMay 12 18:21:38 openclaw-vm systemd[1]: Started aixa-bot.service - Aixa Medina Claude Bot Endpoint.\nMay 12 22:09:07 openclaw-vm systemd[1]: Stopping aixa-bot.service - Aixa Medina Claude Bot Endpoint...\nMay 12 22:09:07 openclaw-vm systemd[1]: aixa-bot.service: Deactivated successfully.\nMay 12 22:09:07 openclaw-vm systemd[1]: Stopped aixa-bot.service - Aixa Medina Claude Bot Endpoint.\nMay 12 22:09:07 openclaw-vm systemd[1]: aixa-bot.service: Consumed 1.338s CPU time.\nMay 12 22:09:08 openclaw-vm systemd[1]: Started aixa-bot.service - aixa-bot (per-user Linux account: aixa).\n\n=== where do aixa files actually live ===\n/home/aixa/aixa-responder.py\n/home/aixa/aixa-bot.py",
+  "stderr": ""
+}
