@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "--- aixa\n378:    if frm.get(\"aadObjectId\", \"\") not in (USER_AAD_ID, YOO_AAD_ID): return False\n--- ashley\n377:    if frm.get(\"aadObjectId\", \"\") not in (USER_AAD_ID, YOO_AAD_ID): return False\n--- cameron\n377:    if frm.get(\"aadObjectId\", \"\") not in (USER_AAD_ID, YOO_AAD_ID): return False\n--- david\n343:    if frm.get(\"aadObjectId\", \"\") != DAVID_AAD_ID:\n--- emily-claude\n377:    if frm.get(\"aadObjectId\", \"\") not in (USER_AAD_ID, YOO_AAD_ID): return False\n--- gabriel\n576:    if frm.get(\"aadObjectId\", \"\") == GABRIEL_AAD_ID:\n627:    if frm.get(\"aadObjectId\", \"\") != GABRIEL_AAD_ID:\n--- jesus-reyes\n377:    if frm.get(\"aadObjectId\", \"\") not in (USER_AAD_ID, YOO_AAD_ID): return False\n--- neil\n332:            \"--aad-object-id\", (body.get(\"from\") or {}).get(\"aadObjectId\") or NEIL_AAD_ID,\n433:    if frm.get(\"aadObjectId\", \"\") != NEIL_AAD_ID:\n--- neil-claude\n377:    if frm.get(\"aadObjectId\", \"\") not in (USER_AAD_ID, YOO_AAD_ID): return False\n--- rosi\n344:    if frm.get(\"aadObjectId\", \"\") not in (ROSI_AAD_ID, YOO_AAD_ID):\n--- stephanie-claude\n377:    if frm.get(\"aadObjectId\", \"\") not in (USER_AAD_ID, YOO_AAD_ID): return False\n--- zahid\n345:    if frm.get(\"aadObjectId\", \"\") not in (ZAHID_AAD_ID, YOO_AAD_ID):",
+  "stderr": ""
+}
