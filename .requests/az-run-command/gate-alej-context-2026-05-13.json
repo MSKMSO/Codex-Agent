@@ -1,0 +1,1 @@
+{"vm":"openclaw-vm","rg":"SDNeurosurgery-OpenClaw","script":"echo === alejandro lines 380-410 ===; sudo sed -n '380,410p' /home/alejandro/alejandro-responder.py 2>/dev/null"}
