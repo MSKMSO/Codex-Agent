@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "#!/bin/bash\nset +e\necho '=== claude as aixa, 90s timeout, real prompt ==='\nrunuser -u aixa -- bash -c 'echo \"What is 2+2? Answer with just the number.\" | timeout 90 /home/azureuser/.npm-global/bin/claude -p --model claude-opus-4-7 --max-turns 1 --output-format text 2>&1' | head -10\necho '=== same for alejandro ==='\nrunuser -u alejandro -- bash -c 'echo \"What is 2+2? Answer with just the number.\" | timeout 90 /home/azureuser/.npm-global/bin/claude -p --model claude-opus-4-7 --max-turns 1 --output-format text 2>&1' | head -10\necho '=== same for rosi (most recently active) ==='\nrunuser -u rosi -- bash -c 'echo \"What is 2+2? Answer with just the number.\" | timeout 90 /home/azureuser/.npm-global/bin/claude -p --model claude-opus-4-7 --max-turns 1 --output-format text 2>&1' | head -10\necho '=== same for mskai ==='\nrunuser -u azureuser -- bash -c 'echo \"What is 2+2? Answer with just the number.\" | timeout 90 /home/azureuser/.npm-global/bin/claude -p --model claude-opus-4-7 --max-turns 1 --output-format text 2>&1' | head -10\necho '===END==='\n"
+}
