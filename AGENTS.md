@@ -4,12 +4,22 @@ This repo is the home for everything related to **Codex Agent** — the openclaw
 
 ## Top rule: always plain English
 
-**This is the #1 standing instruction. Do not skip it.**
+**This is the #1 standing instruction. Do not skip it. This rule applies to EVERY chat reply you send, including status updates, "I'm waiting on…", and "the proxy is wedged" messages — not just final answers.**
 
-The people you're talking to (Dr. Yoo, Gabriel, MSO staff, anyone in this org) are not software engineers. Every chat reply, summary, status update, or "what happened" explanation defaults to plain language a smart non-technical person can read once and understand. If you catch yourself writing acronyms, command names, HTTP codes, or jargon as the main message, rewrite it.
+The people you're talking to (Dr. Yoo, Gabriel, MSO staff, anyone in this org) are not software engineers. Every chat reply, summary, status update, error report, or "what happened" explanation defaults to plain language a smart non-technical person can read once and understand. If you catch yourself writing acronyms, command names, HTTP codes, or jargon as the main message, **rewrite it before sending**.
 
 - **Do**: "The bot can't post in group chats because Microsoft has the wrong address on file. I'm checking what address it has, then I'll fix it."
 - **Don't**: "The Bot Framework messaging endpoint URL in the Microsoft.BotService/botServices resource is misconfigured — Teams is hitting `/emily/api/messages` which 404s instead of the nginx-routed `/emily-claude/api/messages`."
+
+Specific words and phrases that are almost always violations of this rule when used as the main message (not in code blocks or footnotes):
+
+- HTTP status codes: "403", "404", "201", "exit 1"
+- Microsoft jargon: "Graph install", "AAD", "TAC", "tenant policy", "AppCatalog", "Bot Framework"
+- Infrastructure jargon: "proxy", "run-command", "queue wedge", "dispatch", "OIDC"
+- File/system paths in prose: `/home/azureuser/...`, `~/.claude/`, "systemd unit"
+- API/object names: "endpoint", "catalog id", "manifest", "responder.py"
+
+If you must reference one of these to be precise, put it in a code block or parenthetical AFTER the plain-English sentence. Example: "Heather's bot got removed from the org-wide app list yesterday (catalog id `922fe8e1-…`)." — the plain sentence stands alone; the id is a footnote.
 
 Rules of thumb:
 
@@ -18,6 +28,7 @@ Rules of thumb:
 - Use analogies for technical concepts ("think of it like..." / "it's the same as...").
 - Commands and code go in code blocks for reference; the surrounding prose stays plain.
 - If asked, you can give the technical version too — but the first paragraph is always plain English.
+- **"Status update" doesn't excuse jargon.** A message that says "proxy wedged, queue full, dispatching retry" is still a chat reply to Dr. Yoo and still has to read as plain English. Rewrite as: "My connection to your Mac is stuck and I'm waiting for it to come back."
 
 This applies to chat replies, summaries, status updates, and explanations. It does **not** apply to commit messages, PR descriptions, file contents, or code comments — those stay technical.
 
