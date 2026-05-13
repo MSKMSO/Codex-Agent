@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "set +e\necho '=== last 15 RC entries in debug.log ==='\ngrep -E '^RC:' /home/azureuser/.mskai-bot/responder-debug.log 2>/dev/null | tail -15\necho '=== last 30 lines around recent claude session in debug.log ==='\ntail -200 /home/azureuser/.mskai-bot/responder-debug.log 2>/dev/null | grep -B1 -A8 '(claude)' | tail -80\necho '=== last 30 errors ==='\ntail -30 /home/azureuser/.mskai-bot/responder-errors.log 2>/dev/null\necho '=== try claude binary directly with absolute path ==='\nsudo -u azureuser bash -c 'echo hi | /home/azureuser/.npm-global/bin/claude -p --model claude-opus-4-7 --max-turns 1 --output-format text 2>&1' | head -40\necho '=== claude binary version + creds check ==='\nsudo -u azureuser bash -c '/home/azureuser/.npm-global/bin/claude --version 2>&1; ls -la /home/azureuser/.claude/.credentials.json 2>&1 | head -3' 2>&1 | head -10\necho '===END==='\n"
+}
