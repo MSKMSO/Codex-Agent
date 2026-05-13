@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "set +e\necho '=== AppArmor status ==='\naa-status 2>&1 | head -15\necho '=== SELinux status ==='\ngetenforce 2>&1\nsestatus 2>&1 | head -5\necho '=== denied audit log entries last 30min ==='\ndmesg 2>&1 | grep -iE 'denied|apparmor|selinux' | tail -10\njournalctl --since '30 min ago' --no-pager 2>&1 | grep -iE 'apparmor.*DENIED|audit.*denied' | tail -10\necho '=== mount info around /home ==='\nmount 2>&1 | grep -E '/home|/$' | head -5\nfindmnt /home/aixa 2>&1 | head -5\necho '=== real path + inode ==='\nls -laiH /home/aixa/.claude/.credentials.json 2>&1\nreadlink -f /home/aixa/.claude/.credentials.json 2>&1\necho '=== try as aixa using exec sequence + show errno ==='\nrunuser -u aixa -- python3 -c \"import os,errno; \\ntry:\\n  with open('/home/aixa/.claude/.credentials.json') as f: print('READ-OK:', f.read()[:60])\\nexcept OSError as e: print('errno=%d (%s) msg=%s' % (e.errno, errno.errorcode.get(e.errno,'?'), e.strerror))\" 2>&1 | head -8\necho '===END==='\n"
+}
