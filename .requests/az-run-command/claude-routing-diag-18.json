@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "set +e\necho '=== last 6 inbound: ts | chat_id | text ==='\ntail -6 /home/azureuser/.mskai-bot/activities.jsonl 2>/dev/null | jq -r 'try (.body|fromjson) as $b | \"\\(.ts) | \\($b.conversation.id // \"-\") | \\(($b.text // \"\")[:80])\" catch \"parse-err\"' 2>&1\necho '=== last 6 outbound: ts | chat_id | text ==='\ntail -6 /home/azureuser/.mskai-bot/outbound.jsonl 2>/dev/null | jq -r '\"\\(.ts) | \\(.chat_id) | \\((.text // \"\")[:80])\"' 2>&1\necho '===END==='\n"
+}
