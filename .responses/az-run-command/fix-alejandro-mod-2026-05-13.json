@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "=== find bot_framework_auth ===\n/home/azureuser/__pycache__/bot_framework_auth.cpython-312.pyc\n/home/azureuser/bot_framework_auth.py\n/home/kaye/__pycache__/bot_framework_auth.cpython-312.pyc\n/home/kaye/bot_framework_auth.py\n/home/heather/__pycache__/bot_framework_auth.cpython-312.pyc\n/home/heather/bot_framework_auth.py\n=== other bot imports ===\n--- heather\nfrom bot_framework_auth import verify_jwt\n--- afrah\nfrom bot_framework_auth import verify_jwt\n--- jose\nfrom bot_framework_auth import verify_jwt\n--- axel\nfrom bot_framework_auth import verify_jwt\n--- lia\nfrom bot_framework_auth import verify_jwt\n--- david\nfrom bot_framework_auth import verify_jwt\n--- cameron\nfrom bot_framework_auth import verify_jwt\n=== try linking ===\nlinked\n=== after restart ===\nbot=active\nMay 13 05:35:29 openclaw-vm python3[689325]: ModuleNotFoundError: No module named 'bot_framework_auth'\nMay 13 05:35:29 openclaw-vm systemd[1]: alejandro-bot.service: Main process exited, code=exited, status=1/FAILURE\nMay 13 05:35:29 openclaw-vm systemd[1]: alejandro-bot.service: Failed with result 'exit-code'.\nMay 13 05:35:31 openclaw-vm systemd[1]: Stopped alejandro-bot.service - alejandro-bot (per-user Linux account: alejandro).\nMay 13 05:35:31 openclaw-vm systemd[1]: Started alejandro-bot.service - alejandro-bot (per-user Linux account: alejandro).",
+  "stderr": ""
+}
