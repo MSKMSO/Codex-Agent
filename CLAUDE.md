@@ -26,6 +26,10 @@ If the user's question is about Emily / Neil / Stephanie / Aixa / Zahid / David 
 
 This applies whenever a sibling bot is acting up. Don't guess; diff.
 
+## When a user reports "wrong chat" on Claude AI Agent / mskai — read this first
+
+If the user says Claude (mskai, the "main Claude Agent without a user name") is replying in the wrong chat, **read [`docs/2026-05-13-mskai-wrong-chat-non-incident.md`](docs/2026-05-13-mskai-wrong-chat-non-incident.md) before reading any responder code.** The 2026-05-13 investigation looked at every code path and the full inbound/outbound log (1,469 in, 681 out, 48 chats including DMs) and found **zero misroutes**. Re-run the log comparison first (the query is at `.requests/az-run-command/claude-routing-diag-20.json`); if still zero, the cause is almost certainly a Teams client display artifact, not the bot. Don't edit the responder for this symptom without a concrete repro (chat-asked, chat-replied, timestamp).
+
 ## When creating a new bot from scratch — read this first
 
 Dr. Yoo's "build a new bot for <user>" request is the highest-leverage moment to follow the playbook exactly. **Read [`docs/bot-creation-end-to-end.md`](docs/bot-creation-end-to-end.md) start to finish before doing ANY work.** It has six phases (Preflight, Entra+BotService, VM service files, Teams catalog publish, Install, Health check), each with mandatory verify gates.
