@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "=== faithful claude call as aixa: with --append-system-prompt ===\nrc=0\n--stdout--\n\n--stderr--\n=== heather (known-good per-user) same call ===\nrc=0\n--stdout--\n4\n\n--stderr--\n=== mskai (known-good azureuser) same call ===\nrc=0\n--stdout--\n4\n\n--stderr--\n===END===",
+  "stderr": ""
+}
