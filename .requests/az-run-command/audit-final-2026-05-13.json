@@ -1,0 +1,1 @@
+{"vm":"openclaw-vm","rg":"SDNeurosurgery-OpenClaw","script":"for s in aixa ashley cameron david emily-claude gabriel jesus-reyes neil neil-claude rosi stephanie-claude zahid heather afrah jose axel lia; do U=$(systemctl show ${s}-bot.service -p User --value 2>/dev/null); A=$(systemctl is-active ${s}-bot.service 2>/dev/null); echo \"  ${s}: user=${U:-?} bot=${A:-?}\"; done"}
