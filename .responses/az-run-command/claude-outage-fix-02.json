@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "=== current master credential ownership (RECOVERY-CRITICAL) ===\n600 aixa:aixa /home/azureuser/.claude/.credentials.json\n=== restore master to azureuser:azureuser ===\n600 azureuser:azureuser /home/azureuser/.claude/.credentials.json\n=== test mskai (azureuser) still works ===\n=== which per-user .credentials.json files are SYMLINKS vs real ===\nafrah realfile azureuser:azureuser\naixa realfile azureuser:azureuser\nalejandro realfile azureuser:azureuser\nashley realfile azureuser:azureuser\naxel realfile azureuser:azureuser\ncameron realfile azureuser:azureuser\ndavid realfile azureuser:azureuser\nemily realfile azureuser:azureuser\ngabriel realfile gabriel:gabriel\nheather realfile heather:heather\njesusr realfile azureuser:azureuser\njose realfile azureuser:azureuser\nkaye realfile kaye:kaye\nlia realfile azureuser:azureuser\nneil realfile azureuser:azureuser\nneilc realfile azureuser:azureuser\nrosi realfile azureuser:azureuser\nstephanie realfile azureuser:azureuser\nzahid realfile azureuser:azureuser\n===END===",
+  "stderr": ""
+}
