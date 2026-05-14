@@ -85,17 +85,32 @@ jobs:
             echo "$SCRIPT" > /tmp/run-cmd-script.sh
 
             set +e
-            az vm run-command invoke -g "$RG" -n "$VM" \
-              --command-id RunShellScript \
-              --scripts @/tmp/run-cmd-script.sh \
-              --query "value[0].message" -o tsv > /tmp/raw-msg.txt 2>/tmp/raw-err.txt
-            RC=$?
+            ATTEMPT=0; MAX=32
+            while : ; do
+              ATTEMPT=$((ATTEMPT+1))
+              az vm run-command invoke -g "$RG" -n "$VM" \
+                --command-id RunShellScript \
+                --scripts @/tmp/run-cmd-script.sh \
+                --query "value[0].message" -o tsv > /tmp/raw-msg.txt 2>/tmp/raw-err.txt
+              RC=$?
+              if [ $RC -ne 0 ] && grep -qi "Run command extension execution is in progress" /tmp/raw-err.txt; then
+                [ "$ATTEMPT" -ge "$MAX" ] && { echo "Conflict after $MAX tries"; break; }
+                echo "Conflict on attempt $ATTEMPT, sleeping 15s…"
+                sleep 15
+                continue
+              fi
+              break
+            done
             set -e
 
             # az's "message" field has the form:
             #   "Enable succeeded: \n[stdout]\n<stdout>\n[stderr]\n<stderr>"
             STDOUT=$(awk '/^\[stdout\]$/{flag=1; next} /^\[stderr\]$/{flag=0} flag' /tmp/raw-msg.txt)
             STDERR=$(awk '/^\[stderr\]$/{flag=1; next} flag' /tmp/raw-msg.txt)
+            # If az itself failed, surface the az error so the response isn't empty.
+            if [ $RC -ne 0 ] && [ -z "$STDOUT$STDERR" ]; then
+              STDERR=$(cat /tmp/raw-err.txt 2>/dev/null || true)
+            fi
 
             jq -n --arg stdout "$STDOUT" --arg stderr "$STDERR" --argjson rc "$RC" --arg vm "$VM" --arg rg "$RG" \
               '{vm:$vm, rg:$rg, exit_code:$rc, stdout:$stdout, stderr:$stderr}' \
