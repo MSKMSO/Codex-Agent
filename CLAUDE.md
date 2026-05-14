@@ -48,6 +48,8 @@ chmod 0640 /home/azureuser/.claude/.credentials.json
 
 **Onboarding a new bot:** create the per-user Linux account, add to `azureuser` group, create `~/.claude` as a symlink to `/home/azureuser/.claude` (`chown -h` the symlink to the new user). Done. Don't run `claude /login`. Don't copy `.credentials.json`. Don't make a real `.claude/` dir.
 
+**Critical mode for `/home/azureuser`:** must be `0711`, NOT `0750`. The 16 group-member bots traverse via group (either mode works for them), but the 3 isolated bots (heather, kaye — NOT in `azureuser` group) need world traverse-only to exec `/home/azureuser/.npm-global/bin/claude`. Setting `/home/azureuser` to `0750` silently breaks heather and kaye (gabriel still works because gabriel has dual group membership). Symptom: their bots receive inbound from Teams but never reply — `claude` exec fails with `Permission denied`, and the responder either falls back to "Had trouble generating a reply" or posts nothing.
+
 ## When creating a new bot from scratch — read this first
 
 Dr. Yoo's "build a new bot for <user>" request is the highest-leverage moment to follow the playbook exactly. **Read [`docs/bot-creation-end-to-end.md`](docs/bot-creation-end-to-end.md) start to finish before doing ANY work.** It has six phases (Preflight, Entra+BotService, VM service files, Teams catalog publish, Install, Health check), each with mandatory verify gates.

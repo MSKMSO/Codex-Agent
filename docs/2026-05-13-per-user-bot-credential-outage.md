@@ -59,8 +59,19 @@ For all 16 not-yet-isolated bots (afrah, aixa, alejandro, ashley, axel, cameron,
 3. Per-user account is in the `azureuser` group
 4. Master credential `/home/azureuser/.claude/.credentials.json` is mode `0640 azureuser:azureuser`
 5. Per-minute cron (`* * * * * /home/azureuser/.claude-cred-chmod.sh`) heals mode drift caused by Claude CLI token refresh
+6. **`/home/azureuser` must be mode `0711`** (world-traversable). NOT 0750.
 
 This is the supported configuration. Don't try to migrate it further with code.
+
+## Critical: /home/azureuser mode must be 0711, not 0750
+
+**Discovered 2026-05-14** while investigating why Kaye's bot wasn't responding. Kaye and Heather are TRULY isolated (their Linux accounts are NOT in the `azureuser` group — that's intentional). Their bots invoke the shared `claude` binary at `/home/azureuser/.npm-global/bin/claude`. With `/home/azureuser` at mode `0750 azureuser:azureuser`, only owner and group can traverse. **Kaye and Heather can't even reach the binary — their `claude` exec fails with `Permission denied`** and their responders silently post the "Had trouble" fallback (or nothing).
+
+The 16 bots in the `azureuser` group are unaffected by this mode either way (group traversal works at 0750 or 0711). Gabriel is also unaffected because Gabriel is in `azureuser` group despite having his own credential (partial isolation).
+
+**Fix:** `chmod 0711 /home/azureuser`. Owner keeps rwx, group keeps r-x for backward compatibility, world gets x-only (traverse, no listing, no reading). This is the steady state.
+
+If someone later "tidies up" `/home/azureuser` back to 0750 because it "looks more standard," Kaye and Heather (and any future fully-isolated bot) will silently break again. Don't change this back without checking.
 
 ## Env-var infrastructure (no-op safety net, left in place)
 
