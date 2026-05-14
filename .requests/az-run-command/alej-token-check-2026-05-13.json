@@ -1,0 +1,1 @@
+{"vm":"openclaw-vm","rg":"SDNeurosurgery-OpenClaw","script":"ls -la /run/claude-bot-token.env; echo ---; systemctl is-active claude-bot-token-refresh.service; echo ---; tail -25 /home/alejandro/.alejandro-bot/responder-debug.log"}
