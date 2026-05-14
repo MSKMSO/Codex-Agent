@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "aixa: active\nashley: active\nafrah: active\naxel: active\ncameron: active\ndavid: active\nemily-claude: active\ngabriel: active\nheather: active\njesus-reyes: active\njose: active\nlia: active\nneil: active\nneil-claude: active\nrosi: active\nstephanie-claude: active\nzahid: active\nalejandro: active",
+  "stderr": ""
+}
