@@ -254,6 +254,96 @@ If step 3 fails (no inbound message logged), the user didn't actually message ye
 
 ---
 
+## PHASE 6 — Wire Dr. Yoo's identifier access (Tier 1 vs Tier 2)
+
+Every bot in the fleet gets access to Dr. Yoo's professional identifiers (NPI, CA medical license, practice address, mailing address, office phone, work email, practice org). This lets bots pre-fill vendor consulting agreements, hospital credentialing forms, Sunshine Act / Open Payments forms, insurance provider sections, CME registration, etc. — without re-asking Dr. Yoo every time.
+
+The single source of truth is `SDN-YooVault` → secret `dr-yoo-identifiers` (JSON). Edit the repo file `MSKMSO/Virtual-Machines/scripts/dr-yoo-identifiers.json`, then run workflow `kv-set-dr-yoo-identifiers.yml` to push the new value into the vault.
+
+### Tier decision tree
+
+| Bot belongs to | Tier | Where the identifiers live |
+|---|---|---|
+| Dr. Frank Kevin Yoo or Dr. Heather Yoo (personal agents) | **Tier 1** | Hardcoded in the responder source via marker `DR_YOO_IDENTIFIERS_V1` |
+| Anyone else — staff, organizational, persona, or third-party bot | **Tier 2** | Fetched from Key Vault on service startup via marker `DR_YOO_IDENTIFIERS_V2_VAULT` |
+
+There are only three Tier 1 bots and there will never be more: Dr. Yoo's Anthropic Agent (`yooanthropic-responder`), Dr. Yoo's OpenAI Agent (`yooopenai-responder`), Dr. Heather's AI Agent (`heather-responder`). Every new bot you create is Tier 2.
+
+### Tier 1 wiring (for the rare case of building Dr. Yoo's or Dr. Heather's next personal agent)
+
+Use `MSKMSO/Virtual-Machines/scripts/tier1-embed-identifiers.py` via workflow `tier1-embed-identifiers.yml`. It:
+
+1. Reads the JSON from `/home/azureuser/dr-yoo-identifiers.json` on the VM (a legacy artifact still present for Tier 1 — do not remove).
+2. For each service in `SERVICES`, finds the responder `.py` via `systemctl show … -p ExecStart`.
+3. Locates the first system-prompt-style variable (`SYSTEM_BASE`, `SYSTEM_PROMPT`, etc.) and appends the identifier block via a rebinding statement at end of file.
+4. py_compile-checks the new file, backs up `.bak-<ts>`, atomic-replaces, `systemctl restart`.
+
+Add the new service name to `SERVICES` in `tier1-embed-identifiers.py`. Dispatch the workflow. It is idempotent (marker `DR_YOO_IDENTIFIERS_V1` prevents re-injection).
+
+**Tradeoff:** Tier 1 needs a code redeploy + restart to pick up a new identifier value. Acceptable because NPI / license / addresses change rarely.
+
+### Tier 2 wiring (the default — every new bot)
+
+#### 2a. For Python responders (the templated bots — Ashley, Cameron, all staff bots, etc.)
+
+Use `MSKMSO/Virtual-Machines/scripts/tier2-wire-vault-fetch.py` via workflow `tier2-wire-vault-fetch.yml`. It:
+
+1. Confirms the VM managed identity can read `SDN-YooVault → dr-yoo-identifiers` (it has Key Vault Administrator).
+2. For each service in `SERVICES`, finds the responder `.py` via `systemctl show`.
+3. Injects two pieces:
+   - After the last `import` line: a `_dr_yoo_block()` helper that shells out to `az keyvault secret show … dr-yoo-identifiers` at module load, caches via `lru_cache`, returns the formatted identifier block. Returns `""` on any failure so the bot keeps working.
+   - At end of file: `<varname> = <varname> + "\n\n" + _dr_yoo_block()`.
+4. py_compile + atomic replace + `systemctl restart`.
+
+Add the new bot's responder service name (e.g. `<name>-responder`) to the `SERVICES` list. Dispatch the workflow. Marker `DR_YOO_IDENTIFIERS_V2_VAULT` makes it idempotent.
+
+**Per-user account note:** if the bot runs as its own Linux user (the per-user bot pattern — Jose, Axel, Lia, Afrah, etc.), that user must have `az login --identity` configured. The provisioning script for per-user bots already does this. The VM MI has Key Vault Administrator regardless of which Linux user calls `az`.
+
+#### 2b. For openclaw runtime bots (Codex specifically — and any future openclaw-based bot)
+
+These don't have a Python responder file to patch. The behavioral policy is in workspace policy files (`IDENTITY.md`, `SOUL.md`, `USER.md`, `MEMORY.md`) that bootstrap reads at session start. The pattern is:
+
+1. Install a fetcher script at `/home/azureuser/.<bot>-fetch-identifiers.sh` that runs `az keyvault secret show` and writes `<workspace-dir>/DR_YOO_IDENTIFIERS.md` from the JSON.
+2. Add `ExecStartPre=/home/azureuser/.<bot>-fetch-identifiers.sh` to the bot's systemd unit (idempotent — only insert once).
+3. Run the fetcher once to populate the workspace file.
+4. `systemctl daemon-reload && systemctl restart <bot>`.
+
+Reference implementation: `MSKMSO/Codex-Agent/scripts/wire-tier2-dr-yoo-identifiers.sh` (used to wire `openclaw-codex.service`).
+
+**Common gotcha:** if you run the fetcher manually as root the first time, the workspace file is owned by root and the service (running as `azureuser`) can't overwrite it on its next restart — ExecStartPre fails and the bot crash-loops. Always `chown azureuser:azureuser <workspace-dir>/DR_YOO_IDENTIFIERS.md` after the first manual run.
+
+### What the identifier block says (always, every bot)
+
+The block embedded/fetched into the system prompt includes:
+
+- Legal name, preferred name, specialty
+- NPI, CA medical license
+- Practice address, mailing address
+- Office phone, work email, practice org
+
+And it includes an explicit refusal list — every bot must refuse to fill: bank routing/account numbers, credit card numbers, SSN, EIN/tax IDs, DEA registration, date of birth, driver's license, passwords, signatures.
+
+### Verifying after wiring
+
+Send the bot a test message in Teams: *"What's Dr. Yoo's NPI?"* — it should answer `1295774545` without prompting. If it asks Dr. Yoo for the number, the wiring didn't apply — check:
+
+1. `systemctl is-active <name>-responder` — service running?
+2. `grep DR_YOO_IDENTIFIERS_V2_VAULT <path-to-responder.py>` — marker present?
+3. For Tier 2: `sudo -u <user> az keyvault secret show --vault-name SDN-YooVault --name dr-yoo-identifiers --query id -o tsv` — vault reachable from that user account?
+
+### When you update the identifier values
+
+1. Edit `MSKMSO/Virtual-Machines/scripts/dr-yoo-identifiers.json`, commit, push.
+2. Run workflow `kv-set-dr-yoo-identifiers.yml` to push to the vault.
+3. **Tier 2 bots:** restart each service — `systemctl restart <name>-responder`. The lru_cache forces a fresh fetch on next launch.
+4. **Tier 1 bots:** run `tier1-embed-identifiers.yml`. The marker check skips already-embedded files unless you bump the marker version. To force a refresh, either bump the marker (`V1` → `V2`) in the script or hand-remove the marker block from each Tier 1 responder first.
+
+### Bots that get NEITHER tier
+
+None, currently. Tier 2 covers every authorized bot in the fleet. If you ever want to wall a bot off from Dr. Yoo's identifiers, the way to enforce that is to NOT add its responder service to `tier2-wire-vault-fetch.py`'s `SERVICES` list — the vault is open to any Linux account on the VM that has `az login --identity`, so scope is enforced by which responder code contains the fetcher.
+
+---
+
 ## Failure-mode map (what each error code actually means)
 
 | Symptom | Cause | Fix |

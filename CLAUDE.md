@@ -52,7 +52,7 @@ chmod 0640 /home/azureuser/.claude/.credentials.json
 
 ## When creating a new bot from scratch — read this first
 
-Dr. Yoo's "build a new bot for <user>" request is the highest-leverage moment to follow the playbook exactly. **Read [`docs/bot-creation-end-to-end.md`](docs/bot-creation-end-to-end.md) start to finish before doing ANY work.** It has six phases (Preflight, Entra+BotService, VM service files, Teams catalog publish, Install, Health check), each with mandatory verify gates.
+Dr. Yoo's "build a new bot for <user>" request is the highest-leverage moment to follow the playbook exactly. **Read [`docs/bot-creation-end-to-end.md`](docs/bot-creation-end-to-end.md) start to finish before doing ANY work.** It now has seven phases (Preflight, Entra+BotService, VM service files, Teams catalog publish, Install, Health check, Dr. Yoo identifier wiring), each with mandatory verify gates.
 
 **Phase 0 (Preflight) is non-negotiable** — run [`scripts/preflight-bot-creation.sh`](scripts/preflight-bot-creation.sh) before anything that creates state. It catches:
 - Tenant Teams App Permission Policy gate closed (the 2026-05-11 wall — wasted ~6 hours)
@@ -60,6 +60,8 @@ Dr. Yoo's "build a new bot for <user>" request is the highest-leverage moment to
 - Reference bot health pre-existing problems
 
 If preflight fails, **STOP and escalate**. Don't try to power through.
+
+**Phase 6 (Dr. Yoo identifier wiring) is mandatory for every new bot.** Every bot in the fleet must be wired to Dr. Yoo's professional identifiers (NPI, license, addresses) — Tier 1 (hardcoded) for the three personal agents (Dr. Yoo's Anthropic Agent, Dr. Yoo's OpenAI Agent, Dr. Heather's AI Agent), Tier 2 (vault-fetched from `SDN-YooVault` → `dr-yoo-identifiers`) for everyone else. **The default for any new bot is Tier 2.** See Phase 6 in [`docs/bot-creation-end-to-end.md`](docs/bot-creation-end-to-end.md) for the wiring scripts (`tier1-embed-identifiers.py` / `tier2-wire-vault-fetch.py`), the never-fill list (banking, SSN, DEA, DOB, DL, signatures), and the verification step (Teams test: `"What's Dr. Yoo's NPI?"` should return `1295774545`).
 
 ## When publishing or installing a Teams app — read this first
 
