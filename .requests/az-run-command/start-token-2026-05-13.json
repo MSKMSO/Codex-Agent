@@ -1,0 +1,1 @@
+{"vm":"openclaw-vm","rg":"SDNeurosurgery-OpenClaw","script":"systemctl status claude-bot-token-refresh.service --no-pager -n 0 | head -5; echo ---; sudo systemctl start claude-bot-token-refresh.service; sleep 3; echo ---after-start---; systemctl is-active claude-bot-token-refresh.service; ls -la /run/claude-bot-token.env 2>&1"}
