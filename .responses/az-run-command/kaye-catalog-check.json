@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "=== which graph-token scripts exist on the VM ===\n-rwxr-xr-x 1 azureuser azureuser  944 Apr 22 17:43 /home/azureuser/mso-graph-token.sh\n-rwxr-xr-x 1 azureuser azureuser 1310 Apr 19 12:20 /home/azureuser/yoomd-graph-token.sh\n-rwxr-xr-x 1 azureuser azureuser  944 Apr 22 17:43 /home/azureuser/mso-graph-token.sh\n-rwxr-xr-x 1 root      root       887 Apr 27 20:34 /home/azureuser/yoomd-app-token.sh\n-rwxr-xr-x 1 azureuser azureuser 1478 May  7 07:53 /home/azureuser/yoomd-appcatalog-token.sh\n-rwxr-xr-x 1 azureuser azureuser 1310 Apr 19 12:20 /home/azureuser/yoomd-graph-token.sh\n-rw-r--r-- 1 azureuser azureuser 1298 Apr 30 19:41 /home/azureuser/yoomd-mgmt-token.sh\n-rwxr-xr-x 1 root      root       930 May  2 06:48 /home/azureuser/yooopenai-app-token.sh\n=== try mso-graph-token.sh first ===\nmso token length: 3008\n=== search Teams catalog for Kaye-related apps (displayName + bot endpoint patterns) ===\n--- Kaye ---\n  matches: 0\n--- kayeai ---\n  matches: 0\n--- Elamparo ---\n  matches: 0\n=== Azure Bot Service - is OpenClaw-KayeAgent registered? ===\n{\n  \"enabled\": false,\n  \"endpoint\": \"https://openclaw-sdneuro.westus2.cloudapp.azure.com/kayeai/api/messages\",\n  \"name\": \"OpenClaw-KayeAgent\"\n}\n===END===",
+  "stderr": ""
+}
