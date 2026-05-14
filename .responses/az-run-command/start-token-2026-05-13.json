@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "○ claude-bot-token-refresh.service - Refresh shared Claude OAuth token to /run/claude-bot-token.env\n     Loaded: loaded (/etc/systemd/system/claude-bot-token-refresh.service; disabled; preset: enabled)\n     Active: inactive (dead)\n---\n---after-start---\nactive\n-rw-r--r-- 1 root root 133 May 14 13:30 /run/claude-bot-token.env",
+  "stderr": ""
+}
