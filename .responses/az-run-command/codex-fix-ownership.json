@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "chowned\n[dr-yoo-identifiers-fetch] wrote /home/azureuser/.openclaw-codex/workspace-codex/DR_YOO_IDENTIFIERS.md\nactive\n---\n-rw-r--r-- 1 azureuser azureuser 794 May 14 13:25 /home/azureuser/.openclaw-codex/workspace-codex/DR_YOO_IDENTIFIERS.md\nCODEX_FIXED",
+  "stderr": ""
+}
