@@ -252,6 +252,38 @@ The run-command extension serializes — if it errors with `Conflict: Run comman
 until az vm run-command invoke -g SDNeurosurgery-OpenClaw -n openclaw-vm --command-id RunShellScript --scripts "$SCRIPT" --query "value[0].message" -o tsv 2>/tmp/rc.err; do sleep 5; done
 ```
 
+## Bot Claude auth — token-file fix recipe
+
+Symptom: bots reply "Had trouble generating a reply" or "Your organization does not have access to Claude." When this happens, do NOT start a `claude /login` device-code flow as the first move — try this recipe first.
+
+Root cause: bots share an OAuth account (`yoomd@sdneurosurgery.com`). The token files live at `/etc/claude-tokens/<short>.env`. When one of those files gets emptied or replaced with just the header comment, that specific bot stops responding. A healthy file is ~186–224 bytes; a broken one is ~53–91 bytes (header only, no token).
+
+Fix (no manual sign-in needed if any bot has a healthy token):
+1. `ls -la /etc/claude-tokens/*.env` — files under ~100 bytes are broken.
+2. Pick any healthy `.env` (e.g. `lia.env`, `cameron.env`) and copy it onto each broken file:
+   ```bash
+   sudo cp -p /etc/claude-tokens/lia.env /etc/claude-tokens/<short>.env
+   ```
+3. Restart the affected responder:
+   ```bash
+   sudo systemctl restart <prefix>-responder.service
+   ```
+   Filenames use hyphens — `neil-claude.env` not `neilc.env`, `jesus-reyes.env` not `jesusr.env`.
+4. Verify with `systemctl is-active <prefix>-responder.service` and a test message in Teams.
+
+If ALL `.env` files are short/missing, the canonical token has expired — that's the only case that requires a manual `claude /login` on the VM as `yoomd@sdneurosurgery.com`. Otherwise this plain file-copy + restart is the fix.
+
+Also verify the maintenance cron is in place:
+```bash
+sudo crontab -u azureuser -l | grep claude-cred-chmod
+```
+Re-add if missing:
+```
+* * * * * /home/azureuser/.claude-cred-chmod.sh >/dev/null 2>&1
+```
+
+History: 2026-05-14 — `gabriel.env`, `heather.env`, `kaye.env` were 91 bytes each, fixed by copying from `lia.env` (224 bytes).
+
 ## Repo layout
 
 - [`HANDOFF.md`](HANDOFF.md) — the comprehensive reference. Read this first.
