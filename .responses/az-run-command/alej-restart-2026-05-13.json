@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "Created symlink /etc/systemd/system/multi-user.target.wants/claude-bot-token-refresh.service → /etc/systemd/system/claude-bot-token-refresh.service.\nactive\n---env-now---\nSUDO_COMMAND=/usr/bin/bash -c set -a; . /run/claude-bot-token.env 2>/dev/null; set +a; env | grep -i claude | head -3\nCLAUDE_CODE_OAUTH_TOKEN=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",
+  "stderr": ""
+}
