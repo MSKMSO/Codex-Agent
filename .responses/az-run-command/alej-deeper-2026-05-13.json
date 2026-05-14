@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "=== claude-token drop-in ===\n[Service]\nEnvironmentFile=-/run/claude-bot-token.env\nRequires=claude-bot-token-refresh.service\nAfter=claude-bot-token-refresh.service\n\n=== actual python errors ===\n\n=== bot dir log files ===\ntotal 952\ndrwxrwxr-x 3 alejandro alejandro   4096 May 12 12:12 .\ndrwxr-x--- 8 alejandro alejandro   4096 May 14 12:11 ..\n-rw-r--r-- 1 alejandro alejandro 478100 May 14 12:11 activities.jsonl\n-rw-r--r-- 1 alejandro alejandro  94676 May 14 12:11 conversation-refs.jsonl\n-rw------- 1 alejandro alejandro    170 Apr 28 07:03 creds.json\n-rw-r--r-- 1 alejandro alejandro   1159 May 13 10:22 memory.md\n-rw-r--r-- 1 alejandro alejandro 158233 May 14 12:21 outbound.jsonl\n-rw-r--r-- 1 alejandro alejandro 190701 May 14 12:20 responder-debug.log\n-rw-r--r-- 1 alejandro alejandro   1512 May 13 08:32 responder-errors.log\n-rw-r--r-- 1 alejandro alejandro      3 May 14 12:11 responder-offset.txt\ndrwxr-xr-x 3 alejandro alejandro   4096 May  5 08:19 users",
+  "stderr": ""
+}
