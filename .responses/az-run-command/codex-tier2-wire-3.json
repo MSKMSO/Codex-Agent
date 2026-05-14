@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "added ExecStartPre to /etc/systemd/system/openclaw-codex.service\n[dr-yoo-identifiers-fetch] wrote /home/azureuser/.openclaw-codex/workspace-codex/DR_YOO_IDENTIFIERS.md",
+  "stderr": "Job for openclaw-codex.service failed because the control process exited with error code.\nSee \"systemctl status openclaw-codex.service\" and \"journalctl -xeu openclaw-codex.service\" for details."
+}
