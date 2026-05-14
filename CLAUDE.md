@@ -37,6 +37,8 @@ Dr. Yoo's "build a new bot for <user>" request is the highest-leverage moment to
 
 If preflight fails, **STOP and escalate**. Don't try to power through.
 
+**Phase 6 (Dr. Yoo identifier wiring) is mandatory for every new bot.** Every bot in the fleet must be wired to Dr. Yoo's professional identifiers (NPI, license, addresses) — Tier 1 (hardcoded) for the three personal agents, Tier 2 (vault-fetched) for everyone else. The default for any new bot is **Tier 2**. See Phase 6 in [`docs/bot-creation-end-to-end.md`](docs/bot-creation-end-to-end.md) for the wiring scripts and verification steps.
+
 ## When publishing or installing a Teams app — read this first
 
 If the user's question is about uploading a new bot to the Teams catalog, installing a bot in someone's personal Teams, or debugging an `App is blocked by app permission policy` 403, read [`docs/teams-app-publishing.md`](docs/teams-app-publishing.md) **before** any `POST /appCatalogs/teamsApps` call. It encodes the rules learned from the 2026-05-11 incident where MSO Claude triggered Microsoft's anti-abuse cooldown via repeated upload-delete-reupload and bricked six apps for ~24h.
