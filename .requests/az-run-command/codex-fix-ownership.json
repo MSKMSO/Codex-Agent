@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "set -e; chown azureuser:azureuser /home/azureuser/.openclaw-codex/workspace-codex/DR_YOO_IDENTIFIERS.md; echo chowned; sudo -u azureuser /home/azureuser/.openclaw-codex-fetch-identifiers.sh; systemctl reset-failed openclaw-codex || true; systemctl restart openclaw-codex; sleep 3; systemctl is-active openclaw-codex; echo ---; ls -la /home/azureuser/.openclaw-codex/workspace-codex/DR_YOO_IDENTIFIERS.md; echo CODEX_FIXED"
+}
