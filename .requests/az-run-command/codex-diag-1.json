@@ -1,0 +1,5 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "script": "echo '=== unit file ==='; cat /etc/systemd/system/openclaw-codex.service; echo; echo '=== last journal ==='; journalctl -u openclaw-codex --since '3 min ago' --no-pager | tail -30; echo; echo '=== fetcher direct test ==='; sudo -u azureuser /home/azureuser/.openclaw-codex-fetch-identifiers.sh 2>&1 || true; echo exit=$?; echo; echo '=== workspace file ==='; ls -la /home/azureuser/.openclaw-codex/workspace-codex/DR_YOO_IDENTIFIERS.md 2>&1; head -10 /home/azureuser/.openclaw-codex/workspace-codex/DR_YOO_IDENTIFIERS.md 2>&1"
+}
