@@ -17,7 +17,7 @@ Don't try to debug Codex from scratch — start with `HANDOFF.md`.
 
 ## When debugging the OTHER Teams bots — read this first
 
-If the user's question is about Emily / Neil / Stephanie / Aixa / Zahid / David / Rosi / Gabriel / Alejandro / Heather / Kaye / MSK AI / Yoo AI — i.e., any of the templated Claude or OpenAI bots running on `openclaw-vm` — read [`docs/multi-bot-debugging.md`](docs/multi-bot-debugging.md) before writing a single command. It encodes the diagnostic order learned from real multi-hour debug sessions, including:
+If the user's question is about Emily / Neil / Stephanie / Aixa / Zahid / David / Rosi / Gabriel / Alejandro / Heather / Kaye / Claude / Yoo AI — i.e., any of the templated Claude or OpenAI bots running on `openclaw-vm` — read [`docs/multi-bot-debugging.md`](docs/multi-bot-debugging.md) before writing a single command. ("Claude" is the main no-user-prefix Claude bot; internal service name is `mskai-bot.service` / `mskai-responder.service` for grep purposes.) The doc encodes the diagnostic order learned from real multi-hour debug sessions, including:
 
 - **The diff-first rule** for templated bot families. When one twin works and the others don't, your first command is `diff` between their responder/bot files. Not `az bot show`. Not `curl`. `diff`.
 - **The single most common failure mode**: `creds.json` containing the secret **ID** instead of the secret **value** → `AADSTS7000215`. Fix at [`docs/runbook-rotate-bot-secret.md`](docs/runbook-rotate-bot-secret.md).
@@ -26,13 +26,13 @@ If the user's question is about Emily / Neil / Stephanie / Aixa / Zahid / David 
 
 This applies whenever a sibling bot is acting up. Don't guess; diff.
 
-## When a user reports "wrong chat" on Claude AI Agent / mskai — read this first
+## When a user reports "wrong chat" on Claude — read this first
 
-If the user says Claude (mskai, the "main Claude Agent without a user name") is replying in the wrong chat, **read [`docs/2026-05-13-mskai-wrong-chat-non-incident.md`](docs/2026-05-13-mskai-wrong-chat-non-incident.md) before reading any responder code.** The 2026-05-13 investigation looked at every code path and the full inbound/outbound log (1,469 in, 681 out, 48 chats including DMs) and found **zero misroutes**. Re-run the log comparison first (the query is at `.requests/az-run-command/claude-routing-diag-20.json`); if still zero, the cause is almost certainly a Teams client display artifact, not the bot. Don't edit the responder for this symptom without a concrete repro (chat-asked, chat-replied, timestamp).
+If the user says Claude (the main no-user-prefix Claude bot, internal service `mskai-responder`) is replying in the wrong chat, **read [`docs/2026-05-13-claude-wrong-chat-non-incident.md`](docs/2026-05-13-claude-wrong-chat-non-incident.md) before reading any responder code.** The 2026-05-13 investigation looked at every code path and the full inbound/outbound log (1,469 in, 681 out, 48 chats including DMs) and found **zero misroutes**. Re-run the log comparison first (the query is at `.requests/az-run-command/claude-routing-diag-20.json`); if still zero, the cause is almost certainly a Teams client display artifact, not the bot. Don't edit the responder for this symptom without a concrete repro (chat-asked, chat-replied, timestamp).
 
 ## When per-user bots return "Had trouble generating a reply" — read this first
 
-If the 16 per-user Claude bots (Aixa/Alejandro/Ashley/Axel/Cameron/David/Emily/Jesus/Jose/Lia/Neil/Neil-Claude/Rosi/Stephanie/Zahid/Afrah) all post the **"Had trouble generating a reply"** fallback while mskai/yooai are fine, the symptom is almost always: `/home/azureuser/.claude/.credentials.json` was refreshed by Claude CLI and dropped to mode 0600, blocking per-user accounts (who only have group-read via the `azureuser` group through the symlinked `.claude`). **Read [`docs/2026-05-13-per-user-bot-credential-outage.md`](docs/2026-05-13-per-user-bot-credential-outage.md) before touching anything.**
+If the 16 per-user Claude bots (Aixa/Alejandro/Ashley/Axel/Cameron/David/Emily/Jesus/Jose/Lia/Neil/Neil-Claude/Rosi/Stephanie/Zahid/Afrah) all post the **"Had trouble generating a reply"** fallback while Claude (mskai) and Yoo AI are fine, the symptom is almost always: `/home/azureuser/.claude/.credentials.json` was refreshed by Claude CLI and dropped to mode 0600, blocking per-user accounts (who only have group-read via the `azureuser` group through the symlinked `.claude`). **Read [`docs/2026-05-13-per-user-bot-credential-outage.md`](docs/2026-05-13-per-user-bot-credential-outage.md) before touching anything.**
 
 An azureuser cron entry (`* * * * * /home/azureuser/.claude-cred-chmod.sh`) re-applies mode 0640 every minute, so the symptom should self-heal within 60 seconds. If it's persistent, first check `crontab -u azureuser -l` and `stat -c '%a' /home/azureuser/.claude/.credentials.json` (should be 640). Manual one-line fix if the cron is missing or broken:
 
@@ -40,7 +40,7 @@ An azureuser cron entry (`* * * * * /home/azureuser/.claude-cred-chmod.sh`) re-a
 chmod 0640 /home/azureuser/.claude/.credentials.json
 ```
 
-**Do NOT run `chown -R` on any per-user `.claude` directory.** Those are symlinks back to `/home/azureuser/.claude`. Recursion will follow the symlinks and corrupt the master credential, breaking mskai.
+**Do NOT run `chown -R` on any per-user `.claude` directory.** Those are symlinks back to `/home/azureuser/.claude`. Recursion will follow the symlinks and corrupt the master credential, breaking Claude (mskai).
 
 **Do NOT try to give each per-user bot its own real `.claude/` + copied `.credentials.json`.** That's the trap I fell into on 2026-05-13. A copy of the credential file produces `rc=0` with empty stdout — Claude CLI silently fails when the credential lacks matching device/session state (which only an interactive `claude /login` can generate).
 

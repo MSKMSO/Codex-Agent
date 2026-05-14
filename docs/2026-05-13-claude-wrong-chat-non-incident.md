@@ -1,4 +1,4 @@
-# Wrong-chat report on Claude AI Agent (mskai) — 2026-05-13
+# Wrong-chat report on Claude (internal service: mskai-responder) — 2026-05-13
 
 ## Short answer for Dr. Yoo
 
@@ -6,11 +6,11 @@ Claude is sending replies to the right chat. I checked everything Claude got and
 
 ## What you reported
 
-You said Claude AI Agent — the main Claude bot with no person's name attached — was replying in the wrong chat. You'd ask it something in one chat and the answer would show up in a different chat.
+You said Claude — the main Claude bot with no person's name attached — was replying in the wrong chat. You'd ask it something in one chat and the answer would show up in a different chat.
 
 ## What I actually found
 
-First I figured out which bot you meant. "The main Claude Agent without a user name" is the one called `mskai` on the openclaw VM. Its Teams display name is just "Claude". That's the right one. There's no separate bot named "Claude AI Agent" anywhere in the system.
+First I figured out which bot you meant. "Claude" is the openclaw-vm service `mskai-bot.service` / `mskai-responder.service` (legacy internal name). Its Teams display name is "Claude". There's no separate bot named "Claude AI Agent" anywhere in the system.
 
 Then I read all the code that touches chat routing — the part that receives messages, the part that decides which chat to reply to, and the script that actually sends the reply to Teams. Every step correctly carries the chat ID from the incoming message through to the outgoing reply. No bugs in the code.
 
