@@ -15,6 +15,16 @@ This repo is the home for everything related to **Codex Agent** — the openclaw
 
 Don't try to debug Codex from scratch — start with `HANDOFF.md`.
 
+## When ANY Claude bot returns "Had trouble generating a reply" — read this first
+
+Before any deep diagnostic, try the token-file fix recipe in [`docs/reference_bot_claude_token_fix.md`](docs/reference_bot_claude_token_fix.md). Most fleet-wide auth outages are fixed by a 3-command copy-and-restart, no interactive sign-in needed:
+
+1. `ls -la /etc/claude-tokens/*.env`
+2. Any file under 100 bytes is broken → `sudo cp -p /etc/claude-tokens/lia.env /etc/claude-tokens/<prefix>.env` (filenames use hyphens: `neil-claude.env` not `neilc.env`, `jesus-reyes.env` not `jesusr.env`)
+3. `sudo systemctl restart <prefix>-responder.service`
+
+Manual `claude /login` is ONLY needed when EVERY `.env` is short.
+
 ## When debugging the OTHER Teams bots — read this first
 
 If the user's question is about Emily / Neil / Stephanie / Aixa / Zahid / David / Rosi / Gabriel / Alejandro / Heather / Kaye / Claude / Yoo AI — i.e., any of the templated Claude or OpenAI bots running on `openclaw-vm` — read [`docs/multi-bot-debugging.md`](docs/multi-bot-debugging.md) before writing a single command. ("Claude" is the main no-user-prefix Claude bot; internal service name is `mskai-bot.service` / `mskai-responder.service` for grep purposes.) The doc encodes the diagnostic order learned from real multi-hour debug sessions, including:
