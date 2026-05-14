@@ -1,0 +1,1 @@
+{"vm":"openclaw-vm","rg":"SDNeurosurgery-OpenClaw","script":"sudo systemctl enable claude-bot-token-refresh.service 2>&1 | tail -2; sudo systemctl restart alejandro-responder.service; sleep 4; systemctl is-active alejandro-responder.service; echo ---env-now---; sudo -u alejandro bash -c 'set -a; . /run/claude-bot-token.env 2>/dev/null; set +a; env | grep -i claude | head -3'"}
