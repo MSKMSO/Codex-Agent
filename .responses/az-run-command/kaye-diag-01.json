@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "=== ts ===\n2026-05-14T18:10:25Z\n=== kaye bot data dirs ===\ndrwxrwxr-x 4 kaye kaye 4096 Apr 30 19:15 /home/kaye/.kaye-bot\ndrwxrwxr-x 4 kaye kaye 4096 Apr 30 19:15 /home/kaye/.kaye-bot\n=== kaye services + uptime ===\n  kaye-bot               state=active pid=1045 uptime_s=125\n  kaye-responder         state=active pid=1046 uptime_s=125\n=== kaye inbound activity (last 5) ===\n--- /home/kaye/.kaye-bot/activities.jsonl (last 5 inbound) ---\n2026-05-01T02:15:13.236532+00:00 | ? | \n2026-05-01T02:15:26.720410+00:00 | ? | \n2026-05-01T02:15:27.228234+00:00 | ? | \n2026-05-01T02:15:46.420239+00:00 | Dr. Kevin Yoo, SDN | <at>Kaye AI</at> say hello to your owner <at>Kaye</at> <at>Elamparo,</\n2026-05-08T22:00:10.177524+00:00 | Kaye Elamparo, NP | <at>Kaye AI</at> can you create a app for patient intake for a neurosu\n=== kaye outbound (last 5) ===\n=== kaye responder err log tail ===\n=== kaye .claude state + test claude as kaye ===\n700 kaye:kaye /home/kaye/.claude\n600 kaye:kaye /home/kaye/.claude/.credentials.json\ntimeout: failed to run command ‘/home/azureuser/.npm-global/bin/claude’: Permission denied\n===END===",
+  "stderr": ""
+}
