@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "=== before ===\n750 azureuser:azureuser /home/azureuser\nkaye groups:\nkaye : kaye\nheather groups:\nheather : heather\ngabriel groups:\ngabriel : gabriel azureuser\n=== chmod 0711 /home/azureuser (world-traversable, not readable) ===\n711 azureuser:azureuser /home/azureuser\n=== verify kaye can now execute claude with her OWN credential ===\n=== same for heather ===\n=== same for gabriel ===\n=== verify mskai (azureuser) still works ===\n===END===",
+  "stderr": ""
+}
