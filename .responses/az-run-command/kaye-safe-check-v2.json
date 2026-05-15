@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "=== Mint AppPublisher token ===\n  token: 2986 chars\n--- externalId eq 515f7dd8-... ---\n  matches: 0\n--- displayName eq Kaye's AI Agent ---\n  matches: 0\n--- displayName eq Kaye Elamparo ---\n  matches: 0\n--- displayName eq Kaye AI ---\n  matches: 0\n===END===",
+  "stderr": ""
+}
