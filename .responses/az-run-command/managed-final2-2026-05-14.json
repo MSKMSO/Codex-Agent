@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "managed-api-with-poll\n133 /etc/claude-tokens/mskai.env\n187 /etc/claude-tokens/yooanthropic.env\n187 /etc/claude-tokens/yooopenai.env\n224 /etc/claude-tokens/afrah.env\n224 /etc/claude-tokens/aixa.env\n224 /etc/claude-tokens/alejandro.env\n224 /etc/claude-tokens/ashley.env\n224 /etc/claude-tokens/axel.env\n224 /etc/claude-tokens/cameron.env\n224 /etc/claude-tokens/david.env\n224 /etc/claude-tokens/emily-claude.env\n224 /etc/claude-tokens/gabriel.env\n224 /etc/claude-tokens/heather.env\n224 /etc/claude-tokens/jesus-reyes.env\n224 /etc/claude-tokens/jose.env\n224 /etc/claude-tokens/kaye.env\n224 /etc/claude-tokens/lia.env\n224 /etc/claude-tokens/neil-claude.env\n224 /etc/claude-tokens/neil.env\n224 /etc/claude-tokens/rosi.env\n224 /etc/claude-tokens/stephanie-claude.env\n224 /etc/claude-tokens/zahid.env",
+  "stderr": ""
+}
