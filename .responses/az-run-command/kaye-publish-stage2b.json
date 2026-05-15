@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "=== STEP 1: Mint AppPublisher token ===\n  AppPublisher token: 2987 chars\n=== STEP 2: POST manifest zip to /appCatalogs/teamsApps (single shot, no retry) ===\n  POST status: 409\n  POST body (first 600 chars): {\"error\":{\"code\":\"Conflict\",\"message\":\"App with same id already exists in the tenant. UserId: 'e0d48eb4-1eb3-4263-a72e-f6ad4ef32238', TenantId: '50186224-2255-444a-b321-60a84114115c', AppId: 'c5d5dbb3-f135-4cc2-8a59-3b4dfba95600', ExternalId: '515f7dd8-cede-4e89-8012-a861e0a71f3d', entitlementId: c28c52ce-eabe-4db5-a980-01462832d565, entitlementExternalId: 515f7dd8-cede-4e89-8012-a861e0a71f3d, TitleId: , state: Installed\",\"innerError\":{\"code\":\"AppDefinitionAlreadyExists\",\"message\":\"App with same id already exists in the tenant. UserId: 'e0d48eb4-1eb3-4263-a72e-f6ad4ef32238', TenantId: '5018622\nFAIL: upload returned 409 (expected 201). STOP. Do NOT retry.",
+  "stderr": ""
+}
