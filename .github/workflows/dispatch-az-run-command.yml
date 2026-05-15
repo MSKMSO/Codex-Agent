@@ -99,27 +99,21 @@ jobs:
             CMDNAME="proxy-$(date -u +%s)-$(echo "$name" | tr -dc 'a-zA-Z0-9-' | head -c 32)"
 
             set +e
-            az vm run-command create -g "$RG" --vm-name "$VM" --run-command-name "$CMDNAME" \
-              --script "@/tmp/run-cmd-script.sh" \
-              --output json > /tmp/raw-msg.txt 2>/tmp/raw-err.txt
+            az vm run-command invoke -g "$RG" -n "$VM" \
+              --command-id RunShellScript \
+              --scripts @/tmp/run-cmd-script.sh \
+              --query "value[0].message" -o tsv > /tmp/raw-msg.txt 2>/tmp/raw-err.txt
             RC=$?
             set -e
 
-            STDOUT=""
-            STDERR=""
+            STDOUT=$(awk '/^\[stdout\]$/{flag=1; next} /^\[stderr\]$/{flag=0} flag' /tmp/raw-msg.txt)
+            STDERR=$(awk '/^\[stderr\]$/{flag=1; next} flag' /tmp/raw-msg.txt)
             EXIT_CODE="$RC"
-            if [ "$RC" -eq 0 ] && [ -s /tmp/raw-msg.txt ]; then
-              STDOUT=$(jq -r '.instanceView.output // ""' /tmp/raw-msg.txt)
-              STDERR=$(jq -r '.instanceView.error // ""' /tmp/raw-msg.txt)
-              EXIT_CODE=$(jq -r '.instanceView.exitCode // 0' /tmp/raw-msg.txt)
-            else
+
+            if [ "$RC" -ne 0 ] && [ -z "$STDOUT" ] && [ -z "$STDERR" ]; then
               STDERR=$(cat /tmp/raw-err.txt)
               [ -z "$STDERR" ] && STDERR="(az produced no output; raw-msg=$(cat /tmp/raw-msg.txt))"
             fi
-
-            # Best-effort cleanup so named run-commands don't accumulate forever.
-            # If our SP lacks delete perms this fails silently.
-            az vm run-command delete -g "$RG" --vm-name "$VM" --run-command-name "$CMDNAME" --yes >/dev/null 2>&1 || true
 
             jq -n --arg stdout "$STDOUT" --arg stderr "$STDERR" --argjson rc "$EXIT_CODE" --arg vm "$VM" --arg rg "$RG" \
               '{vm:$vm, rg:$rg, exit_code:$rc, stdout:$stdout, stderr:$stderr}' \
