@@ -1,0 +1,1 @@
+{"vm":"openclaw-vm","rg":"SDNeurosurgery-OpenClaw","script":"date; timedatectl | head -5; which at && echo 'at: available' || echo 'at: NOT available'"}
