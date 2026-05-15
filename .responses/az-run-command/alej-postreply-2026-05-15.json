@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 2,
+  "stdout": "",
+  "stderr": "/var/lib/waagent/run-command-handler/download/proxy-1778863374-alej-postreply-2026-05-15json/0/script.sh: line 1: syntax error near unexpected token `('\n/var/lib/waagent/run-command-handler/download/proxy-1778863374-alej-postreply-2026-05-15json/0/script.sh: line 1: `echo === post_reply defs ===; sudo grep -nE '^def post_reply' /home/alejandro/alejandro-responder.py; echo; echo === post_reply_chunked body ===; sudo awk '/^def post_reply_chunked/,/^def [a-zA-Z]/{print NR\": \"$0}' /home/alejandro/alejandro-responder.py | head -50; echo; echo === lines 670-700 context (the cutoff site) ===; sudo sed -n '660,710p' /home/alejandro/alejandro-responder.py'"
+}
