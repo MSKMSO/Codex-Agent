@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 1,
+  "stdout": "",
+  "stderr": "ERROR: (Conflict) Run command extension execution is in progress. Please wait for completion before invoking a run command.\nCode: Conflict\nMessage: Run command extension execution is in progress. Please wait for completion before invoking a run command."
+}
