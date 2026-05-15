@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 1,
+  "stdout": "",
+  "stderr": "ERROR: (AuthorizationFailed) The client 'be7c0d1e-927e-458c-8d33-4b5044d7250d' with object id '2f632469-51f6-4daf-a718-f3b161cf3cbf' does not have authorization to perform action 'Microsoft.Compute/virtualMachines/runCommands/write' over scope '/subscriptions/15a60cd5-8766-431b-a003-49f4f1b1890f/resourceGroups/SDNeurosurgery-OpenClaw/providers/Microsoft.Compute/virtualMachines/openclaw-vm/runCommands/proxy-1778810187-managed-test2-2026-05-14json' or the scope is invalid. If access was recently granted, please refresh your credentials.\nCode: AuthorizationFailed\nMessage: The client 'be7c0d1e-927e-458c-8d33-4b5044d7250d' with object id '2f632469-51f6-4daf-a718-f3b161cf3cbf' does not have authorization to perform action 'Microsoft.Compute/virtualMachines/runCommands/write' over scope '/subscriptions/15a60cd5-8766-431b-a003-49f4f1b1890f/resourceGroups/SDNeurosurgery-OpenClaw/providers/Microsoft.Compute/virtualMachines/openclaw-vm/runCommands/proxy-1778810187-managed-test2-2026-05-14json' or the scope is invalid. If access was recently granted, please refresh your credentials."
+}
