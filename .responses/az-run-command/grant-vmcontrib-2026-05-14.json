@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "== logging in with VM managed identity ==\n      \"name\": \"systemAssignedIdentity\",\n      \"type\": \"servicePrincipal\"\n    }\n  }\n]\n\n== try direct role assignment ==\n  \"createdBy\": null,\n  \"createdOn\": \"2026-05-15T02:10:52.145343+00:00\",\n  \"delegatedManagedIdentityResourceId\": null,\n  \"description\": null,\n  \"id\": \"/subscriptions/15a60cd5-8766-431b-a003-49f4f1b1890f/resourceGroups/SDNeurosurgery-OpenClaw/providers/Microsoft.Compute/virtualMachines/openclaw-vm/providers/Microsoft.Authorization/roleAssignments/84094fae-653b-4279-9831-f49df682f373\",\n  \"name\": \"84094fae-653b-4279-9831-f49df682f373\",\n  \"principalId\": \"2f632469-51f6-4daf-a718-f3b161cf3cbf\",\n  \"principalType\": \"ServicePrincipal\",\n  \"resourceGroup\": \"SDNeurosurgery-OpenClaw\",\n  \"roleDefinitionId\": \"/subscriptions/15a60cd5-8766-431b-a003-49f4f1b1890f/providers/Microsoft.Authorization/roleDefinitions/9980e02c-c2be-4d73-94e8-173b1dc7cf3c\",\n  \"scope\": \"/subscriptions/15a60cd5-8766-431b-a003-49f4f1b1890f/resourceGroups/SDNeurosurgery-OpenClaw/providers/Microsoft.Compute/virtualMachines/openclaw-vm\",\n  \"type\": \"Microsoft.Authorization/roleAssignments\",\n  \"updatedBy\": \"f7c0167c-8a3f-42f5-a8cb-9f2b39c1c0f0\",\n  \"updatedOn\": \"2026-05-15T02:10:52.364350+00:00\"\n}\n\n== verify ==\nOpenClaw Run Command Operator\nVirtual Machine Contributor",
+  "stderr": ""
+}
