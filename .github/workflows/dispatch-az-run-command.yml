@@ -99,7 +99,7 @@ jobs:
             CMDNAME="proxy-$(date -u +%s)-$(echo "$name" | tr -dc 'a-zA-Z0-9-' | head -c 32)"
 
             set +e
-            az vm run-command create -g "$RG" --vm-name "$VM" -n "$CMDNAME" \
+            az vm run-command create -g "$RG" --vm-name "$VM" --run-command-name "$CMDNAME" \
               --script "@/tmp/run-cmd-script.sh" \
               --output json > /tmp/raw-msg.txt 2>/tmp/raw-err.txt
             RC=$?
@@ -119,7 +119,7 @@ jobs:
 
             # Best-effort cleanup so named run-commands don't accumulate forever.
             # If our SP lacks delete perms this fails silently.
-            az vm run-command delete -g "$RG" --vm-name "$VM" -n "$CMDNAME" --yes >/dev/null 2>&1 || true
+            az vm run-command delete -g "$RG" --vm-name "$VM" --run-command-name "$CMDNAME" --yes >/dev/null 2>&1 || true
 
             jq -n --arg stdout "$STDOUT" --arg stderr "$STDERR" --argjson rc "$EXIT_CODE" --arg vm "$VM" --arg rg "$RG" \
               '{vm:$vm, rg:$rg, exit_code:$rc, stdout:$stdout, stderr:$stderr}' \

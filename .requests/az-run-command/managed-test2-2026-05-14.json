@@ -1,0 +1,1 @@
+{"vm":"openclaw-vm","rg":"SDNeurosurgery-OpenClaw","script":"echo managed-api-v2; ls -la /etc/claude-tokens/*.env | awk '{print $5, $NF}' | sort -n"}
