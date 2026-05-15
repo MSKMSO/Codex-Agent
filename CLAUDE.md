@@ -17,13 +17,9 @@ Don't try to debug Codex from scratch — start with `HANDOFF.md`.
 
 ## When ANY Claude bot returns "Had trouble generating a reply" — read this first
 
-Before any deep diagnostic, try the token-file fix recipe in [`docs/reference_bot_claude_token_fix.md`](docs/reference_bot_claude_token_fix.md). Most fleet-wide auth outages are fixed by a 3-command copy-and-restart, no interactive sign-in needed:
+The same Teams-side error message can come from at least four very different causes (Anthropic rate limit, broken responder code from a bad auto-injection, dead service, harmless Graph 404). **Run the diagnostic in [`docs/bot-empty-reply-diagnosis.md`](docs/bot-empty-reply-diagnosis.md) BEFORE doing anything.** It has the decision tree from the responder error/debug logs and the safe source-repair pattern for the auto-injection trap that bit us on 2026-05-14.
 
-1. `ls -la /etc/claude-tokens/*.env`
-2. Any file under 100 bytes is broken → `sudo cp -p /etc/claude-tokens/lia.env /etc/claude-tokens/<prefix>.env` (filenames use hyphens: `neil-claude.env` not `neilc.env`, `jesus-reyes.env` not `jesusr.env`)
-3. `sudo systemctl restart <prefix>-responder.service`
-
-Manual `claude /login` is ONLY needed when EVERY `.env` is short.
+**Do NOT** reach for the token-file copy recipe (`docs/reference_bot_claude_token_fix.md`) before running the diagnosis — copying one bot's `/etc/claude-tokens/*.env` onto another's silently rebinds the receiver to the source's AAD and merges their Anthropic quota. The token-copy recipe applies ONLY when the diagnosis confirms a bot's own `.env` is genuinely truncated (Pattern A subcase) — never as a "try this first" shortcut.
 
 ## When debugging the OTHER Teams bots — read this first
 
