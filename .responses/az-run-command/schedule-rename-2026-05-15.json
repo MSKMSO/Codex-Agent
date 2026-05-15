@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "script bytes: 5319\nRunning timer as unit: migrate-mskai-claude.timer\nWill run service as unit: migrate-mskai-claude.service\n=== armed ===\nNEXT                        LEFT LAST PASSED UNIT                       ACTIVATES\nFri 2026-05-15 19:00:00 PDT  12h -         - migrate-mskai-claude.timer migrate-mskai-claude.service\n\n1 timers listed.",
+  "stderr": ""
+}
