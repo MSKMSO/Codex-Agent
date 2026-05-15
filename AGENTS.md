@@ -254,11 +254,21 @@ until az vm run-command invoke -g SDNeurosurgery-OpenClaw -n openclaw-vm --comma
 
 ## Bot replies "Had trouble generating a reply" — diagnostic path
 
-**Read [`docs/bot-empty-reply-diagnosis.md`](docs/bot-empty-reply-diagnosis.md) FIRST.** That runbook is the authoritative procedure.
+**Read [`docs/bot-empty-reply-diagnosis.md`](docs/bot-empty-reply-diagnosis.md) FIRST. Do not skip it.** That runbook is the authoritative procedure for this failure mode.
 
-Short version: the failure mode is one of (a) org-level Anthropic rate limit, (b) auto-injection broke `run_codex` in the bot's `responder.py`, (c) service down, or (d) a Graph 404 red herring. They all surface as the same "had trouble" message. **Do not** guess — run the diagnostic in the runbook.
+Short version: the failure could be (a) org-level Anthropic rate limit, (b) auto-injection broke `run_codex` in the bot's `responder.py`, (c) service down, or (d) a Graph 404 red herring. They all surface as the same "had trouble" message. **Do not guess** — run the diagnostic in the runbook in order.
 
-**Specifically do NOT** copy one bot's `/etc/claude-tokens/<short>.env` onto another's as a "fix". That clobbers the bot's identity, mixes quota across bots, and silently locks the recipient bot to the donor's AAD. A previous version of this file recommended that pattern — it was wrong; the runbook supersedes it.
+### NEVER do this (it has been done; it caused real damage)
+
+**Do not copy one bot's `/etc/claude-tokens/<short>.env` file onto another bot's**, ever, for any reason, as a "fix". The pattern looks like it works (the recipient bot starts replying again) but it actually:
+
+- Locks the recipient bot's identity to the donor bot's AAD account, silently
+- Mixes Anthropic API quota — the recipient bot's calls count against the donor bot's token
+- Masks the real bug (which is almost always source-code, per Pattern B in the runbook), so the bot stays broken in a way nobody notices
+
+This mistake was made on 2026-05-14 when `lia.env` was copied onto `mskai.env`. It "fixed" the visible symptom for hours, but it locked the Claude bot to Lia and stole her quota. A previous version of AGENTS.md actually recommended this pattern — that was wrong. The runbook supersedes it.
+
+If you find yourself reaching for `cp /etc/claude-tokens/X.env /etc/claude-tokens/Y.env`, stop. Read the runbook. Run Pattern B's diagnostic. Almost certainly the real fix is removing a broken auto-injection from `<bot>-responder.py`.
 
 ## Repo layout
 
