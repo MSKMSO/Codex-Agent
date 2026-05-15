@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "=== Mint AppPublisher token (for read) ===\n  token: 2986 chars\n=== STEP A: GET on REAL teamsApp.id to verify it exists ===\n  GET status: 404\n  body:\n{\n    \"error\": {\n        \"code\": \"NotFound\",\n        \"message\": \"The app was not found.\",\n        \"innerError\": {\n            \"date\": \"2026-05-15T13:52:10\",\n            \"request-id\": \"aebf366f-0e4a-4ff3-bfe3-ee69bfdd600a\",\n            \"client-request-id\": \"aebf366f-0e4a-4ff3-bfe3-ee69bfdd600a\"\n        }\n    }\n}\nFAIL: teamsApp.id c5d5dbb3-f135-4cc2-8a59-3b4dfba95600 is not reachable. STOP.",
+  "stderr": ""
+}
