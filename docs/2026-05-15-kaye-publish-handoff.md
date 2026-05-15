@@ -50,9 +50,19 @@ When ready:
 
 The full dispatch is in `.requests/az-run-command/kaye-publish-stage2.json` from today's branch — can be copied and run again with a fresh filename.
 
+## Update — second attempt confirmed the cooldown is real
+
+After writing the original handoff, ran a second upload (user-authorized). Result: `409 Conflict` with body:
+
+> `App with same id already exists in the tenant. UserId: 'e0d48eb4-1eb3-4263-a72e-f6ad4ef32238', AppId: 'c5d5dbb3-f135-4cc2-8a59-3b4dfba95600', ExternalId: '515f7dd8-cede-4e89-8012-a861e0a71f3d', entitlementId: c28c52ce-eabe-4db5-a980-01462832d565, state: Installed`
+
+Initially looked like a rescue (we got a "real" teamsApp.id from the error). But: `GET /v1.0/appCatalogs/teamsApps/c5d5dbb3-...` with the AppPublisher token returned **404**, same as the original `c28c52ce-...` orphan. Microsoft remembers enough to block fresh uploads (409) but won't actually surface the entry (404). That's the cooldown signature, just sideways.
+
+**Both ids `c28c52ce-...` and `c5d5dbb3-...` are dead.** Do not try to GET, install against, or delete either of them. They will become live (or remain dead and decay) once the cooldown lifts.
+
 ## Permanent record (fill in after success)
 
-- Kaye's published `teamsApp.id`: _(fill in once publish succeeds)_
+- Kaye's published `teamsApp.id`: _(fill in once publish succeeds — NOT `c28c52ce` or `c5d5dbb3`; both are quarantined artifacts)_
 - Kaye's externalId (won't change): `515f7dd8-cede-4e89-8012-a861e0a71f3d`
 - Future version updates: `POST /v1.0/appCatalogs/teamsApps/{teamsAppId}/appDefinitions` — never delete-and-reupload (per `docs/teams-app-publishing.md` Rule 1)
 
