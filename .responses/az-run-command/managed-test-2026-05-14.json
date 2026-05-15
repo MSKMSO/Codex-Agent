@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 2,
+  "stdout": "",
+  "stderr": "ERROR: the following arguments are required: --name/--run-command-name\n\nExamples from command's help:\naz vm run-command create --resource-group \"myResourceGroup\" --location \"West US\" --script \"Write-Host Hello World!\" --run-command-name \"myRunCommand\" --vm-name \"myVM\" --output-blob-uri \"https://mystorageaccount.blob.core.windows.net/mycontainer/RuncommandOutput.txt?sp=racw&st=2022-10-17T19:02:15Z&se=2022-10-18T03:02:15Z&spr=https&sv=2021-06-08&sr=b&sig=3BxtEasfdasdfasdfdYki9yvYsqc60V0%3D\"\nCreate a run command with uploading script output stream to Azure storage blob (SAS URI).\n\naz vm run-command create --resource-group \"myResourceGroup\" --location \"West US\" --async-execution false --parameters arg1=param1 arg2=value1 --run-as-password \"<runAsPassword>\" --run-as-user \"user1\" --script \"Write-Host Hello World!\" --timeout-in-seconds 3600 --run-command-name \"myRunCommand\" --vm-name \"myVM\"\nCreate a run command.\n\nhttps://aka.ms/cli_ref\nRead more about the command in reference docs"
+}
