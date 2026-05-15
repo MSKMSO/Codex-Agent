@@ -1,0 +1,1 @@
+{"vm":"openclaw-vm","rg":"SDNeurosurgery-OpenClaw","script":"echo === post_reply def lines ===; sudo grep -nE 'def post_reply' /home/alejandro/alejandro-responder.py; echo; echo === cutoff site lines 660-705 ===; sudo sed -n '660,705p' /home/alejandro/alejandro-responder.py"}
