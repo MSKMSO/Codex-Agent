@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "before: 133\nafter: 224\nmskai-responder: active\nmskai-bot: active",
+  "stderr": ""
+}
