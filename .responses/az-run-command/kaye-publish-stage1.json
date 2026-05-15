@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 1,
+  "stdout": "",
+  "stderr": "ERROR: (OperationNotAllowed) The operation requires the VM to be running (or set to run).\nCode: OperationNotAllowed\nMessage: The operation requires the VM to be running (or set to run)."
+}
