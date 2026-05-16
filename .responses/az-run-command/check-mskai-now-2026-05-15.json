@@ -1,0 +1,7 @@
+{
+  "vm": "openclaw-vm",
+  "rg": "SDNeurosurgery-OpenClaw",
+  "exit_code": 0,
+  "stdout": "=== bot status ===\nactive\nactive\ninactive\ninactive\n\n=== migration log ===\nno migration log\n\n=== which home is live ===\n\n=== latest debug-log mtime ===\n1778897099.3453824370 /home/heather/.heather-bot/responder-debug.log\n1778897409.9664823670 /home/azureuser/.mskai-bot/responder-debug.log\n1778897631.4134073580 /home/azureuser/.yooai-bot/responder-debug.log",
+  "stderr": ""
+}
